@@ -53,7 +53,7 @@ const Contact = () => {
             <label htmlFor="gmail">Gmail</label>
           </td>
           <td>
-            <input type="gmailt" id='gmail' onChange={handleInputChange} placeholder='Enter your gmail' name='gmail' value={details.gmail} />
+            <input type="gmail" id='gmail' onChange={handleInputChange} placeholder='Enter your gmail' name='gmail' value={details.gmail} />
           </td>
         </tr>
         <tr>

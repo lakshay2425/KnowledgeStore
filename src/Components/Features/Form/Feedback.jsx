@@ -13,6 +13,7 @@ const Contact = () => {
       }
     })
   }
+
   const handleSubmit = (e) => {
     e.preventDefault();
     setDetails({
@@ -31,7 +32,7 @@ const Contact = () => {
         </tr>
         <tr>
           <td><label htmlFor="gmail">Gmail</label></td>
-          <td><input type="gmailt" id='gmail' onChange={handleInputChange} placeholder='Enter your gmail' name='gmail' value={details.gmail} /></td>
+          <td><input type="gmail" id='gmail' onChange={handleInputChange} placeholder='Enter your gmail' name='gmail' value={details.gmail} /></td>
         </tr>
         <tr>
           <td><label htmlFor="feedback">Feedback</label></td>
