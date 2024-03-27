@@ -1,6 +1,5 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { Menu } from '@headlessui/react'
 import './Navbar.css'
 import { Dropdown, DropdownTrigger, DropdownMenu, Button, DropdownSection, DropdownItem, Input } from "@nextui-org/react";
 const Navbar = () => {
@@ -17,14 +16,15 @@ const Navbar = () => {
             </a>
             <Dropdown backdrop="blur">
               <DropdownTrigger>
-                <Button variant="bordered">
+                <Button variant="" className='nav-btn'>
                   Categories
                 </Button>
               </DropdownTrigger>
               <DropdownMenu variant="faded" aria-label="Static Actions">
-                <DropdownItem key="new">Finance</DropdownItem>
-                <DropdownItem key="copy">Skill-Based</DropdownItem>
-                <DropdownItem key="edit">Biography</DropdownItem>
+                <DropdownItem key="new"><Link className="dropdown-item" to="/Finance">Finance</Link></DropdownItem>
+                <DropdownItem key="copy"><Link className="dropdown-item" to="/SkillBased">Skill-Based</Link></DropdownItem>
+                <DropdownItem key="edit"><Link className="dropdown-item" to="/Biography">Biography</Link></DropdownItem>
+                <DropdownItem ><Link className="dropdown-item" to="/SelfHelp">Self-Help</Link></DropdownItem>
                 <DropdownItem key="delete" className="text-danger" color="danger">
                 <Link className="dropdown-item" to="/Fictional">Fictional</Link>
                 </DropdownItem>
@@ -36,7 +36,7 @@ const Navbar = () => {
             <a><Link>About Us</Link></a>
             <Dropdown backdrop="blur">
               <DropdownTrigger>
-                <Button variant="bordered">
+                <Button variant="" className='nav-btn'>
                 Ways to Contact
                 </Button>
               </DropdownTrigger>
@@ -58,7 +58,7 @@ const Navbar = () => {
               isClearable
               type="test"
               // label="Search"
-              variant="bordered"
+              variant="underlined"
               placeholder="Search For Books!"
               defaultValue=""
               onClear={() => console.log("input cleared")}

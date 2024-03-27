@@ -3502,6 +3502,17 @@ video {
   --slide-exit: 80px;
 }
 
+:root {
+}
+
+* {
+  font-family: "Mulish", sans-serif;
+}
+
+body {
+  background-color: #f9f8f6;
+}
+
 .placeholder\:text-danger::-moz-placeholder {
   --tw-text-opacity: 1;
   color: hsl(var(--nextui-danger) / var(--nextui-danger-opacity, var(--tw-text-opacity)));

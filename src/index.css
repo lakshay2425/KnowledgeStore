@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {}
+
+* {
+    font-family: "Mulish", sans-serif;
+}
+
+body {
+    background-color: #f9f8f6;
+}
