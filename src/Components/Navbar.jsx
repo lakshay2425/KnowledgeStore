@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { Menu } from '@headlessui/react'
 import './Navbar.css'
-
+import { Dropdown, DropdownTrigger, DropdownMenu, Button, DropdownSection, DropdownItem, Input } from "@nextui-org/react";
 const Navbar = () => {
   return (
     <>
@@ -10,43 +10,44 @@ const Navbar = () => {
         <nav className='navbar'>
           <div id="logo">Books.Rent</div>
 
-          
-            <div className="nav-links">
-              <a href="/" className="">
-                Books
-              </a>
-              <Menu>
-                <Menu.Button>Categories</Menu.Button>
-                <Menu.Items>
-                  <Menu.Item>
-                    {({ active }) => (
-                      <a
-                        className={`${active && 'bg-blue-500'}`}
-                        href="/account-settings"
-                      >
-                        Account settings
-                      </a>
-                    )}
-                  </Menu.Item>
-                  <Menu.Item>
-                    {({ active }) => (
-                      <a
-                        className={`${active && 'bg-blue-500'}`}
-                        href="/account-settings"
-                      >
-                        Documentation
-                      </a>
-                    )}
-                  </Menu.Item>
-                  <Menu.Item disabled>
-                    <span className="opacity-75">Invite a friend (coming soon!)</span>
-                  </Menu.Item>
-                </Menu.Items>
-              </Menu>
-              <a><Link>Wishlist</Link></a>
-              <a><Link>About Us</Link></a>
-            </div>
-          
+
+          <div className="nav-links">
+            <a href="/" className="">
+              Books
+            </a>
+            <Dropdown backdrop="blur">
+              <DropdownTrigger>
+                <Button variant="bordered">
+                  Categories
+                </Button>
+              </DropdownTrigger>
+              <DropdownMenu variant="faded" aria-label="Static Actions">
+                <DropdownItem key="new">Finance</DropdownItem>
+                <DropdownItem key="copy">Skill-Based</DropdownItem>
+                <DropdownItem key="edit">Biography</DropdownItem>
+                <DropdownItem key="delete" className="text-danger" color="danger">
+                <Link className="dropdown-item" to="/Fictional">Fictional</Link>
+                </DropdownItem>
+              </DropdownMenu>
+            </Dropdown>
+
+            <a><Link>Wishlist</Link></a>
+            <a><Link>About Us</Link></a>
+            
+          </div>
+          <div>
+          <Input
+              isClearable
+              type="test"
+              // label="Search"
+              variant="bordered"
+              placeholder="Search For Books!"
+              defaultValue=""
+              onClear={() => console.log("input cleared")}
+              className="w-42 h-10"
+            />
+          </div>
+
         </nav>
       </header>
     </>
