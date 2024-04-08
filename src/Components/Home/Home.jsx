@@ -3,7 +3,15 @@ import './Home.css'
 const Home = () => {
   return (
     <>
-     <h1>Home Section</h1> 
+    <div className="home-section">
+      <div className="home-title">
+
+      </div>
+      <div className="home-carousell">
+        
+      </div>
+    </div>
+     
     </>
   )
 }
