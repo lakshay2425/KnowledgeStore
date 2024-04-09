@@ -92,7 +92,7 @@ const Contact = () => {
           <tr className="submit">
             <td></td>
             <td>
-              <button>Submit</button>
+              <button className="submit">Submit</button>
             </td>
           </tr>
         </table>
