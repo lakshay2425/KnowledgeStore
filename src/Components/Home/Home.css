@@ -1,18 +1,29 @@
-.home-section{
-    height: 400px;
-    width: 90%;
-    margin: auto;
-    display: flex;
-    align-items: center;
-    justify-content:space-between;
+.home-section {
+  height: 400px;
+  width: 90%;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
-.home-title{
-    width: 40%;
-    height: 100%;
+.home-title {
+  width: 40%;
+  height: 100%;
 }
 .home-carousell{
-    width: 50%;
-    height: 100%;
-    align-self: flex-end;
-    background-color: aquamarine;
+  width: 50%;
+  height: 100%;
+  align-self: flex-end;
+  background-color: aquamarine;
+}
+.home-heading {
+  font-size: 7vmax;
+  line-height: 8.9vw;
+  font-weight: 700;
+  font-family: "Carrara Extra Bold";
+}
+.home-heading span {
+  padding: 50px;
+}
+.home-reading div {
 }
