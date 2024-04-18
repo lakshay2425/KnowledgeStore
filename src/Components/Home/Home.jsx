@@ -14,8 +14,11 @@ const Home = () => {
           </div>
           <div className="home-reading">
             Our most popular and trending <span>On.Book</span> perfect
+            <div>Not sure what to read now next reading mood perfectly</div>
           </div>
-          <div>Not sure what to read now next reading mood perfectly</div>
+          <button type="button" className="explore">
+            Explore Now
+          </button>
         </div>
         <div className="home-carousell"></div>
       </div>
