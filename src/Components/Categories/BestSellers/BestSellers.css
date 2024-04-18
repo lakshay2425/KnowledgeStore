@@ -1,0 +1,19 @@
+.best-seller-container{
+    max-width: 90%;
+    margin: auto;
+    height: 500px;
+}
+
+.product-container{
+    padding-top: 50px;
+    display: flex;
+    align-items: center;
+    overflow-x:auto;
+    scrollbar-width: none;
+}
+.best-seller{
+    position: absolute;
+    left: 5%;
+    font-size: 2em;
+    font-weight: 600;
+}

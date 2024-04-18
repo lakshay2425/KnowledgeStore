@@ -85,7 +85,3 @@ p:hover {
 p:hover:after {
   width: 100%;
 }
-.about {
-  width: 6rem;
-  padding-left: 1rem;
-}

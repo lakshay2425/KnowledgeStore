@@ -1,5 +1,7 @@
 import React from 'react'
 import './Home.css'
+import '../Categories/BestSellers/BestSellers.jsx'
+import BestSellers from '../Categories/BestSellers/BestSellers.jsx'
 const Home = () => {
   return (
     <>
@@ -11,7 +13,7 @@ const Home = () => {
         
       </div>
     </div>
-     
+    <BestSellers/>
     </>
   )
 }

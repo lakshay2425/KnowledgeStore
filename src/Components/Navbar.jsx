@@ -70,13 +70,11 @@ const Navbar = () => {
               <p>Wishlist</p>
             </Link>
             {/* &nbsp; */}
-            <Link>
-              <p className="about">About Us</p>
-            </Link>
+           
             <Dropdown backdrop="blur">
               <DropdownTrigger>
                 <Button variant="" className="nav-btn">
-                  <p>Ways to Contact</p>
+                  <p>Contact Us</p>
                 </Button>
               </DropdownTrigger>
               <DropdownMenu variant="faded" aria-label="Static Actions">
@@ -112,6 +110,9 @@ const Navbar = () => {
                 </DropdownItem>
               </DropdownMenu>
             </Dropdown>
+            <Link>
+              <p className="about">About Us</p>
+            </Link>
           </div>
           <div>
             <Input
