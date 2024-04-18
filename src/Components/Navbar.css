@@ -60,7 +60,7 @@
   margin: 0;
   box-sizing: border-box;
 }
-p {
+nav p {
   position: relative;
   text-decoration: none;
   font-family: "Poppins", sans-serif;
@@ -69,7 +69,7 @@ p {
   letter-spacing: 0.1px;
   padding: 0 10px;
 }
-p:after {
+nav p:after {
   content: "";
   position: absolute;
   background-color: #ff3c78;
@@ -79,9 +79,12 @@ p:after {
   bottom: -7px;
   transition: 0.3s;
 }
-p:hover {
+nav p:hover {
   color: black;
 }
-p:hover:after {
+nav p:hover:after {
   width: 100%;
+}
+.about {
+  padding-left: 3px;
 }
