@@ -25,6 +25,7 @@ const Contact = () => {
   }
   return (
     <>
+    <div className="container">
      <form method="post" onSubmit={handleSubmit}>
       <table>
         <tr>
@@ -50,6 +51,7 @@ const Contact = () => {
         </tr>
       </table>
       </form> 
+      </div>
     </>
   )
 }
