@@ -3,14 +3,14 @@ import axios from 'axios';
 
 const Contact = () => {
   const [details, setDetails] = useState({
-    fullName : '',
-    gmail : '',
-    username : '',
-    number : '',
-    address : '',
-    password : '',
-    cpassword : '',
-    gender : ''
+    fullName: "",
+    gmail: "",
+    username: "",
+    number: "",
+    address: "",
+    password: "",
+    cpassword: "",
+    gender: "",
   });
   const handleInputChange = (e) => {
     setDetails((currData) => {
@@ -121,7 +121,7 @@ const Contact = () => {
       </form> 
       </div>
     </>
-  )
-}
+  );
+};
 
-export default Contact
+export default Contact;

@@ -1,12 +1,13 @@
 import React, {useState} from 'react'
 import axios from 'axios';
+import "./form.css";
 
 const Contact = () => {
   const [details, setDetails] = useState({
-    username : '',
-    gmail : '',
-    number : '',
-    concern : ''
+    username: "",
+    gmail: "",
+    number: "",
+    concern: "",
   });
   const handleInputChange = (e) => {
     setDetails((currData) => {
@@ -61,7 +62,7 @@ const Contact = () => {
       </form> 
       </div>
     </>
-  )
-}
+  );
+};
 
-export default Contact
+export default Contact;

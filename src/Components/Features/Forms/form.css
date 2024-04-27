@@ -1,0 +1,165 @@
+body {
+  font-family: Arial, sans-serif;
+  transition: background-color 0.3s ease;
+  height: 100%;
+}
+
+form {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+  border: 1px solid grey;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  transition: background-color 0.3s ease;
+}
+
+td,
+th {
+  padding: 10px 30px;
+  text-align: left;
+  border-bottom: 1px solid #181616;
+  border-top: 1px solid #181616;
+  transition: border-color 0.3s ease;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="number"],
+textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  transition: border-color 0.3s ease;
+}
+
+.submit {
+  color: rgb(0, 0, 0);
+  padding: 5px 70px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  transform: perspective(100px) rotateX(0deg) rotateY(0deg);
+  animation: spin 2s linear infinite;
+}
+
+.submit:hover {
+  background-color: #66e9ee;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 600px) {
+  table,
+  td,
+  th {
+    width: 100%;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="number"],
+  input[type="password"],
+  textarea {
+    width: 100%;
+  }
+}
+
+input[type="email"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  resize: vertical;
+  transition: border-color 0.3s ease;
+}
+
+textarea {
+  height: 120px;
+  transition: height 0.3s ease;
+}
+
+input[type="email"]:focus {
+  outline: none;
+}
+
+#gmail,
+#pass {
+  width: 100%;
+  padding: 5px 10px;
+  transition: background-color 0.3s ease;
+}
+
+.container {
+  background-image: url("https://img.freepik.com/free-photo/top-view-books-with-copy-space_23-2148827187.jpg");
+  background-size: cover;
+  transition: background-color 0.3s ease;
+  background-repeat: no-repeat, repeat;
+  background-position: right bottom, left top;
+  height: 87vh;
+}
+
+label {
+  color: #000000;
+  transition: color 0.3s ease;
+}
+
+@media (max-width: 480px) {
+  body {
+    font-size: 16px;
+  }
+
+  .submit {
+    padding: 5px 50px;
+  }
+
+  label {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 360px) {
+  body {
+    font-size: 14px;
+  }
+
+  .submit {
+    padding: 5px 40px;
+  }
+
+  label {
+    font-size: 12px;
+  }
+}
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  right: 0; /* Aligns the dropdown to the right */
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}

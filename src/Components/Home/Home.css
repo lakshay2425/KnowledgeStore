@@ -5,12 +5,13 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  /* background-color: lightpink; */
 }
 .home-title {
   width: 40%;
   height: 100%;
 }
-.home-carousell{
+.home-carousell {
   width: 50%;
   height: 100%;
   align-self: flex-end;
@@ -20,10 +21,30 @@
   font-size: 7vmax;
   line-height: 8.9vw;
   font-weight: 700;
-  font-family: "Carrara Extra Bold";
+  font-family: "Times New Roman", Times, serif;
+  display: flex;
 }
 .home-heading span {
   padding: 50px;
 }
-.home-reading div {
+.home-reading span {
+  font-weight: 700;
+}
+.explore {
+  margin-top: 4vh;
+  width: 20vh;
+  height: 8vh;
+  padding: 5px 10px;
+  color: #000000;
+  /* border-radius: 10%; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  cursor: pointer;
+}
+
+.explore:hover {
+  background-color: #000000;
+  color: #ffffff;
 }
