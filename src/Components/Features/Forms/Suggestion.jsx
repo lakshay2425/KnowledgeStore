@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import axios from 'axios';
 
 const Contact = () => {
   const [details, setDetails] = useState({
@@ -14,20 +15,27 @@ const Contact = () => {
       }
     })
   }
-  const handleSubmit = (e) => {
+  const handleSubmit =  async (e) => {
     e.preventDefault();
     setDetails({
       username : '',
       gmail : '',
       category : '',
       bookName : ''
-      })
+      });
+      try {
+        const response = await axios.post('http://localhost/Programs/Book_rental%20Project/SuggestionFormData.php', details);
+        console.log('Server response:', response.data);
+    } catch (error) {
+        console.error('Error submitting form:', error);
+    }
   }
   return (
     <>
     <div className="container">
      <form method="post" onSubmit={handleSubmit}>
       <table>
+        <tbody>
         <tr>
           <td><label htmlFor="username">Username</label></td>
           <td><input type="text" id='username'  onChange={handleInputChange} placeholder='Enter your username' name='username' value={details.username} /></td>
@@ -44,11 +52,11 @@ const Contact = () => {
           <td><label htmlFor="bookName">Book Name</label></td>
           <td><input type='text' name="bookName" id="bookName" onChange={handleInputChange} value={details.bookName} placeholder='Enter the book name'></input></td>
         </tr>
-
         <tr>
           <td></td>
           <td><button>Submit</button></td>
         </tr>
+        </tbody>
       </table>
       </form> 
       </div>

@@ -1,4 +1,5 @@
-import React, {useState} from 'react'
+import React, {useState} from 'react';
+import axios from 'axios';
 
 const Contact = () => {
   const [details, setDetails] = useState({
@@ -18,7 +19,7 @@ const Contact = () => {
       }
     })
   }
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setDetails({
       fullName : '',
@@ -29,19 +30,26 @@ const Contact = () => {
       password : '',
       cpassword : '',
       gender : ''
-      })
+      });
+      try {
+        const response = await axios.post('http://localhost/Programs/Book_rental%20Project/SignupData.php', details);
+        console.log('Server response:', response.data);
+    } catch (error) {
+        console.error('Error submitting form:', error);
+    }
   }
   return (
     <>
     <div className="container">
      <form  method="post" onSubmit={handleSubmit}>
       <table>
+        <tbody>
         <tr>
           <td>
-            <label htmlFor="fullname">Full Name</label>
+            <label htmlFor="fullName">Full Name</label>
           </td>
           <td>
-            <input type="text" id='fullname'  onChange={handleInputChange} placeholder='Enter your full name' name='full_name' value={details.fullName} />
+            <input type="text" id='fullName'  onChange={handleInputChange} placeholder='Enter your full name' name='fullName' value={details.fullName} />
           </td>
         </tr>
         <tr>
@@ -71,7 +79,7 @@ const Contact = () => {
           <td>
             <label htmlFor="address">Address</label></td>
           <td>
-            <textarea name="address" placeholder='Enter your address' id="address" onChange={handleInputChange} cols="50" value={details.address} rows="10"></textarea>
+            <textarea name="address" placeholder='Enter your address' id="address" onChange={handleInputChange} cols="40" value={details.address} rows="10"></textarea>
           </td>
         </tr>
         <tr>
@@ -79,7 +87,7 @@ const Contact = () => {
             <label htmlFor="pass">Password</label>
           </td>
           <td>
-            <input type="password" id='pass' name='pass' value={details.password} onChange={handleInputChange} placeholder='Enter your password' required/>
+            <input type="password" id='pass' name='password'  onChange={handleInputChange} value={details.password} placeholder='Enter your password' required/>
           </td>
         </tr>
         <tr>
@@ -87,18 +95,18 @@ const Contact = () => {
             <label htmlFor="cpass"> Confirm Password</label>
           </td>
           <td>
-            <input type="password" id='cpass' name='cpass' value={details.cpassword} onChange={handleInputChange} placeholder='Enter your confirm password' required/>
+            <input type="password" id='cpass' name='cpassword' onChange={handleInputChange} value={details.cpassword} placeholder='Enter your confirm password' required/>
           </td>
         </tr>
         <tr>
           <td>
             <label>Select your Gender 
-              <select name='gender' size={1}>
-                <option value="Male">Male</option>
-                <option value="Female">Female</option>
-                <option value="others">Others</option>
-                <option value="not_specified">Prefer not to say</option>
-              </select>
+            <select name='gender' onChange={handleInputChange} value={details.gender} size={1}>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+              <option value="others">Others</option>
+              <option value="not_specified">Prefer not to say</option>
+            </select>
             </label>
           </td>
         </tr>
@@ -108,6 +116,7 @@ const Contact = () => {
             <button>Submit</button>
           </td>
         </tr>
+        </tbody>
       </table>
       </form> 
       </div>
