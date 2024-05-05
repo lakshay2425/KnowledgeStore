@@ -2,6 +2,8 @@ import React from "react";
 import "./Home.css";
 import "../Categories/BestSellers/BestSellers.jsx";
 import BestSellers from "../Categories/BestSellers/BestSellers.jsx";
+import main from './main.png';
+
 const Home = () => {
   return (
     <>
@@ -9,18 +11,20 @@ const Home = () => {
         <div className="home-title">
           <div className="home-heading">
             <div>
-              <span>Find Your </span> Next Book
+              <p>&#10095; Find Your Next Book</p>
             </div>
           </div>
           <div className="home-reading">
-            Our most popular and trending <span>On.Book</span> perfect
+            <p>Our most popular and trending <span>On.Book</span> perfect</p>
           </div>
-          <div>Not sure what to read now next reading mood perfectly</div>
+          <div className="home-reading"><p>Not sure what to read now next reading mood perfectly</p></div>
           <div className="explore">
             <button>Click Me</button>
           </div>
         </div>
-        <div className="home-carousell"></div>
+        <div className="home-carousell">
+          <img src={main} alt="" sizes="100%" srcset="" />
+        </div>
       </div>
       <BestSellers />
     </>
