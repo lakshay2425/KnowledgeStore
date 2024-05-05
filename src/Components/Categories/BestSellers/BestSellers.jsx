@@ -1,24 +1,10 @@
-import PropTypes from 'prop-types'
-import React, { Component } from 'react'
-import ProductCard from '../../utils/ProductCard'
-import './BestSellers.css'
-export class BestSellers extends Component {
-  static propTypes = {}
+import React from 'react';
+import FetchData from './FetchData';
 
-  render() {
-    return (
-      <div className='best-seller-container'>
-        <h1 className="best-seller">Best Sellers</h1>
-        <div className="product-container">
-          <ProductCard/>
-          <ProductCard/>
-          <ProductCard/>
-          <ProductCard/>
-          <ProductCard/>
-        </div>
-      </div>
-    )
-  }
-}
+const FinancePage = () => {
+    const financeApiUrl = 'http://localhost/Programs/Book_rental%20Project/FetchData.php';
 
-export default BestSellers
+    return <FetchData apiUrl={financeApiUrl} />;
+};
+
+export default FinancePage;

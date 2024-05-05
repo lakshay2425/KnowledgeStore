@@ -1,11 +1,10 @@
-import React from 'react'
+import React from 'react';
+import FetchData from '../BestSellers/FetchData';
 
 const Biography = () => {
-  return (
-    <>
-      <h1>Biography Books</h1>
-    </>
-  )
-}
+    const biographyApiUrl = 'http://localhost/Programs/Book_rental%20Project/FetchData.php?genre=Biography';
 
-export default Biography
+    return <FetchData apiUrl={biographyApiUrl} />;
+};
+
+export default Biography;

@@ -1,11 +1,11 @@
-import React from 'react'
+import React from 'react';
+import FetchData from '../BestSellers/FetchData';
+
 
 const SelfHelp = () => {
-  return (
-    <>
-     <h1>Self Help Books</h1> 
-    </>
-  )
-}
+    const selfHelpApiUrl = 'http://localhost/Programs/Book_rental%20Project/FetchData.php?genre=Self-Help';
 
-export default SelfHelp
+    return <FetchData apiUrl={selfHelpApiUrl} />;
+};
+
+export default SelfHelp;

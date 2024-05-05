@@ -1,11 +1,10 @@
-import React from 'react'
+import React from 'react';
+import FetchData from '../BestSellers/FetchData';
 
 const Fictional = () => {
-  return (
-    <>
-      <h1>Fictional Books</h1>
-    </>
-  )
-}
+    const fictionalApiUrl = 'http://localhost/Programs/Book_rental%20Project/FetchData.php?genre=Fictional';
 
-export default Fictional
+    return <FetchData apiUrl={fictionalApiUrl} />;
+};
+
+export default Fictional;

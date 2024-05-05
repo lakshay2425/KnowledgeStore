@@ -1,11 +1,11 @@
-import React from 'react'
+import React from 'react';
+import FetchData from '../BestSellers/FetchData';
 
-const Skillbased = () => {
-  return (
-    <>
-     <h1>Skill-based Books</h1> 
-    </>
-  )
-}
 
-export default Skillbased
+const SkillBased = () => {
+    const skillBasedApiUrl = 'http://localhost/Programs/Book_rental%20Project/FetchData.php?genre=Skill-based';
+
+    return  <FetchData apiUrl={skillBasedApiUrl} />;
+};
+
+export default SkillBased;

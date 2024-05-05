@@ -35,17 +35,17 @@ const Navbar = () => {
                 </Button>
               </DropdownTrigger>
               <DropdownMenu variant="faded" aria-label="Static Actions">
-                <DropdownItem key="new">
+                <DropdownItem key="finance">
                   <Link className="dropdown-item" to="/Finance">
                     Finance
                   </Link>
                 </DropdownItem>
-                <DropdownItem key="copy">
+                <DropdownItem key="skillbased">
                   <Link className="dropdown-item" to="/SkillBased">
                     Skill-Based
                   </Link>
                 </DropdownItem>
-                <DropdownItem key="edit">
+                <DropdownItem key="biography">
                   <Link className="dropdown-item" to="/Biography">
                     Biography
                   </Link>
@@ -56,7 +56,7 @@ const Navbar = () => {
                   </Link>
                 </DropdownItem>
                 <DropdownItem
-                  key="delete"
+                  key="Fictional"
                   className="text-danger"
                   color="danger"
                 >
@@ -78,29 +78,29 @@ const Navbar = () => {
                 </Button>
               </DropdownTrigger>
               <DropdownMenu variant="faded" aria-label="Static Actions">
-                <DropdownItem key="new">
+                <DropdownItem key="login">
                   <Link className="dropdown-item" to="/Login">
                     Login
                   </Link>
                 </DropdownItem>
-                <DropdownItem key="copy">
+                <DropdownItem key="signup">
                   <Link className="dropdown-item" to="/Signup">
                     Signup
                   </Link>
                 </DropdownItem>
-                <DropdownItem key="edit">
+                <DropdownItem key="feedback">
                   <Link className="dropdown-item" to="/feedback">
                     Feedback
                   </Link>
                 </DropdownItem>
-                <DropdownItem key="edit">
+                <DropdownItem key="suggestion">
                   <Link className="dropdown-item" to="/suggestion">
                     Suggestion
                   </Link>
                 </DropdownItem>
 
                 <DropdownItem
-                  key="delete"
+                  key="contact"
                   className="text-danger"
                   color="danger"
                 >

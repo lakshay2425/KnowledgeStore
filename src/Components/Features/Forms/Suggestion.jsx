@@ -46,7 +46,7 @@ const Contact = () => {
         </tr>
         <tr>
           <td><label htmlFor="Category">Category</label></td>
-          <td><input type='text' name="Category" id="Category" onChange={handleInputChange} value={details.category} placeholder='Enter the category of book you want to suggest'></input></td>
+          <td><input type='text' name="genre" id="Category" onChange={handleInputChange} value={details.category} placeholder='Enter the genre of book'></input></td>
         </tr>
         <tr>
           <td><label htmlFor="bookName">Book Name</label></td>

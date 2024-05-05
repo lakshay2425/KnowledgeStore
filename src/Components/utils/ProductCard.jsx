@@ -1,22 +1,23 @@
-import React from 'react'
+import React from 'react';
 
-function ProductCard() {
-  return (
-    <div className='product-card'> 
-        {/* // css is written in index.css */}
-        <div className="product-img">
-            <img src="https://bestlifeonline.com/wp-content/uploads/sites/3/2020/10/The-Hobbit-book-cover.jpg" alt="" />
+const ProductCard = ({ books }) => {
 
-        </div>
-        <div className='product-data'>
-            <p className='product-name'>Product name</p>
-            <p className='product-price'> &#x20B9; 0.0</p>
-        </div>
-        <div>
-            <button className='product-btn'>Add to cart</button>
-        </div>
-    </div>
-  )
-}
+    return (
+        <div className='product-card'>
+                {books.map(book => (
+                    <div key={book.s_no} className="book-card product-card">
+                      <div className="product-card-chip">
+                        <p className="product-name"> Book Name:{book.book_name}</p>
+                        <p className="product-price">Price: {book.price}</p >
+                      </div>
+                        <p className="product-author">Author: {book.author}</p>
+                        <p>Genre: {book.genre}</p>
+                        <button className="add-to-cart-button">Add to Cart</button>
+                        <br /><br />
+                    </div>
+                ))}
+            </div>
+    );
+};
 
-export default ProductCard
+export default ProductCard;
