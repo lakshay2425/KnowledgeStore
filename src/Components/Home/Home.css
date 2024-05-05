@@ -38,6 +38,7 @@
   color: #000000;
   /* border-radius: 10%; */
   display: flex;
+  background-color: rgb(123, 124, 123);
   justify-content: center;
   align-items: center;
   transition: background-color 0.3s ease, color 0.3s ease;

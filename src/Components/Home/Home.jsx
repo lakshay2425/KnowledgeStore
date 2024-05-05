@@ -16,6 +16,9 @@ const Home = () => {
             Our most popular and trending <span>On.Book</span> perfect
           </div>
           <div>Not sure what to read now next reading mood perfectly</div>
+          <div className="explore">
+            <button>Click Me</button>
+          </div>
         </div>
         <div className="home-carousell"></div>
       </div>
