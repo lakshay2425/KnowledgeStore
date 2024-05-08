@@ -4,6 +4,8 @@ import "../Categories/BestSellers/BestSellers.jsx";
 import BestSellers from "../Categories/BestSellers/BestSellers.jsx";
 import main from './main.png';
 
+import main from './main.png';
+
 const Home = () => {
   return (
     <>
@@ -12,11 +14,14 @@ const Home = () => {
           <div className="home-heading">
             <div>
               <p>&#10095; Find Your Next Book</p>
+              <p>&#10095; Find Your Next Book</p>
             </div>
           </div>
           <div className="home-reading">
             <p>Our most popular and trending <span>On.Book</span> perfect</p>
+            <p>Our most popular and trending <span>On.Book</span> perfect</p>
           </div>
+          <div className="home-reading"><p>Not sure what to read now next reading mood perfectly</p></div>
           <div className="home-reading"><p>Not sure what to read now next reading mood perfectly</p></div>
           <div className="explore">
             <button>Click Me</button>
