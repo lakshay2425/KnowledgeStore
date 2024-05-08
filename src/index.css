@@ -2,13 +2,14 @@
 @tailwind components;
 @tailwind utilities; 
 
+
 :root {
     --primary-color: #040023;
     
 }
 
 * {
-    font-family: "Mulish", sans-serif;
+    font-family: "Mulish";
 }
 
 body {
@@ -38,7 +39,13 @@ body {
 }
 .product-card-chip{
     border-radius: 5%;
+<<<<<<< HEAD
     
+=======
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+>>>>>>> 9788f63e6dbf2a78216183840ad6c7bd413d06bc
     
     margin: 1%;
 }

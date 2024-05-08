@@ -5,6 +5,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  font-family: 'Mulish';
 }
 #logo {
   font-size: 1.55m;
@@ -63,10 +64,8 @@
 nav p {
   position: relative;
   text-decoration: none;
-  font-family: "Poppins", sans-serif;
-  color: #a0a0a0;
+  color: #525252;
   font-size: 2rem;
-  letter-spacing: 0.1px;
   padding: 0 10px;
 }
 nav p:after {
