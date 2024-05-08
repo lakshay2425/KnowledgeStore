@@ -1,0 +1,15 @@
+.signup{
+    margin-top: 8%;
+}
+.container {
+    background-image: url("https://img.freepik.com/free-photo/top-view-books-with-copy-space_23-2148827187.jpg");
+    background-size: cover;
+    transition: background-color 0.3s ease;
+    background-repeat: no-repeat, repeat;
+    background-position: right bottom, left top;
+    height: 100%;
+    padding-bottom: 5%;
+  }
+  .gender{
+    margin-left: 130%;
+  }

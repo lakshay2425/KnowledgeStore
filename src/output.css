@@ -6881,3 +6881,6 @@ body {
   --tw-bg-opacity: 1;
   background-color: hsl(var(--nextui-default-200) / var(--nextui-default-200-opacity, var(--tw-bg-opacity)));
 }
+/* *{
+  font-family: "Mulish";
+} */

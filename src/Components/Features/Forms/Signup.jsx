@@ -1,5 +1,7 @@
 import React, {useState} from 'react';
 import axios from 'axios';
+import './signup.css';
+
 const Contact = () => {
   const [details, setDetails] = useState({
     fullName: "",
@@ -39,8 +41,8 @@ const Contact = () => {
   }
   return (
     <>
-    <div className="container">
-     <form  method="post" onSubmit={handleSubmit}>
+    <div className="container ">
+     <form  method="post"  className='signup' onSubmit={handleSubmit}>
       <table>
         <tbody>
         <tr>
@@ -100,7 +102,7 @@ const Contact = () => {
         <tr>
           <td>
             <label>Select your Gender 
-            <select name='gender' onChange={handleInputChange} value={details.gender} size={1}>
+            <select name='gender' className='gender' onChange={handleInputChange} value={details.gender} size={1}>
               <option value="Male">Male</option>
               <option value="Female">Female</option>
               <option value="others">Others</option>

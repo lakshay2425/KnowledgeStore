@@ -1,10 +1,10 @@
 import React from 'react';
 import FetchData from './FetchData';
 
-const FinancePage = () => {
-    const financeApiUrl = 'http://localhost/Programs/Book_rental%20Project/FetchData.php';
+const BestSeller = () => {
+    const ApiUrl = 'http://localhost/Programs/Book_rental%20Project/FetchData.php';
 
-    return <FetchData apiUrl={financeApiUrl} />;
+    return <div className='product-show'><FetchData apiUrl={ApiUrl} />;</div>
 };
 
-export default FinancePage;
+export default BestSeller;

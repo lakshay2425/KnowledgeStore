@@ -1,5 +1,5 @@
 .home-section {
-  height: 400px;
+  height: 615px;
   width: 90%;
   margin: auto;
   display: flex;
@@ -15,30 +15,42 @@
   width: 50%;
   height: 100%;
   align-self: flex-end;
-  background-color: aquamarine;
 }
-.home-heading {
-  font-size: 7vmax;
+.home-carousell img{
+  width: 100%;
+  margin-top: 10%;
+}
+.home-heading p{
+  font-size: 300%;
   line-height: 8.9vw;
-  font-weight: 700;
-  font-family: "Times New Roman", Times, serif;
+  
+  font-weight: 600;
   display: flex;
+  font-family: "Lora";
+  padding-top: 5%;
+  color: #000000;
 }
 .home-heading span {
-  padding: 50px;
+  
+}
+.home-reading p{
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: #000000;
+  font-family: "Lora";
 }
 .home-reading span {
   font-weight: 700;
 }
 .explore {
   margin-top: 4vh;
-  width: 20vh;
-  height: 8vh;
+  width: 25%;
+  height: 8%;
   padding: 5px 10px;
-  color: #000000;
-  /* border-radius: 10%; */
+  color: #ffffff;
+  font-weight: 600;
   display: flex;
-  background-color: rgb(123, 124, 123);
+  background-color: rgb(0, 0, 0);
   justify-content: center;
   align-items: center;
   transition: background-color 0.3s ease, color 0.3s ease;
@@ -46,6 +58,6 @@
 }
 
 .explore:hover {
-  background-color: #000000;
+  background-color: #252525;
   color: #ffffff;
 }
