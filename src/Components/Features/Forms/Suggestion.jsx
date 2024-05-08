@@ -5,7 +5,7 @@ const Contact = () => {
   const [details, setDetails] = useState({
     username : '',
       gmail : '',
-      category : '',
+      genre : '',
       bookName : ''
     });
   const handleInputChange = (e) => {
@@ -20,7 +20,7 @@ const Contact = () => {
     setDetails({
       username : '',
       gmail : '',
-      category : '',
+      genre : '',
       bookName : ''
       });
       try {
