@@ -2,8 +2,6 @@
 @tailwind components;
 @tailwind utilities; 
 
-@tailwind utilities; 
-
 
 :root {
     --primary-color: #040023;
@@ -11,7 +9,6 @@
 }
 
 * {
-    font-family: "Mulish";
     font-family: "Mulish";
 }
 
@@ -25,13 +22,10 @@ body {
 .product-card{
     max-width: 20%;
     max-height: 30%;
-    max-width: 20%;
-    max-height: 30%;
     display: flex;
     align-items: center;
     flex-direction: column;
     border-radius: 10px;
-    margin: 5px;
     margin: 5px;
 }
 /* .product-card img{
@@ -40,9 +34,6 @@ body {
 }*/
 .product-img{
     width: 100%;
-    
-    width: 100%;
-    
     border-radius: 10px;
 }
 .product-card-chip{
@@ -55,7 +46,6 @@ body {
     width: 100%;
     height: max-content;
     display: flex;
-    align-items:safe;
     margin-top: 10px;
     justify-content: space-between;
 }

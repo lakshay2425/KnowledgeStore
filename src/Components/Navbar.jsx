@@ -12,6 +12,9 @@ import {
   Input,
 } from "@nextui-org/react";
 import { SearchIcon } from "./utils/SearchIcon";
+import { IoBagHandleOutline } from "react-icons/io5";
+
+
 const Navbar = () => {
   return (
     <>
@@ -126,7 +129,11 @@ const Navbar = () => {
               startContent=<SearchIcon />
               className="w-42 h-10 "
             />
+            
           </div>
+          <Link className="cart-icon" to="/Cart">
+            <IoBagHandleOutline />
+          </Link>
         </nav>
       </header>
     </>

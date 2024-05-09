@@ -19,11 +19,11 @@ const Home = () => {
           </div>
           <div className="home-reading"><p>Not sure what to read now next reading mood perfectly</p></div>
           <div className="explore">
-            <button>Click Me</button>
+            <button>Explore Now</button>
           </div>
         </div>
         <div className="home-carousell">
-          <img src={main} alt="" sizes="" srcset="" />
+          <img src={main} alt="" sizes="" />
         </div>
       </div>
       <BestSellers />

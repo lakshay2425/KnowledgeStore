@@ -87,3 +87,8 @@ nav p:hover:after {
 .about {
   padding-left: 3px;
 }
+.cart-icon{
+  font-size: 1.5vw;
+  color: #525252;
+  padding-left: 1vw;
+}
