@@ -20,8 +20,8 @@ body {
 
 /* product card */
 .product-card{
-    max-width: 20%;
-    max-height: 30%;
+    width: 280px;
+    max-height: 550px;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -33,47 +33,74 @@ body {
     height: 100%; 
 }*/
 .product-img{
-    width: 100%;
-    border-radius: 10px;
+    
 }
 .product-card-chip{
-    border-radius: 5%;
     display: flex;
+    width: 100%;
     align-items: center;
     justify-content: space-between;
+    overflow: hidden;
+    
 }
-.product-data{
-    width: 100%;
-    height: max-content;
-    display: flex;
-    margin-top: 10px;
-    justify-content: space-between;
-}
+
 .product-name{
     font-size: 0.9rem;
     color: black;
-    font-weight: 600;
-    max-width: 80%;
-
+    font-weight: 700;
+    width: 60%;
+    text-wrap: nowrap;
+    max-height: 5vh;
+    overflow-x:hidden;
+    margin-top: 5%;
 }
+.product-name:hover{
+    animation: slide-left 8s linear infinite;
+}
+@keyframes slide-left {
+    from {
+      -webkit-transform: translateX(0);
+              transform: translateX(0);
+    }
+    to {
+      -webkit-transform: translateX(-100%);
+              transform: translateX(-100%);
+    }
+}
+
+
 .product-price{
     font-size: 1rem;
     font-style: italic;
     align-self: flex-end;
     color: black;
-    font-weight: 600;
+    font-weight: 700;
 }
 .product-btn{
     background-color: #040023;
+    font-size: 1rem;
     margin-top: 10px;
     width: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
     color: white;
-    height: 30px;
+    height: 40px;
     position: relative;
-    bottom: 0;
     border: none;
-    border-radius: 5px;
     cursor: pointer;
+    align-self: flex-start;
+}
+.product-author, .genre{
+    font-size: 1rem;
+    
+    max-height: 4vh;
+    
+    
+}
+.product-author{
+
+    
 }
 .product-show{
     display: flex;
@@ -81,11 +108,26 @@ body {
     justify-content: space-between; 
     padding: 5%;
     flex-wrap: wrap;
-    width: 95%;
+    /* width: 95%; */
     margin: auto;
+    margin-top: 10%;
 }
+.product-container{
+    max-width: 100%;
+    padding-top: 5%;
+    height: max-content;
+    flex-wrap: nowrap;
+    overflow-x:auto;
+    
+    scrollbar-width: none;
+}
+
 /* .product-card{
     position: absolute;
     top:60%;
     left: 30%;
+} */
+/* .product-container product-card{
+    width: 20vw;
+    margin-right: 10px;
 } */
