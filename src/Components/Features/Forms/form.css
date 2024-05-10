@@ -116,6 +116,7 @@ input[type="email"]:focus {
 label {
   color: #000000;
   transition: color 0.3s ease;
+  font-weight: 900;
 }
 
 @media (max-width: 480px) {
