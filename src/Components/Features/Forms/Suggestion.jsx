@@ -6,7 +6,8 @@ const Contact = () => {
     username : '',
       gmail : '',
       genre : '',
-      bookName : ''
+      bookName : '',
+      author : ''
     });
   const handleInputChange = (e) => {
     setDetails((currData) => {
@@ -21,7 +22,8 @@ const Contact = () => {
       username : '',
       gmail : '',
       genre : '',
-      bookName : ''
+      bookName : '',
+      author : ''
       });
       try {
         const response = await axios.post('http://localhost/Programs/Book_rental%20Project/SuggestionFormData.php', details);
@@ -51,6 +53,10 @@ const Contact = () => {
         <tr>
           <td><label htmlFor="bookName">Book Name</label></td>
           <td><input type='text' name="bookName" id="bookName" onChange={handleInputChange} value={details.bookName} placeholder='Enter the book name'></input></td>
+        </tr>
+        <tr>
+          <td><label htmlFor="author">Author</label></td>
+          <td><input type="text" id='author' onChange={handleInputChange} placeholder='Enter the author name' name='author' value={details.author} /></td>
         </tr>
         <tr>
           <td></td>
