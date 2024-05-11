@@ -3,6 +3,14 @@ import { Image } from "@nextui-org/react";
 import { IoBagHandleOutline } from "react-icons/io5";
 const ProductCard = ({ books }) => {
   const img = "https://bestlifeonline.com/wp-content/uploads/sites/3/2020/10/The-Hobbit-book-cover.jpg";
+  // const cart = () => {
+  //   try {
+  //     const response = await axios.post('http://localhost/Programs/Book_rental%20Project/Cart.php', details);
+  // }
+  // catch(e){
+
+  // }
+
   return (
     <>
       {books.map((book) => (

@@ -1,8 +1,10 @@
 import React, {useState} from 'react';
 import axios from 'axios';
 import './signup.css';
+//import { useHistory } from 'react-router-dom';
 
 const Contact = () => {
+  //const history = useHistory();
   const [details, setDetails] = useState({
     fullName: "",
     gmail: "",
@@ -34,9 +36,20 @@ const Contact = () => {
       });
       try {
         const response = await axios.post('http://localhost/Programs/Book_rental%20Project/SignupData.php', details);
-        console.log('Server response:', response.data);
+        if(response.status === 200){
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Account created successfully</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        }else{
+          <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>Account not created </strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        }
+      //history.push('http://localhost:4000/Login')
     } catch (error) {
-        console.error('Error submitting form:', error);
+        console.log(error)
     }
   }
   return (
