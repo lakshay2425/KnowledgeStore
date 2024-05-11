@@ -104,8 +104,6 @@ const Navbar = () => {
 
                 <DropdownItem
                   key="contact"
-                  className="text-danger"
-                  color="danger"
                 >
                   <Link className="dropdown-item" to="/Contact">
                     Contact

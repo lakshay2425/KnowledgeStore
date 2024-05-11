@@ -27,9 +27,20 @@ const Contact = () => {
       });
       try {
         const response = await axios.post('http://localhost/Programs/Book_rental%20Project/SuggestionFormData.php', details);
-        console.log('Server response:', response.data);
+        console.log(response);
+        if(response.status=== 200){
+          <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Thank you {details.username}</strong>for your suggestion
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        }else{
+          <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>Suggestion not submitted.</strong>Try again later.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        }
     } catch (error) {
-        console.error('Error submitting form:', error);
+        console.log(error);
     }
   }
   return (
