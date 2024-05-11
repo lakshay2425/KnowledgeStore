@@ -1,19 +1,14 @@
 .best-seller-container{
     max-width: 90%;
     margin: auto;
-    height: auto;
+    height: 700px;
 }
 
-.product-container{
-    padding-top: 50px;
-    display: flex;
-    align-items: center;
-    overflow-x:auto;
-    scrollbar-width: none;
-}
-.best-seller{
-    position: absolute;
+
+.best-seller-title{
+    padding-bottom: 2%;
     left: 5%;
     font-size: 2em;
-    font-weight: 600;
+    font-weight: 720;
 }
+/* for more refer to index.css */

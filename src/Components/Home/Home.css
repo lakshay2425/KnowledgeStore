@@ -1,5 +1,4 @@
 .home-section {
-  height: 25vw;
   width: 90%;
   margin: auto;
   display: flex;
@@ -8,13 +7,14 @@
 }
 .home-title {
   width: 40%;
-  height: 25vw;
+  
 }
 .home-carousell {
   width: 50%;
   height: 100%;
   align-self: flex-end;
 }
+
 .home-carousell img{
   width: 100%;
   margin-top: 5%;
@@ -26,7 +26,6 @@
   display: flex;
   color: #000000;
   font-family: "Lora";
-  padding-top: 15%;
   padding-bottom: 2%;
   color: #000000;
 }
@@ -43,7 +42,7 @@
   margin-top: 4vh;
   font-size: .8vw;
   width: 25%;
-  height: 12%;
+  height: 5vh;
   padding: 5px 10px;
   color: #ffffff;
   font-weight: 600;

@@ -9,13 +9,13 @@ const ProductCard = ({ books }) => {
         <div key={book.s_no} className="product-card">
           <Image
             className="product-img"
-            
+            style={{width: 300}}
             isZoomed
-            width={280}
+            
             height={525}
             alt={book.book_name}
             src={book.img_link}
-            style={{opacity: 100}}
+            
           />
           <div className="product-card-chip">
             <span className="product-name">{book.book_name}</span>
