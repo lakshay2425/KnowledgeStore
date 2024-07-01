@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React from "react";
+import axios from 'axios';
 import { Link } from "react-router-dom";
 import "./Navbar.css";
 import {
@@ -116,6 +117,7 @@ const Navbar = () => {
             </Link>
           </div>
           <div>
+            <form action=""></form>
             <Input
               isClearable
               type="test"
@@ -123,11 +125,16 @@ const Navbar = () => {
               variant="underlined"
               placeholder="Search For Books!"
               defaultValue=""
-              onClear={() => console.log("input cleared")}
+              // onClear={() => console.log("input cleared")}
               startContent=<SearchIcon />
-              className="w-42 h-10 "
             />
-            
+            // Code to search
+            {/* try {
+              const response = await axios.post('http://localhost/Programs/Book_rental%20Project/AdminData.php', details);
+              console.log('Server response:', response.data);
+          } catch (error) {
+              console.error('Error submitting form:', error);
+          } */}
           </div>
           <Link className="cart-icon" to="/Cart">
             <IoBagHandleOutline />
