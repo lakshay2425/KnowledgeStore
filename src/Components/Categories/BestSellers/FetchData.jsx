@@ -11,7 +11,10 @@ const FetchData = ({ apiUrl }) => {
             try {
                 const response = await axios.get(apiUrl);
                 setBooks(response.data);
-                console.log(books);
+                console.log(response);
+                if(response.status = 200){
+                    console.log('Hello');
+                }
             } catch (error) {
                 console.error('Error fetching data:', error);
             }

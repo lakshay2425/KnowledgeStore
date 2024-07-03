@@ -26,7 +26,7 @@ const Contact = () => {
       author : ''
       });
       try {
-        const response = await axios.post('http://localhost/Programs/Book_rental%20Project/SuggestionFormData.php', details);
+        const response = await axios.post('http://localhost/Programs/bookRental/SuggestionFormData.php', details);
         console.log(response);
         if(response.status=== 200){
           <div class="alert alert-success alert-dismissible fade show" role="alert">

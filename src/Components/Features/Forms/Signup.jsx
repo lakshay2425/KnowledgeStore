@@ -15,6 +15,7 @@ const Contact = () => {
     cpassword: "",
     gender: "",
   });
+  const [alert, setAlert] = useState({ show: false, message: '', type: '' });
   const handleInputChange = (e) => {
     setDetails((currData) => {
       return{
@@ -24,37 +25,40 @@ const Contact = () => {
   }
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setDetails({
-      fullName : '',
-      username : '',
-      gmail : '',
-      number : '',
-      address : '',
-      password : '',
-      cpassword : '',
-      gender : ''
-      });
       try {
-        const response = await axios.post('http://localhost/Programs/Book_rental%20Project/SignupData.php', details);
-        if(response.status === 200){
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            <strong>Account created successfully</strong>
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-        }else{
-          <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            <strong>Account not created </strong>
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-          </div>
-        }
-      //history.push('http://localhost:4000/Login')
+        const response = await axios.post('http://localhost/Programs/bookRental/SignupData.php', details);
+        if (response.status == 200) {
+          setAlert({ show: true, message: 'Account Created Successfully', type: 'success' });
+          console.log(alert);
+      } else {
+          setAlert({ show: true, message: 'Account not Created Successfully', type: 'danger' });
+          console.log(alert);
+      }
+      setDetails({
+        fullName : '',
+        username : '',
+        gmail : '',
+        number : '',
+        address : '',
+        password : '',
+        cpassword : '',
+        gender : ''
+        });
     } catch (error) {
-        console.log(error)
+        console.log(error);
+        setAlert({ show: true, message: 'An error occurred. Please try again.', type: 'danger' });
+        console.log(alert);
     }
   }
   return (
     <>
-    <div className="container ">
+    <div className="container">
+    {alert.show && (
+                <div className={`alert alert-${alert.type} alert-dismissible fade show`} role="alert">
+                    {alert.message}
+                    <button type="button" className="btn-close" onClick={() => setAlert({ show: false, message: '', type: '' })}></button>
+                </div>
+            )}
      <form  method="post"  className='signup' onSubmit={handleSubmit}>
       <table>
         <tbody>

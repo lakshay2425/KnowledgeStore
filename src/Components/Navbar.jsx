@@ -1,8 +1,6 @@
 /* eslint-disable no-unused-vars */
-import React, {useState} from "react";
-import {AiOutlineClose, AiOutlineMenu} from 'react-icons/ai'
-import { Link } from 'react-router-dom';
-import NavbarMobile from "./NavbarMobile";
+import React from "react";
+import { Link } from "react-router-dom";
 import "./Navbar.css";
 import {
   Dropdown,
@@ -122,7 +120,7 @@ const Navbar = () => {
               <p className="about">About Us</p>
             </Link>
           </div>
-          <div className="search">
+          <div>
             <Input
               isClearable
               type="test"
@@ -130,9 +128,9 @@ const Navbar = () => {
               variant="underlined"
               placeholder="Search For Books!"
               defaultValue=""
-              onClear={() => console.log("input cleared")}
+              // onClear={() => console.log("input cleared")}
               startContent=<SearchIcon />
-              classNames={""}
+              className="w-42 h-10 "
             />
             
           </div>

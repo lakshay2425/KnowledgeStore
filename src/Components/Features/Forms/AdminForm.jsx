@@ -28,7 +28,7 @@ const Admin = () => {
         img_link: ''
       });
       try {
-        const response = await axios.post('http://localhost/Programs/Book_rental%20Project/AdminData.php', details);
+        const response = await axios.post('http://localhost/Programs/bookRental/AdminData.php', details);
         console.log('Server response:', response.data);
     } catch (error) {
         console.error('Error submitting form:', error);
