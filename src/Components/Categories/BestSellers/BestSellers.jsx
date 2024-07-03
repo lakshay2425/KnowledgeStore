@@ -2,7 +2,7 @@ import React from 'react';
 import FetchData from './FetchData';
 import './BestSellers.css'
 const BestSeller = () => {
-    const ApiUrl = 'http://localhost/Programs/Book_rental%20Project/FetchData.php';
+    const ApiUrl = 'http://localhost/Programs/BookRental/FetchData.php';
 
     return <>
     <div className="best-seller-container">

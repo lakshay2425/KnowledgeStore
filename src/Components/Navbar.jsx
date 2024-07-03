@@ -1,6 +1,8 @@
 /* eslint-disable no-unused-vars */
-import React from "react";
-import { Link } from "react-router-dom";
+import React, {useState} from "react";
+import {AiOutlineClose, AiOutlineMenu} from 'react-icons/ai'
+import { Link } from 'react-router-dom';
+import NavbarMobile from "./NavbarMobile";
 import "./Navbar.css";
 import {
   Dropdown,
@@ -16,6 +18,11 @@ import { IoBagHandleOutline } from "react-icons/io5";
 
 
 const Navbar = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+    const toggleMenu = () => {
+        setIsOpen(!isOpen);
+    };
   return (
     <>
       <header>
@@ -115,7 +122,7 @@ const Navbar = () => {
               <p className="about">About Us</p>
             </Link>
           </div>
-          <div>
+          <div className="search">
             <Input
               isClearable
               type="test"
@@ -125,13 +132,21 @@ const Navbar = () => {
               defaultValue=""
               onClear={() => console.log("input cleared")}
               startContent=<SearchIcon />
-              className="w-42 h-10 "
+              classNames={""}
             />
             
           </div>
-          <Link className="cart-icon" to="/Cart">
+          <Link className="cart-icon " to="/Cart">
             <IoBagHandleOutline />
           </Link>
+
+          <div className="nav-menu-btn z-40" onClick={toggleMenu} >
+            {isOpen ? <AiOutlineClose size={20}/> :  <AiOutlineMenu size={20}/>}
+            
+          </div>
+          <div className={isOpen ? 'flex nav-menu z-10 fixed right-90 top-15 ease-in-out duration-500' : 'hidden nav-menu fixed left-[100%] z-10'}>
+            <NavbarMobile/>
+          </div>
         </nav>
       </header>
     </>

@@ -27,19 +27,21 @@
   font-size: 0.9rem;
   font-weight: 500;
 }
-.dropdown-items {
+.dropdown-item {
   text-decoration: none;
   color: rgb(79, 79, 79);
-  font-size: 1rem;
-  font-family: "Mulish";
+  font-size: 1.2rem;
+  line-height: 22px;
+  width: inherit;
+  
 }
 .nav-btn {
   font-family: "Mulish";
   text-decoration: none;
   color: rgb(79, 79, 79);
   font-size: 1rem;
-  padding-right: 0.5rem;
-  padding-left: 0.5rem;
+  padding: 2%;
+  
   font-weight: 500;
 }
 .d-flex > li {
@@ -85,10 +87,54 @@ nav p:hover:after {
   width: 100%;
 }
 .about {
-  padding-left: 3px;
+  width: max-content;
 }
 .cart-icon{
-  font-size: 1.5vw;
+  font-size: 25px;
   color: #525252;
   padding-left: 1vw;
+}
+
+/* responsive */
+@media screen and (max-width: 768px){
+  .nav-links, .search{
+    display: none;
+    
+  }
+  .cart-icon{
+    position: absolute;
+    right: 10vw;
+  }
+
+}
+@media screen and (min-width: 769px){
+  .nav-menu-btn, .nav-menu{
+    display: none;
+    
+  }
+
+}
+.nav-menu{
+  position: absolute;
+  right: 2vw;
+  top: 2vw;
+  background-color: #f9f8f6;
+  border-radius: 4%;
+  
+  width: 250px;
+  box-shadow: 1px 1px 1px #52525288;
+  
+}
+.nav-menu nav-btn{
+  font-size: 20px;
+  justify-content: flex-start;
+}
+.nav-menu-close{
+  display:none;
+}
+
+.nav-menu-link{
+  font-size: 1rem;
+  font-weight: 650;
+  
 }
