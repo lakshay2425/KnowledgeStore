@@ -7,22 +7,24 @@ import main from './main.png';
 const Home = () => {
   return (
     <>
-      <div className="home-section">
-        <div className="home-title">
-          <div className="home-heading">
-            <div>
-              <p>&#10095; Find Your Next Book</p>
+      <div className="home-section max-md:flex-col-reverse">
+        <div className="home-title max-md:flex max-md:w-full max-md:text-7xl">
+          <div className="home-heading max-md:max-w-72 ">
+            <div className="">
+              <p className="">&#10095; Find Your Next Book</p>
             </div>
           </div>
-          <div className="home-reading">
-            <p>Our most popular and trending <span>On.Book</span> perfect</p>
+          <div className="home-reading max-md:max-w-mdw-96 max-md:leading-normal max-md:text-sm">
+            <p>Our most popular and trending <span>On.Book</span> perfect . </p>
+            <p>Not sure what to read now next reading mood perfectly .</p>
+            <div className="explore">
+              <button>Explore Now</button>
+            </div>
           </div>
-          <div className="home-reading"><p>Not sure what to read now next reading mood perfectly</p></div>
-          <div className="explore">
-            <button>Explore Now</button>
-          </div>
+
+
         </div>
-        <div className="home-carousell">
+        <div className="home-carousell max-md:w-auto">
           <img src={main} alt="" sizes="" />
         </div>
       </div>

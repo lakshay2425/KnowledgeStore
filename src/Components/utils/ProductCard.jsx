@@ -14,9 +14,9 @@ const ProductCard = ({ books }) => {
   return (
     <>
       {books.map((book) => (
-        <div key={book.s_no} className="product-card">
+        <div key={book.s_no} className="product-card max-md:w-52">
           <Image
-            className="product-img"
+            className="product-img max-md:h-80 max-md:max-w-44"
             style={{width: 300}}
             isZoomed
             
@@ -26,12 +26,12 @@ const ProductCard = ({ books }) => {
             
           />
           <div className="product-card-chip">
-            <span className="product-name">{book.book_name}</span>
-            <span className="product-price">&#8377;{book.price}</span>
+            <span className="product-name max-md:text-sm">{book.book_name}</span>
+            <span className="product-price max-md:text-sm">&#8377;{book.price}</span>
           </div>
           <div className="product-card-chip">
-            <span className="product-author">By {book.author}</span>
-            <span className="genre">{book.genre}</span>
+            <span className="product-author max-md:text-sm">By {book.author}</span>
+            <span className="genre max-md:text-sm">{book.genre}</span>
           </div>
           
           {/* <p className="product-total-items">Total Items: {totalItems}</p> */}

@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
-import React from "react";
+import React, {useState} from "react";
+import {AiOutlineClose, AiOutlineMenu} from "react-icons/ai";
 import { Link } from "react-router-dom";
 import "./Navbar.css";
 import {
@@ -13,9 +14,10 @@ import {
 } from "@nextui-org/react";
 import { SearchIcon } from "./utils/SearchIcon";
 import { IoBagHandleOutline } from "react-icons/io5";
+import NavbarMobile from "./NavbarMobile";
 
 
-const Navbar = () => {
+var  Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
     const toggleMenu = () => {
@@ -120,7 +122,7 @@ const Navbar = () => {
               <p className="about">About Us</p>
             </Link>
           </div>
-          <div>
+          <div className="search">
             <Input
               isClearable
               type="test"

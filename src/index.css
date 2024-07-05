@@ -119,7 +119,17 @@ body {
 }
 .product-container img{
     max-width: 280px;
+
 }
 .product-container::-webkit-scrollbar {
     display: none;
+}
+
+/* responsive */
+@media  (max-width: 768px) {
+    .product-container img{
+        max-width: 200px;
+        
+    }
+    
 }
