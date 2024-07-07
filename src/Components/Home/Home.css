@@ -62,5 +62,14 @@
 
 /* responsive */
 @media  (max-width: 768px) {
-  
+  .home-heading p{
+    font-size: 3.3rem;
+    line-height: 4rem;
+  }
+  .home-reading p{
+    font-size: 1.1rem;
+    font-weight: 450;
+    color: #000000;
+    font-family: "Lora";
+  }
 }
