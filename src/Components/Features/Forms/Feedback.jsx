@@ -23,7 +23,7 @@ const Contact = () => {
       feedback : ''
       })
       try {
-        const response = await axios.post('http://localhost/Programs/bookRental/FeedbackData.php', details);
+        const response = await axios.post('http://localhost/Programs/BookRental/FeedbackData.php', details);
         if(response.status === 200){
           <div class="alert alert-success alert-dismissible fade show" role="alert">
             <strong>Thank you {details.username}</strong> for submitting feedback

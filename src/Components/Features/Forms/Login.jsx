@@ -20,7 +20,7 @@ const Contact = () => {
       password : ''
       })
       try {
-        const response = await axios.post('http://localhost/Programs/bookRental/login.php', details);
+        const response = await axios.post('http://localhost/Programs/BookRental/login.php', details);
         console.log('Server response:', response.data);
     } catch (error) {
         console.error('Error submitting form:', error);

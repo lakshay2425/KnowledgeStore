@@ -26,7 +26,7 @@ const Contact = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
       try {
-        const response = await axios.post('http://localhost/Programs/bookRental/SignupData.php', details);
+        const response = await axios.post('http://localhost/Programs/BookRental/SignupData.php', details);
         if (response.status == 200) {
           setAlert({ show: true, message: 'Account Created Successfully', type: 'success' });
           console.log(alert);

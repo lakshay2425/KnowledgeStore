@@ -25,7 +25,7 @@ const Contact = () => {
        concern : ''
       });
       try {
-        const response = await axios.post('http://localhost/Programs/bookRental/ContactFormData.php', details);
+        const response = await axios.post('http://localhost/Programs/BookRental/ContactFormData.php', details);
         if(response.status === 200){
           <div class="alert alert-success alert-dismissible fade show" role="alert">
             <strong>Thank you {details.username}</strong> for contacting us
