@@ -14,6 +14,8 @@ import Login from "./Components/Features/Forms/Login";
 import Signup from "./Components/Features/Forms/Signup";
 import Cart from "./Components/Features/Cart";
 import Account from "./Components/Features/Account";
+import Footer from "./Components/Footer";
+
 
 const App = () => {
   const router = createBrowserRouter([
@@ -23,6 +25,7 @@ const App = () => {
         <>
           <Navbar />
           <Home />
+          <Footer />
         </>
       ),
     },
