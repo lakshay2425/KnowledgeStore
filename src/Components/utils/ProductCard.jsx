@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Image } from "@nextui-org/react";
+// import ProductPreview from "./ProductPreview";
 import { IoBagHandleOutline } from "react-icons/io5";
 import { AiOutlineClose } from "react-icons/ai";
 const ProductCard = ({ books }) => {
