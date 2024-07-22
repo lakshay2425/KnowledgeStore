@@ -19,7 +19,7 @@
     position: relative;
     width: 420px;
     min-height: 490px;
-    background: grey;
+    background: rgba(255, 255, 255, .1);
     backdrop-filter: blur(2px);
     border: 2px dotted black;
     border-radius: 10px;
