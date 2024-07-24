@@ -3,7 +3,7 @@ import axios from "axios";
 import "./form.css";
 import { FaPhone } from "react-icons/fa6";
 import { IoIosMail } from "react-icons/io";
-// import { FaUser,FaLock,FaPen } from "react-icons/fa";
+import { FaUser,FaLock,FaPen } from "react-icons/fa";
 
 const Contact = () => {
   const [details, setDetails] = useState({

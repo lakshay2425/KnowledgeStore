@@ -3,6 +3,7 @@ import axios from "axios";
 import "./form.css";
 import { FaUser, FaLock } from "react-icons/fa";
 
+
 const Login = () => {
   const [details, setDetails] = useState({
     username: "",
@@ -76,7 +77,7 @@ const Login = () => {
               <button type="submit">Login</button>
               <div className="register-link">
                 <p>
-                  Don't have an account <a href="Signup.jsx">Register</a>
+                  Don't have an account <a href="http://localhost:4000/Signup">Register</a>
                 </p>
               </div>
             </form>

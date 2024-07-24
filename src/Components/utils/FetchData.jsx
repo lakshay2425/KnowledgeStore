@@ -1,7 +1,7 @@
 // FetchData.jsx
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import ProductCard from '../../utils/ProductCard.jsx';
+import ProductCard from './ProductCard';
 
 const FetchData = ({ apiUrl }) => {
     const [books, setBooks] = useState([]);

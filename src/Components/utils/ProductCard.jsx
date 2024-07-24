@@ -5,13 +5,6 @@ import { IoBagHandleOutline } from "react-icons/io5";
 import { AiOutlineClose } from "react-icons/ai";
 const ProductCard = ({ books }) => {
   const img = "https://bestlifeonline.com/wp-content/uploads/sites/3/2020/10/The-Hobbit-book-cover.jpg";
-  // const cart = () => {
-  //   try {
-  //     const response = await axios.post('http://localhost/Programs/Book_rental%20Project/Cart.php', details);
-  // }
-  // catch(e){
-
-  // }
 
   var [isOpen, setIsOpen] = useState(false);
   let [num, setnum] = useState(1);
