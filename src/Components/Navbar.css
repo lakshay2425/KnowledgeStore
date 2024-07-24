@@ -1,3 +1,140 @@
-.d-flex > li{
-    list-style: none;
+.navbar {
+  width: 90%;
+  height: 4rem;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: 'Mulish';
+}
+#logo {
+  font-size: 1.55m;
+  font-weight: 700;
+}
+.nav-links {
+  width: 40%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  font-size: large;
+  color: #ff0000;
+  margin-right: auto;
+  margin-left: 2rem;
+}
+.nav-links p {
+  text-decoration: none;
+  color: rgb(49, 49, 49);
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+.dropdown-item {
+  text-decoration: none;
+  color: rgb(79, 79, 79);
+  font-size: 1.2rem;
+  line-height: 22px;
+  width: inherit;
+  
+}
+.nav-btn {
+  font-family: "Mulish";
+  text-decoration: none;
+  color: rgb(79, 79, 79);
+  font-size: 1rem;
+  padding: 2%;
+  
+  font-weight: 500;
+}
+.d-flex > li {
+  list-style: none;
+}
+.main {
+  display: flex;
+  justify-content: space-between;
+}
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+*,
+*:before,
+*:after {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+nav p {
+  position: relative;
+  text-decoration: none;
+  color: #525252;
+  font-size: 2rem;
+  padding: 0 10px;
+}
+nav p:after {
+  content: "";
+  position: absolute;
+  background-color: #ff3c78;
+  height: 3px;
+  width: 0;
+  left: 0;
+  bottom: -7px;
+  transition: 0.3s;
+}
+nav p:hover {
+  color: black;
+}
+nav p:hover:after {
+  width: 100%;
+}
+.about {
+  width: max-content;
+}
+.cart-icon{
+  font-size: 25px;
+  color: #525252;
+  padding-left: 1vw;
+}
+
+/* responsive */
+@media screen and (max-width: 768px){
+  .nav-links, .search{
+    display: none;
+    
+  }
+  .cart-icon{
+    position: absolute;
+    right: 10vw;
+  }
+
+}
+@media screen and (min-width: 769px){
+  .nav-menu-btn, .nav-menu{
+    display: none;
+    
+  }
+
+}
+.nav-menu{
+  position: absolute;
+  right: 2vw;
+  top: 2vw;
+  background-color: #f9f8f6;
+  border-radius: 4%;
+  
+  width: 250px;
+  box-shadow: 1px 1px 1px #52525288;
+  
+}
+.nav-menu nav-btn{
+  font-size: 20px;
+  justify-content: flex-start;
+}
+.nav-menu-close{
+  display:none;
+}
+
+.nav-menu-link{
+  font-size: 1rem;
+  font-weight: 650;
+  
 }

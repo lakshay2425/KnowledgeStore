@@ -1,0 +1,75 @@
+.home-section {
+  width: 90%;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.home-title {
+  width: 40%;
+  
+}
+.home-carousell {
+  width: 50%;
+  height: 100%;
+  align-self: flex-end;
+}
+
+.home-carousell img{
+  width: 100%;
+  margin-top: 5%;
+}
+.home-heading p{
+  font-size: 6.6vw;
+  line-height: 7.5vw;
+  font-weight: 600;
+  display: flex;
+  color: #000000;
+  font-family: "Lora";
+  padding-bottom: 2%;
+  color: #000000;
+}
+
+.home-reading p{
+  font-size: 1.2rem;
+  font-weight: 450;
+  color: #000000;
+  font-family: "Lora";
+}
+
+
+.explore {
+  margin-top: 4vh;
+  font-size: 0.8rem;
+  width: 8rem;
+  height: 3rem;
+  padding: 5px 10px;
+  color: #ffffff;
+  font-weight: 600;
+  display: flex;
+  background-color: rgb(0, 0, 0);
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  cursor: pointer;
+}
+
+.explore:hover {
+  background-color: #252525;
+  color: #ffffff;
+}
+
+
+/* responsive */
+@media  (max-width: 768px) {
+  .home-heading p{
+    font-size: 3.3rem;
+    line-height: 4rem;
+  }
+  .home-reading p{
+    font-size: 1.1rem;
+    font-weight: 450;
+    color: #000000;
+    font-family: "Lora";
+  }
+}
