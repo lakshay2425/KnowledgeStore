@@ -1,12 +1,12 @@
 import React from 'react'
 import { createBrowserRouter, Router, RouterProvider } from 'react-router-dom'
-import Navbar from './Components/Navbar'
+import Navbar from './Components/Navbar/Navbar'
 import Home from './Components/Home/Home'
-import Finance from './Components/Categories/Finance/Finance'
-import Biography from './Components/Categories/Biography/Biography'
-import Skillbased  from './Components/Categories/Skillbased/Skillbased'
-import SelfHelp from './Components/Categories/SelfHelp/SelfHelp'
-import Fictional from './Components/Categories/Fictional/Fictional'
+import Finance from './Components/Categories/Finance'
+import Biography from './Components/Categories/Biography'
+import Skillbased  from './Components/Categories/Skillbased'
+import SelfHelp from './Components/Categories/SelfHelp'
+import Fictional from './Components/Categories/Fictional'
 import Contact from './Components/Features/Form/Contact'
 import Suggestion from './Components/Features/Form/Suggestion'
 import Feedback from './Components/Features/Form/Feedback'
@@ -85,4 +85,4 @@ const App = () => {
   )
 }
 
-export default App
+export default App;

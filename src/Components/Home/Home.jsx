@@ -1,7 +1,7 @@
 import React from "react";
 import "./Home.css";
-import "../Categories/BestSellers/BestSellers.jsx";
-import BestSellers from "../Categories/BestSellers/BestSellers.jsx";
+import "../Categories/BestSellers.css";
+import BestSellers from "../Categories/BestSellers.jsx";
 import main from './main.png';
 
 const Home = () => {
