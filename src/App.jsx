@@ -14,12 +14,14 @@ import Login from './Components/Features/Form/Login'
 import Signup from './Components/Features/Form/Signup'
 import Cart from './Components/Features/Cart'
 import Account from './Components/Features/Account'
+import Footer from "./Components/Home/Footer"
+
 
 const App = () => {
   const router =createBrowserRouter([
     {
       path : "/",
-      element : <><Navbar/><Home/></>
+      element : <><Navbar/><Home/><Footer/></>
     },
     {
       path : "/Finance",
