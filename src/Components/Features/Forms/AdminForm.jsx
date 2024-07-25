@@ -18,18 +18,24 @@ const Admin = () => {
     })
   }
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    setDetails({
-        author: "",
-        genre: "",
-        price: "",
-        quantity: "",
-        book_name: "",
-        img_link: ''
-      });
       try {
-        const response = await axios.post('http://localhost/forms/adminDetails', details);
+        e.preventDefault();
+        const response = await axios.post('http://localhost/forms/adminDetails', details,
+          {
+            headers: {
+              'Content-Type': 'application/json'
+            }
+          }
+        );
         console.log('Server response:', response.data);
+        setDetails({
+          author: "",
+          genre: "",
+          price: "",
+          quantity: "",
+          book_name: "",
+          img_link: ''
+        });
     } catch (error) {
         console.error('Error submitting form:', error);
     }

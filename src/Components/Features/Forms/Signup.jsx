@@ -32,7 +32,13 @@ const Signup = () => {
     e.preventDefault();
       try {
         if(details.password === details.cpassword){
-        const response = await axios.post('http://localhost:3000/auth/signupDetails', details);
+        const response = await axios.post('http://localhost:3000/auth/signupDetails', details,
+          {
+            headers: {
+              'Content-Type': 'application/json'
+            }
+          }
+        );
         console.log(response);
         }else{
           console.log("Password and Confirm password didn't match");

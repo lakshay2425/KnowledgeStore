@@ -6,12 +6,16 @@ import { IoIosMail } from "react-icons/io";
 import { FaUser,FaLock,FaPen } from "react-icons/fa";
 
 const Contact = () => {
+
+    //Managing state of the form's data 
   const [details, setDetails] = useState({
     username: "",
     gmail: "",
     number: "",
     concern: "",
   });
+
+    //Function to handle change in input fields value
   const handleInputChange = (e) => {
     setDetails((currData) => {
       return {
@@ -20,50 +24,31 @@ const Contact = () => {
       };
     });
   };
+
+    //Function to handle form submission
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    try {
+      e.preventDefault();
+      const response = await axios.post(
+        "http://localhost/forms/contactDetails",
+        details,
+        {
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        }
+      );
     setDetails({
       username: "",
       gmail: "",
       number: "",
       concern: "",
     });
-    try {
-      const response = await axios.post(
-        "http://localhost/forms/contactDetails",
-        details
-      );
-      if (response.status === 200) {
-        <div
-          class="alert alert-success alert-dismissible fade show"
-          role="alert"
-        >
-          <strong>Thank you {details.username}</strong> for contacting us
-          <button
-            type="button"
-            class="btn-close"
-            data-bs-dismiss="alert"
-            aria-label="Close"
-          ></button>
-        </div>;
-      } else {
-        <div
-          class="alert alert-danger alert-dismissible fade show"
-          role="alert"
-        >
-          <strong>Sorry, form didn't get submitted</strong> Try again Later
-          <button
-            type="button"
-            class="btn-close"
-            data-bs-dismiss="alert"
-            aria-label="Close"
-          ></button>
-        </div>;
-      }
     } catch (error) {
       console.error("Error submitting form:", error);
     }
   };
+
   return (
     <>
       <div className="container">

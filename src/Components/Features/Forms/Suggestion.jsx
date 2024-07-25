@@ -21,47 +21,26 @@ const Suggestion = () => {
     });
   };
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    setDetails({
-      username: "",
-      gmail: "",
-      genre: "",
-      bookName: "",
-      author: "",
-    });
     try {
+      e.preventDefault();
       const response = await axios.post(
         "http://localhost/forms/suggestionDetails",
-        details
+        details,
+        {
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        }
       );
+      setDetails({
+        username: "",
+        gmail: "",
+        genre: "",
+        bookName: "",
+        author: "",
+      });
+  
       console.log(response);
-      if (response.status === 200) {
-        <div
-          class="alert alert-success alert-dismissible fade show"
-          role="alert"
-        >
-          <strong>Thank you {details.username}</strong>for your suggestion
-          <button
-            type="button"
-            class="btn-close"
-            data-bs-dismiss="alert"
-            aria-label="Close"
-          ></button>
-        </div>;
-      } else {
-        <div
-          class="alert alert-danger alert-dismissible fade show"
-          role="alert"
-        >
-          <strong>Suggestion not submitted.</strong>Try again later.
-          <button
-            type="button"
-            class="btn-close"
-            data-bs-dismiss="alert"
-            aria-label="Close"
-          ></button>
-        </div>;
-      }
     } catch (error) {
       console.log(error);
     }

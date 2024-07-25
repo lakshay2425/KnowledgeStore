@@ -2,12 +2,18 @@ import React, { useState } from "react";
 import axios from "axios";
 import { FaUser } from "react-icons/fa";
 import { IoIosMail } from "react-icons/io";
+
+
 const Feedback = () => {
+
+  //Managing state of the form's data 
   const [details, setDetails] = useState({
     username: "",
     gmail: "",
     feedback: "",
   });
+
+  //Function to handle change in input fields value
   const handleInputChange = (e) => {
     setDetails((currData) => {
       return {
@@ -17,49 +23,30 @@ const Feedback = () => {
     });
   };
 
+  //FUnction to handle form submission
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    setDetails({
-      username: "",
-      gmail: "",
-      feedback: "",
-    });
     try {
+      e.preventDefault();
       const response = await axios.post(
         "http://localhost/forms/feedbackDetails",
-        details
+        details,
+        {
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        }
       );
-      if (response.status === 200) {
-        <div
-          class="alert alert-success alert-dismissible fade show"
-          role="alert"
-        >
-          <strong>Thank you {details.username}</strong> for submitting feedback
-          <button
-            type="button"
-            class="btn-close"
-            data-bs-dismiss="alert"
-            aria-label="Close"
-          ></button>
-        </div>;
-      } else {
-        <div
-          class="alert alert-danger alert-dismissible fade show"
-          role="alert"
-        >
-          <strong>Feedback not submitted successfully</strong>
-          <button
-            type="button"
-            class="btn-close"
-            data-bs-dismiss="alert"
-            aria-label="Close"
-          ></button>
-        </div>;
-      }
+      console.log(response);
+      setDetails({
+        username: "",
+        gmail: "",
+        feedback: "",
+      });
     } catch (error) {
       console.error("Error submitting form:", error);
     }
   };
+  
   return (
     <>
       <div className="container">

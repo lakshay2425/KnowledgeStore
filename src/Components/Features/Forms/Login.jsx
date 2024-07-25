@@ -20,17 +20,22 @@ const Login = () => {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    setDetails({
-      username: "",
-      password: "",
-    });
     try {
+      e.preventDefault();
       const response = await axios.post(
         "http://localhost/auth/loginDetails",
-        details
+        details,
+        {
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        }
       );
       console.log("Server response:", response.data);
+      setDetails({
+        username: "",
+        password: "",
+      });
     } catch (error) {
       console.error("Error submitting form:", error);
     }
