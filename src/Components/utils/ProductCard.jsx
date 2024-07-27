@@ -20,9 +20,9 @@ const ProductCard = ({ books }) => {
 
     setnum(id);
   };
-  let arr = {num};
+  let arr = { num };
 
-console.log(num);
+  console.log(num);
   // console.log(isOpen);
 
   // if (isOpen) {
@@ -34,14 +34,10 @@ console.log(num);
   return (
     <>
       {books.map((book) => (
-        <div key={book.s_no} className="product-card max-md:w-52">
+        <div key={book.s_no} className="product-card max-md:w-52 rounded-[--nextui-radius-large] shadow-small px-4 py-3 m-2 backdrop-blur-lg max-md:p-2">
           <Image
             onClick={() => Preview(book)}
-            className="product-img max-md:h-80 max-md:max-w-44"
-            style={{ width: 300 }}
-            isZoomed
-
-            height={525}
+            className="max-w-[280px] h-[450px] max-md:h-80 max-md:max-w-48 "
             alt={book.book_name}
             src={book.img_link}
 
@@ -63,26 +59,39 @@ console.log(num);
       ))}
       {
         isOpen ? (<>
-          <div className="fixed inset-0 w-[90vw] h-[90vh] mx-auto my-auto z-40 backdrop-blur-3xl bg-white/30 rounded-large flex shadow-large" >
-            <div className="fixed right-5 top-5" onClick={Preview}>
-              {isOpen ? <AiOutlineClose size={25} /> : <></>}
-            </div>
-            {/* {console.log(num)} */}
-            <div key={num.s_no} className='flex max-md:flex-col'>
+          <div className="w-[100vw] h-[100vh] backdrop-blur-3xl fixed inset-0 z-30">
+            <div className="fixed inset-0 w-[90vw] h-[90vh] mx-auto my-auto p-auto z-40 backdrop-blur-3xl bg-white/30 rounded-large flex shadow-large max-md:overflow-scroll" >
+              <div className="fixed right-5 top-5" onClick={Preview}>
+                {isOpen ? <AiOutlineClose size={25} /> : <></>}
+              </div>
+              <div key={num.s_no} className='flex max-md:flex-col'>
 
-                <div className='w-2/5 h-full flex '>
-                    <img src={num.img_link} className='w-3/4 mx-auto my-auto rounded-large transition ease-in-out hover:scale-150' />
+                <div className='flex w-2/5 justify-center items-center max-md:w-full max-md:'>
+                  <Image
+                    
+                    className="w-96 max-md:w-fit max-md:my-12"
+                    alt={num.book_name}
+                    src={num.img_link}
+
+                  />
+                  
                 </div>
-                <div className='flex-col w-2/4  mx-auto my-auto '>
-                    <h2 className='text-4xl leading-relaxed pb-2'>{num.book_name}</h2>
-                    <p className='text-xl pb-2'>&#8377;{num.price}</p>
-                    <p className='pb-2'>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsam, eos! Amet nostrum, temporibus ad nobis quaerat quas nam distinctio aliquid doloribus totam facere mollitia, sapiente sit eos aspernatur quae officia.
-                    </p>
-                    <button className="product-btn">Add <IoBagHandleOutline /></button>
+                <div className='flex-col w-2/4 mx-auto my-auto max-md:w-4/5'>
+                  <h2 className='text-4xl leading-relaxed pb-2'>{num.book_name}</h2>
+                  <p className='text-xl pb-2'>&#8377;{num.price}</p>
+                  <p className='pb-2'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro temporibus quisquam iure, voluptatem consequuntur aperiam cum doloremque, excepturi eum praesentium vero totam numquam inventore itaque maiores libero quos rem architecto.
+                    Eaque magnam molestiae adipisci ex ullam, laboriosam id porro laborum dolor perferendis veniam vero excepturi totam earum voluptatem repudiandae est, impedit illo quidem perspiciatis culpa minus quam? Iste, maiores dolor?
+                    Aspernatur placeat voluptas, ea fugiat ipsum consequuntur eos, reiciendis fuga, non possimus repudiandae nisi. Esse tempore consectetur nulla labore, at quod debitis perspiciatis quaerat enim natus consequatur sequi praesentium nam.
+                    Laboriosam, nihil voluptas praesentium deleniti dolores modi illo aliquam quidem repellat ab qui cupiditate tempore numquam minus consequuntur rem animi debitis, fugit, tempora non ullam possimus voluptate pariatur iure. Cum.
+                    Est doloribus minus voluptatum impedit amet officia porro temporibus quos eum, labore soluta fugit cupiditate nemo! Distinctio magnam laborum, ipsam mollitia ipsum beatae dolorum nam illo odit eaque tenetur minima! Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsam, eos! Amet nostrum, temporibus ad nobis quaerat quas nam distinctio aliquid doloribus totam facere mollitia, sapiente sit eos aspernatur quae officia.
+                  </p>
+                  <button className="product-btn ">Add <IoBagHandleOutline /></button>
                 </div>
 
-            </div>
-          </div >
+              </div>
+            </div >
+          </div>
+
         </>
         ) : (
           <></>

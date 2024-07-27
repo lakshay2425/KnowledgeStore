@@ -140,7 +140,7 @@ var  Navbar = () => {
             <IoBagHandleOutline />
           </Link>
 
-          <div className="nav-menu-btn z-40" onClick={toggleMenu} >
+          <div className="nav-menu-btn z-20" onClick={toggleMenu} >
             {isOpen ? <AiOutlineClose size={20}/> :  <AiOutlineMenu size={20}/>}
             
           </div>

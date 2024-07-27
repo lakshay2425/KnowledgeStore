@@ -35,6 +35,7 @@ const App = () => {
         <>
           <Navbar />
           <Finance />
+          <Footer />
         </>
       ),
     },
@@ -44,6 +45,7 @@ const App = () => {
         <>
           <Navbar />
           <Feedback />
+          <Footer />
         </>
       ),
     },
@@ -53,6 +55,7 @@ const App = () => {
         <>
           <Navbar />
           <Suggestion />
+          <Footer />
         </>
       ),
     },
@@ -71,6 +74,7 @@ const App = () => {
         <>
           <Navbar />
           <Fictional />
+          <Footer />
         </>
       ),
     },
@@ -80,6 +84,7 @@ const App = () => {
         <>
           <Navbar />
           <SelfHelp />
+          <Footer />
         </>
       ),
     },
@@ -89,6 +94,7 @@ const App = () => {
         <>
           <Navbar />
           <Skillbased />
+          <Footer />
         </>
       ),
     },
@@ -98,6 +104,7 @@ const App = () => {
         <>
           <Navbar />
           <Contact />
+          <Footer />
         </>
       ),
     },
@@ -107,6 +114,7 @@ const App = () => {
         <>
           <Navbar />
           <Suggestion />
+          <Footer />
         </>
       ),
     },
@@ -116,6 +124,7 @@ const App = () => {
         <>
           <Navbar />
           <Feedback />
+          <Footer />
         </>
       ),
     },
@@ -125,6 +134,7 @@ const App = () => {
         <>
           <Navbar />
           <Login />
+          <Footer />
         </>
       ),
     },
@@ -134,6 +144,7 @@ const App = () => {
         <>
           <Navbar />
           <Signup />
+          <Footer />
         </>
       ),
     },
@@ -143,6 +154,7 @@ const App = () => {
         <>
           <Navbar />
           <Cart />
+          <Footer />
         </>
       ),
     },
@@ -152,6 +164,7 @@ const App = () => {
         <>
           <Navbar />
           <Account />
+          <Footer />
         </>
       ),
     },

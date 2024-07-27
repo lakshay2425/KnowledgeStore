@@ -25,8 +25,7 @@ body {
     display: flex;
     align-items: center;
     flex-direction: column;
-    margin-right: 1.5vw;
-    margin-bottom: 25px;
+    
 }
 
 .product-img{
@@ -117,19 +116,20 @@ body {
     
     
 }
-.product-container img{
+/* .product-container img{
     max-width: 280px;
 
-}
+} */
 .product-container::-webkit-scrollbar {
     display: none;
 }
 
 /* responsive */
 @media  (max-width: 768px) {
-    .product-container img{
-        max-width: 200px;
-        
+    .product-btn{
+        font-size: 0.8rem;
+        width: 4rem;
+        height: 2rem;
     }
     
 }

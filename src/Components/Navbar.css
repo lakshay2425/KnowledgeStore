@@ -32,7 +32,7 @@
   color: rgb(79, 79, 79);
   font-size: 1.2rem;
   line-height: 22px;
-  width: inherit;
+  display: block;
   
 }
 .nav-btn {
