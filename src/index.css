@@ -111,8 +111,8 @@ body {
     flex-wrap: nowrap;
     overflow-x:scroll;
     justify-content:stretch;
-    scroll-padding-inline-start: 5;
     
+    scroll-behavior: smooth;
     
     
 }

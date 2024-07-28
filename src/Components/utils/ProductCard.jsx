@@ -34,7 +34,7 @@ const ProductCard = ({ books }) => {
   return (
     <>
       {books.map((book) => (
-        <div key={book.s_no} className="product-card max-md:w-52 rounded-[--nextui-radius-large] shadow-small px-4 py-3 m-2 backdrop-blur-lg max-md:p-2">
+        <div key={book.s_no} className="product-card max-md:w-52 rounded-[--nextui-radius-large] shadow-small px-4 py-3 m-2 backdrop-blur-lg max-md:p-2 z-0">
           <Image
             onClick={() => Preview(book)}
             className="max-w-[280px] h-[450px] max-md:h-80 max-md:max-w-48 "
