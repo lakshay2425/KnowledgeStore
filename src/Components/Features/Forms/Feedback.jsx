@@ -31,26 +31,26 @@ const Contact = () => {
       );
       if (response.status === 200) {
         <div
-          class="alert alert-success alert-dismissible fade show"
+          className="alert alert-success alert-dismissible fade show"
           role="alert"
         >
           <strong>Thank you {details.username}</strong> for submitting feedback
           <button
             type="button"
-            class="btn-close"
+            className="btn-close"
             data-bs-dismiss="alert"
             aria-label="Close"
           ></button>
         </div>;
       } else {
         <div
-          class="alert alert-danger alert-dismissible fade show"
+          className="alert alert-danger alert-dismissible fade show"
           role="alert"
         >
           <strong>Feedback not submitted successfully</strong>
           <button
             type="button"
-            class="btn-close"
+            className="btn-close"
             data-bs-dismiss="alert"
             aria-label="Close"
           ></button>
@@ -62,7 +62,7 @@ const Contact = () => {
   };
   return (
     <>
-      <div className="container">
+      {/*  /*<div className="container">
         <div className="wrapper">
           <div className="form-box login">
             <form method="post" onSubmit={handleSubmit}>
@@ -104,6 +104,82 @@ const Contact = () => {
               <button type="submit">Submit</button>
             </form>
           </div>
+        </div>
+       </div> */}
+      <div className="grid grid-cols-2 w-full px-[5vw] py-6 pt-14 justify-between">
+        <div className="max-w-96  pt-16">
+          <div className="flex-col space-y-4">
+            <h2 className="font-bold text-5xl leading-tight">Your feedback helps us to improve</h2>
+            <p className="text-lg">We are here to help you and we'd love to connect with you.</p>
+          </div>
+        </div>
+        <div className="col-start-2 justify-self-end p-16  rounded-large ">
+          <form method="post" onSubmit={handleSubmit} className="flex-col space-y-4">
+
+            <div className="">
+              <p className="py-2">Name</p>
+              <div className=" flex items-center space-x-2 ">
+                <input
+                  className="w-96 p-2 rounded-lg bg-slate-100 border-medium"
+                  type="text"
+                  id="username"
+                  onChange={handleInputChange}
+                  placeholder="Enter your username"
+                  name="username"
+                  value={details.username}
+                />
+                <FaUser className="icon" />
+              </div>
+            </div>
+
+            <div>
+              <p className="py-2">Email</p>
+              <div className="flex items-center space-x-2">
+                <input
+                  className="w-96 p-2 rounded-lg bg-slate-100 border-medium"
+                  type="email"
+                  id="gmail"
+                  onChange={handleInputChange}
+                  placeholder="Enter your email"
+                  name="gmail"
+                  value={details.gmail}
+                />
+                <IoIosMail className="icon" />
+              </div>
+            </div>
+
+
+            <div>
+              <p className="py-2">Phone Number</p>
+              <div className="flex items-center space-x-2">
+                <input type="number" name="" id="" placeholder="Enter your number" className="w-96 p-2 rounded-lg bg-slate-100 border-medium" />
+              </div>
+            </div>
+
+            <div>
+              <p className="py-2">Message</p>
+              <div className="flex items-center space-x-2">
+                <textarea
+                  className="w-96 p-2 rounded-lg bg-slate-100 border-medium"
+                  name="feedback"
+                  id="feedback"
+                  onChange={handleInputChange}
+                  cols="33"
+                  value={details.feedback}
+                  rows="5"
+                  placeholder="Enter your feedback in detail"
+                >
+
+                </textarea>
+
+              </div>
+            </div>
+
+            <button type="submit" className="p-2 rounded-xl bg-slate-400 text-slate-100">Send Feedback</button>
+          </form>
+        </div>
+        <div  className="col-span-2 h-80 shadow-inner drop-shadow-2xl rounded-2xl bg-[url('https://images.unsplash.com/photo-1524578271613-d550eacf6090?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')]">
+          <img className="cover" src="" alt="" />
         </div>
       </div>
     </>
