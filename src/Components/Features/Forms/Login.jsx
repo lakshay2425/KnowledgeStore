@@ -23,7 +23,7 @@ const Login = () => {
     try {
       e.preventDefault();
       const response = await axios.post(
-        "http://localhost/auth/loginDetails",
+        "http://localhost:3000/auth/loginDetails",
         details,
         {
           headers: {
@@ -31,13 +31,18 @@ const Login = () => {
           }
         }
       );
-      console.log("Server response:", response.data);
+      const result = response.data;
+      console.log(result);
       setDetails({
         username: "",
         password: "",
       });
     } catch (error) {
       console.error("Error submitting form:", error);
+      setDetails({
+        username : '',
+        password : ''
+        });
     }
   };
 

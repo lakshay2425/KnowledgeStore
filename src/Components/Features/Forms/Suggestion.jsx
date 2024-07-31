@@ -24,7 +24,7 @@ const Suggestion = () => {
     try {
       e.preventDefault();
       const response = await axios.post(
-        "http://localhost/forms/suggestionDetails",
+        "http://localhost:3000/forms/suggestionDetails",
         details,
         {
           headers: {
@@ -32,6 +32,8 @@ const Suggestion = () => {
           }
         }
       );
+      const result = response.data;
+      console.log(result);
       setDetails({
         username: "",
         gmail: "",
@@ -43,6 +45,16 @@ const Suggestion = () => {
       console.log(response);
     } catch (error) {
       console.log(error);
+      setDetails({
+        fullName : '',
+        username : '',
+        gmail : '',
+        number : '',
+        address : '',
+        password : '',
+        cpassword : '',
+        gender : ''
+        });
     }
   };
   return (

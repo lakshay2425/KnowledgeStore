@@ -20,14 +20,15 @@ const Admin = () => {
   const handleSubmit = async (e) => {
       try {
         e.preventDefault();
-        const response = await axios.post('http://localhost/forms/adminDetails', details,
+        const response = await axios.post('http://localhost:3000/forms/adminDetails', details,
           {
             headers: {
               'Content-Type': 'application/json'
             }
           }
         );
-        console.log('Server response:', response.data);
+        const result = response.data;
+        console.log(result);
         setDetails({
           author: "",
           genre: "",
@@ -38,6 +39,16 @@ const Admin = () => {
         });
     } catch (error) {
         console.error('Error submitting form:', error);
+        setDetails({
+          fullName : '',
+          username : '',
+          gmail : '',
+          number : '',
+          address : '',
+          password : '',
+          cpassword : '',
+          gender : ''
+          });
     }
   }
   return (

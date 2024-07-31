@@ -30,14 +30,16 @@ const Contact = () => {
     try {
       e.preventDefault();
       const response = await axios.post(
-        "http://localhost/forms/contactDetails",
-        details,
+        "http://localhost:3000/forms/contactDetails",
+        {details},
         {
           headers: {
             'Content-Type': 'application/json'
           }
         }
       );
+      const result = response.data;
+      console.log(result);
     setDetails({
       username: "",
       gmail: "",

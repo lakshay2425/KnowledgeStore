@@ -4,25 +4,14 @@ import { Image } from "@nextui-org/react";
 import { IoBagHandleOutline } from "react-icons/io5";
 import { AiOutlineClose } from "react-icons/ai";
 const ProductCard = ({ books }) => {
-  const img = "https://bestlifeonline.com/wp-content/uploads/sites/3/2020/10/The-Hobbit-book-cover.jpg";
-
+  //const img = "https://bestlifeonline.com/wp-content/uploads/sites/3/2020/10/The-Hobbit-book-cover.jpg";
   var [isOpen, setIsOpen] = useState(false);
   let [num, setnum] = useState(1);
   var Preview = (id) => {
     setIsOpen(!isOpen);
-
     setnum(id);
   };
   let arr = {num};
-
-console.log(num);
-  // console.log(isOpen);
-
-  // if (isOpen) {
-  //   return (
-
-  //   )
-  // }
 
   return (
     <>
@@ -32,7 +21,6 @@ console.log(num);
             onClick={() => Preview(book)}
             className="product-img max-md:h-80 max-md:max-w-44"
             style={{ width: 300 }}
-            isZoomed
 
             height={525}
             alt={book.book_name}

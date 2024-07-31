@@ -39,7 +39,8 @@ const Signup = () => {
             }
           }
         );
-        console.log(response);
+        const result = response.data;
+        console.log(result);
         }else{
           console.log("Password and Confirm password didn't match");
         }
@@ -55,6 +56,16 @@ const Signup = () => {
         });
     } catch (error) {
         console.log(error);
+        setDetails({
+          fullName : '',
+          username : '',
+          gmail : '',
+          number : '',
+          address : '',
+          password : '',
+          cpassword : '',
+          gender : ''
+          });
     }
   };
 
@@ -101,6 +112,8 @@ const Signup = () => {
                 <input
                   type="number"
                   id="contact"
+                  minLength={10}
+                  maxLength={10}
                   onChange={handleInputChange}
                   placeholder="Enter your contact number"
                   name="number"
@@ -158,17 +171,17 @@ const Signup = () => {
                   value={details.gender}
                   size={1}
                   >
-                  <option value="Male">Male</option>
-                  <option value="Female">Female</option>
-                  <option value="others">Others</option>
-                  <option value="not_specified">Prefer not to say</option>
+                  <option name="gender" value="Male">Male</option>
+                  <option name="gender" value="Female">Female</option>
+                  <option name="gender" value="others">Others</option>
+                  <option name="gender" value="not_specified">Prefer not to say</option>
                 </select>
                   </div>
                     </div>
-                  <button type="submit">signup</button>
+                  <button type="submit">Signup</button>
               <div className="register-link">
                 <p>
-                  already't have an account <a href="Signup.jsx">Register</a>
+                  Already't have an account <a href="Signup.jsx">Register</a>
                 </p>
               </div>
             </form>

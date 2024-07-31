@@ -28,7 +28,7 @@ const Feedback = () => {
     try {
       e.preventDefault();
       const response = await axios.post(
-        "http://localhost/forms/feedbackDetails",
+        "http://localhost:3000/forms/feedbackDetails",
         details,
         {
           headers: {
@@ -36,7 +36,8 @@ const Feedback = () => {
           }
         }
       );
-      console.log(response);
+      const result = response.data;
+      console.log(result);
       setDetails({
         username: "",
         gmail: "",
@@ -44,6 +45,16 @@ const Feedback = () => {
       });
     } catch (error) {
       console.error("Error submitting form:", error);
+      setDetails({
+        fullName : '',
+        username : '',
+        gmail : '',
+        number : '',
+        address : '',
+        password : '',
+        cpassword : '',
+        gender : ''
+        });
     }
   };
   

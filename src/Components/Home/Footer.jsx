@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const Footer = () => {
     return (
         <footer className="bg-gray-800 text-white py-10">
@@ -12,21 +14,21 @@ const Footer = () => {
                         <span className="block"><i className="fas fa-envelope mr-2"></i> support@bookrental.com</span>
                     </div>
                     <div className="flex space-x-4">
-                        <a href="#" className="text-gray-400 hover:text-white"><i className="fab fa-facebook"></i></a>
-                        <a href="#" className="text-gray-400 hover:text-white"><i className="fab fa-twitter"></i></a>
-                        <a href="#" className="text-gray-400 hover:text-white"><i className="fab fa-instagram"></i></a>
-                        <a href="#" className="text-gray-400 hover:text-white"><i className="fab fa-linkedin"></i></a>
+                        <Link to="#" className="text-gray-400 hover:text-white"><i className="fab fa-facebook"></i></Link>
+                        <Link to="#" className="text-gray-400 hover:text-white"><i className="fab fa-twitter"></i></Link>
+                        <Link to="#" className="text-gray-400 hover:text-white"><i className="fab fa-instagram"></i></Link>
+                        <Link to="#" className="text-gray-400 hover:text-white"><i className="fab fa-linkedin"></i></Link>
                     </div>
                 </div>
 
                 <div className="w-full md:w-1/3 md:mb-0">
                     <h2 className="text-2xl font-bold mb-4">Quick Links</h2>
                     <ul>
-                        <li className="mb-2"><a href="#" className="hover:underline">Home</a></li>
-                        <li className="mb-2"><a href="#" className="hover:underline">About Us</a></li>
-                        <li className="mb-2"><a href="#" className="hover:underline">Contact Us</a></li>
-                        <li className="mb-2"><a href="#" className="hover:underline">Blog</a></li>
-                        <li className="mb-2"><a href="#" className="hover:underline">FAQ</a></li>
+                        <li className="mb-2"><Link to="http://localhost:4000/" className="hover:underline">Home</Link></li>
+                        <li className="mb-2"><Link to="#" className="hover:underline">About Us</Link></li>
+                        <li className="mb-2"><Link to="http://localhost:4000/Contact" className="hover:underline">Contact Us</Link></li>
+                        <li className="mb-2"><Link to="#" className="hover:underline">Blog</Link></li>
+                        <li className="mb-2"><Link to="#" className="hover:underline">FAQ</Link></li>
                     </ul>
                 </div>
 

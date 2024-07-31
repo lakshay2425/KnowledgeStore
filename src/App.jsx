@@ -25,59 +25,59 @@ const App = () => {
     },
     {
       path : "/Finance",
-      element : <><Navbar/><Finance/></>
+      element : <><Navbar/><Finance/><Footer/></>
     },
     {
       path : "/feedback",
-      element : <><Navbar/><Feedback/></>
+      element : <><Navbar/><Feedback/><Footer/></>
     },
     {
       path : "/suggestion",
-      element : <><Navbar/><Suggestion/></>
+      element : <><Navbar/><Suggestion/><Footer/></>
     },
     {
       path : "/Biography",
-      element : <><Navbar/><Biography/></>
+      element : <><Navbar/><Biography/><Footer/></>
     },
     {
       path : "/Fictional",
-      element : <><Navbar/><Fictional/></>
+      element : <><Navbar/><Fictional/><Footer/></>
     },
     {
       path : "/SelfHelp",
-      element : <><Navbar/><SelfHelp/></>
+      element : <><Navbar/><SelfHelp/><Footer/></>
     },
     {
       path : "/SkillBased",
-      element : <><Navbar/><Skillbased/></>
+      element : <><Navbar/><Skillbased/><Footer/></>
     },
     {
       path : "/Contact",
-      element : <><Navbar/><Contact/></>
+      element : <><Navbar/><Contact/><Footer/></>
     },
     {
       path : "/Suggestions",
-      element : <><Navbar/><Suggestion/></>
+      element : <><Navbar/><Suggestion/><Footer/></>
     },
     {
       path : "/Feedback",
-      element : <><Navbar/><Feedback/></>
+      element : <><Navbar/><Feedback/><Footer/></>
     },
     {
       path : "/Login",
-      element : <><Navbar/><Login/></>
+      element : <><Navbar/><Login/><Footer/></>
     },
     {
       path : "/Signup",
-      element : <><Navbar/><Signup/></>
+      element : <><Navbar/><Signup/><Footer/></>
     },
     {
       path : "/Cart",
-      element : <><Navbar/><Cart/></>
+      element : <><Navbar/><Cart/><Footer/></>
     },
     {
       path : "/Account",
-      element : <><Navbar/><Account/></>
+      element : <><Navbar/><Account/><Footer/></>
     }
   ])
   return (
