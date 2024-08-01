@@ -12,9 +12,9 @@ import {
   DropdownItem,
   Input,
 } from "@nextui-org/react";
-import { SearchIcon } from "../utils/SearchIcon";
 import { IoBagHandleOutline } from "react-icons/io5";
 import NavbarMobile from "./NavbarMobile";
+import Search from "./Search";
 
 
 var  Navbar = () => {
@@ -122,20 +122,7 @@ var  Navbar = () => {
               <p className="about">About Us</p>
             </Link>
           </div>
-          <div className="search">
-            <Input
-              isClearable
-              type="test"
-              // label="Search"
-              variant="underlined"
-              placeholder="Search For Books!"
-              defaultValue=""
-              // onClear={() => console.log("input cleared")}
-              startContent=<SearchIcon />
-              className="w-42 h-10 "
-            />
-            
-          </div>
+          <Search/>
           <Link className="cart-icon " to="/Cart">
             <IoBagHandleOutline />
           </Link>
