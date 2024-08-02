@@ -4,10 +4,10 @@ import "./signup.css";
 import { FaUser,FaLock } from "react-icons/fa";
 import { IoIosMail } from "react-icons/io";
 import { FaPhone } from "react-icons/fa6";
-//import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const Signup = () => {
-  //const history = useHistory();
+  const navigate = useNavigate();
   const [details, setDetails] = useState({
     fullName: "",
     gmail: "",
@@ -41,6 +41,7 @@ const Signup = () => {
         );
         const result = response.data;
         console.log(result);
+        navigate("/Login");
         }else{
           console.log("Password and Confirm password didn't match");
         }

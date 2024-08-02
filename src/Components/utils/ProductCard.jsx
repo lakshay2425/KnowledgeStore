@@ -20,11 +20,9 @@ const ProductCard = ({ books }) => {
             onClick={() => Preview(book)}
             className="product-img max-md:h-80 max-md:max-w-44"
             style={{ width: 300 }}
-
             height={525}
             alt={book.book_name}
             src={book.img_link}
-
           />
           <div className="product-card-chip">
             <span className="product-name max-md:text-sm">{book.book_name}</span>
@@ -34,12 +32,9 @@ const ProductCard = ({ books }) => {
             <span className="product-author max-md:text-sm">By {book.author}</span>
             <span className="genre max-md:text-sm">{book.genre}</span>
           </div>
-
           {/* <p className="product-total-items">Total Items: {totalItems}</p> */}
           <button className="product-btn">Add <IoBagHandleOutline /></button>
-
         </div>
-
       ))}
       {
         isOpen ? (<>

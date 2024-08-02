@@ -7,15 +7,17 @@ import Biography from './Components/Categories/Biography'
 import Skillbased  from './Components/Categories/Skillbased'
 import SelfHelp from './Components/Categories/SelfHelp'
 import Fictional from './Components/Categories/Fictional'
-import Contact from './Components/Features/Forms/Contact'
-import Suggestion from './Components/Features/Forms/Suggestion'
-import Feedback from './Components/Features/Forms/Feedback'
-import Login from './Components/Features/Forms/Login'
-import Signup from './Components/Features/Forms/Signup'
-import Cart from './Components/Features/Cart'
-import Account from './Components/Features/Account'
+import Contact from './Components/Features/Forms/contact'
+import Suggestion from './Components/Features/Forms/suggestion'
+import Feedback from './Components/Features/Forms/feedback'
+import Login from './Components/Features/Forms/login'
+import Signup from './Components/Features/Forms/signup'
+import Cart from './Components/Features/cart'
+import Account from './Components/Features/account'
 import Footer from "./Components/Home/Footer"
-
+import Create from "./Components/Features/adminPanel/create"
+import Read from "./Components/Features/adminPanel/read"
+import Update from './Components/Features/adminPanel/update'
 
 const App = () => {
   const router =createBrowserRouter([
@@ -78,8 +80,20 @@ const App = () => {
     {
       path : "/Account",
       element : <><Navbar/><Account/><Footer/></>
+    },
+    {
+      path : "/Create",
+      element : <><Navbar/><Create/><Footer/></>
+    },
+    {
+      path : "/Read",
+      element: <><Navbar/><Read/><Footer/></>
+    },
+    {
+      path : "/Update",
+      element : <><Navbar/><Update/><Footer/></>
     }
-  ])
+  ]);
   return (
     <>
      <RouterProvider router = {router}/> 

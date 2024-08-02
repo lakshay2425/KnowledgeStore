@@ -1,0 +1,106 @@
+/* CSS for the table */
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow to the table */
+    border-radius: 8px; /* Rounds the corners of the table */
+    overflow: hidden; /* Ensures rounded corners are applied properly */
+  }
+  
+  th, td {
+    border: 1px solid #ddd;
+    padding: 12px; /* Increases padding for better spacing */
+    font-family: Arial, sans-serif; /* Sets a clean, sans-serif font */
+    text-align: center; /* Centers the text in table cells */
+  }
+  
+  th {
+    background-color: #4CAF50; /* Changes header background color */
+    color: white; /* Sets header text color to white */
+    text-transform: uppercase; /* Makes header text uppercase */
+    letter-spacing: 1px; /* Adds space between letters for header text */
+  }
+  
+  tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  tr:nth-child(odd) {
+    background-color: #ffffff; /* Ensures alternating row colors */
+  }
+  
+  tr:hover {
+    background-color: #f1f1f1; /* Changes hover color */
+    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+  }
+  
+  td a {
+    color: #4CAF50; /* Sets link color inside table */
+    text-decoration: none; /* Removes underline from links */
+  }
+  
+  td a:hover {
+    text-decoration: underline; /* Adds underline on hover for links */
+  }
+  
+  caption {
+    caption-side: bottom; /* Places caption at the bottom */
+    font-size: 1.2em; /* Increases caption font size */
+    padding: 10px; /* Adds padding to caption */
+    font-weight: bold; /* Makes caption text bold */
+    color: #333; /* Sets caption text color */
+  }
+  
+  th, td:first-child {
+    border-left: none; /* Removes left border for first column */
+  }
+  
+  th, td:last-child {
+    border-right: none; /* Removes right border for last column */
+  }
+  
+  th:first-child, td:first-child {
+    border-top-left-radius: 8px; /* Rounds top-left corner */
+  }
+  
+  th:last-child, td:last-child {
+    border-top-right-radius: 8px; /* Rounds top-right corner */
+  }
+  
+  td:first-child:last-child {
+    border-bottom-left-radius: 8px; /* Rounds bottom-left corner */
+  }
+  
+  td:last-child:last-child {
+    border-bottom-right-radius: 8px; /* Rounds bottom-right corner */
+  }
+  
+  /* Styles for buttons in table columns */
+  td button {
+    background-color: #4CAF50; /* Green background */
+    color: white; /* White text */
+    border: none; /* Removes border */
+    padding: 10px 20px; /* Adds padding */
+    text-align: center; /* Centers text */
+    text-decoration: none; /* Removes underline */
+    display: inline-block; /* Allows margin and padding to be applied */
+    font-size: 16px; /* Increases font size */
+    margin: 4px 2px; /* Adds margin */
+    cursor: pointer; /* Changes cursor to pointer on hover */
+    border-radius: 8px; /* Rounds the corners */
+    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+  }
+  
+  td button:hover {
+    background-color: #45a049; /* Darker green on hover */
+  }
+  
+  td button:disabled {
+    background-color: #ccc; /* Gray background when disabled */
+    color: #666; /* Darker text color when disabled */
+    cursor: not-allowed; /* Changes cursor to not-allowed */
+  }
+  

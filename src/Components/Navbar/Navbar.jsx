@@ -3,19 +3,19 @@ import React, {useState} from "react";
 import {AiOutlineClose, AiOutlineMenu} from "react-icons/ai";
 import { Link } from "react-router-dom";
 import "./Navbar.css";
+import { IoBagHandleOutline } from "react-icons/io5";
+import NavbarMobile from "./NavbarMobile";
+import Search from "./Search";
+import Categories from "./Categories";
+import FormDropDown from "./formDropDown";
+import AdminPanel from "./adminPanel";
 import {
   Dropdown,
   DropdownTrigger,
   DropdownMenu,
   Button,
-  DropdownSection,
-  DropdownItem,
-  Input,
+  DropdownItem
 } from "@nextui-org/react";
-import { IoBagHandleOutline } from "react-icons/io5";
-import NavbarMobile from "./NavbarMobile";
-import Search from "./Search";
-
 
 var  Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -23,6 +23,7 @@ var  Navbar = () => {
     const toggleMenu = () => {
         setIsOpen(!isOpen);
     };
+
   return (
     <>
       <header>
@@ -34,90 +35,17 @@ var  Navbar = () => {
           </div>
           <div className="nav-links">
             <Link>
-              <p href="/" className="">
+              <p href="/" className="book">
                 Books
               </p>
-            </Link>
-            <Dropdown backdrop="blur">
-              <DropdownTrigger>
-                <Button variant="" className="nav-btn">
-                  <p>Categories</p>
-                </Button>
-              </DropdownTrigger>
-              <DropdownMenu variant="faded" aria-label="Static Actions">
-                <DropdownItem key="finance">
-                  <Link className="dropdown-item" to="/Finance">
-                    Finance
-                  </Link>
-                </DropdownItem>
-                <DropdownItem key="skillbased">
-                  <Link className="dropdown-item" to="/SkillBased">
-                    Skill-Based
-                  </Link>
-                </DropdownItem>
-                <DropdownItem key="biography">
-                  <Link className="dropdown-item" to="/Biography">
-                    Biography
-                  </Link>
-                </DropdownItem>
-                <DropdownItem>
-                  <Link className="dropdown-item" to="/SelfHelp">
-                    Self-Help
-                  </Link>
-                </DropdownItem>
-                <DropdownItem
-                  key="Fictional"
-                  className="text-danger"
-                  color="danger"
-                >
-                  <Link className="dropdown-item" to="/Fictional">
-                    Fictional
-                  </Link>
-                </DropdownItem>
-              </DropdownMenu>
-            </Dropdown>
+            </Link>            
+            <Categories/>
             <Link>
               <p>Wishlist</p>
             </Link>
-            {/* &nbsp; */}
-           
-            <Dropdown backdrop="blur">
-              <DropdownTrigger>
-                <Button variant="" className="nav-btn">
-                  <p>Contact Us</p>
-                </Button>
-              </DropdownTrigger>
-              <DropdownMenu variant="faded" aria-label="Static Actions">
-                <DropdownItem key="login">
-                  <Link className="dropdown-item" to="/Login">
-                    Login
-                  </Link>
-                </DropdownItem>
-                <DropdownItem key="signup">
-                  <Link className="dropdown-item" to="/Signup">
-                    Signup
-                  </Link>
-                </DropdownItem>
-                <DropdownItem key="feedback">
-                  <Link className="dropdown-item" to="/feedback">
-                    Feedback
-                  </Link>
-                </DropdownItem>
-                <DropdownItem key="suggestion">
-                  <Link className="dropdown-item" to="/suggestion">
-                    Suggestion
-                  </Link>
-                </DropdownItem>
-
-                <DropdownItem
-                  key="contact"
-                >
-                  <Link className="dropdown-item" to="/Contact">
-                    Contact
-                  </Link>
-                </DropdownItem>
-              </DropdownMenu>
-            </Dropdown>
+            {/* &nbsp; */}   
+            <FormDropDown/>
+            <AdminPanel/>
             <Link>
               <p className="about">About Us</p>
             </Link>
