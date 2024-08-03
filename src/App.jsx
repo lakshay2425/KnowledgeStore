@@ -18,6 +18,7 @@ import Footer from "./Components/Home/Footer"
 import Create from "./Components/Features/adminPanel/create"
 import Read from "./Components/Features/adminPanel/read"
 import Update from './Components/Features/adminPanel/update'
+import Wishlist from './Components/Features/Wishlist'
 
 const App = () => {
   const router =createBrowserRouter([
@@ -92,6 +93,10 @@ const App = () => {
     {
       path : "/Update",
       element : <><Navbar/><Update/><Footer/></>
+    },
+    {
+      path : "/Wishlist",
+      element : <><Navbar/><Wishlist/><Footer/></>
     }
   ]);
   return (

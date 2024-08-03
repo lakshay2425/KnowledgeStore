@@ -3,6 +3,7 @@ import { Image } from "@nextui-org/react";
 // import ProductPreview from "./ProductPreview";
 import { IoBagHandleOutline } from "react-icons/io5";
 import { AiOutlineClose } from "react-icons/ai";
+
 const ProductCard = ({ books }) => {
   var [isOpen, setIsOpen] = useState(false);
   let [num, setnum] = useState(1);
@@ -11,6 +12,11 @@ const ProductCard = ({ books }) => {
     setnum(id);
   };
   let arr = {num};
+
+  //Function to add book to wishlist
+  const handleWishList = async (bookName) => {
+    console.log("Hello", bookName);
+  };
 
   return (
     <>
@@ -33,7 +39,7 @@ const ProductCard = ({ books }) => {
             <span className="genre max-md:text-sm">{book.genre}</span>
           </div>
           {/* <p className="product-total-items">Total Items: {totalItems}</p> */}
-          <button className="product-btn">Add <IoBagHandleOutline /></button>
+          <button className="product-btn" onClick={()=> handleWishList(book.book_name)}>Add to Wishlist <IoBagHandleOutline /></button>
         </div>
       ))}
       {
