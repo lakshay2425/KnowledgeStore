@@ -3,6 +3,8 @@ import { Image } from "@nextui-org/react";
 // import ProductPreview from "./ProductPreview";
 import { IoBagHandleOutline } from "react-icons/io5";
 import { AiOutlineClose } from "react-icons/ai";
+ import axiosInstance from "../utils/Axios";
+
 
 const ProductCard = ({ books }) => {
   var [isOpen, setIsOpen] = useState(false);
@@ -11,12 +13,42 @@ const ProductCard = ({ books }) => {
     setIsOpen(!isOpen);
     setnum(id);
   };
-  let arr = {num};
+  
 
   //Function to add book to wishlist
   const handleWishList = async (bookName) => {
-    console.log("Hello", bookName);
+    try {
+      console.log(bookName);
+      const apiUrl = `http://localhost:3000/user/${bookName}/wishlist`;
+      const response = await axiosInstance.get(apiUrl);
+      console.log(response.data);
+    } catch (error) {
+      console.log(error.message); 
+    }
   };
+
+    //Function to add book to Cart
+  const hanldeCart = async (bookName) => {
+    try {
+      const apiUrl = `http://localhost:3000/user/${bookName}/cart`;
+      const response = await axiosInstance.get(apiUrl);
+      console.log(response.data);
+    } catch (error) {
+      console.log(error.message); 
+    }
+  };
+
+  const hanldeDeletion = async(bookName) => {
+    try {
+      const apiUrl = `http://localhost:3000/user/${bookName}/cart/delete`;
+      const response = await axiosInstance.delete(apiUrl);
+      const result  = response;
+      console.log(result);
+      // setBooks((prevBooks) => prevBooks.filter((book) => book.book_name !== bookName));
+    } catch (error) {
+      console.log(error.message); 
+    }
+  }
 
   return (
     <>
@@ -39,7 +71,8 @@ const ProductCard = ({ books }) => {
             <span className="genre max-md:text-sm">{book.genre}</span>
           </div>
           {/* <p className="product-total-items">Total Items: {totalItems}</p> */}
-          <button className="product-btn" onClick={()=> handleWishList(book.book_name)}>Add to Wishlist <IoBagHandleOutline /></button>
+          {/* <button className="product-btn" onClick={()=> hanldeDeletion(book.book_name)}>Delete<IoBagHandleOutline /></button>0 */}
+          <button className="product-btn " onClick={()=> hanldeCart(book.book_name)}  disabled={book.Quantity <= 0}>Add to Cart<IoBagHandleOutline /></button>
         </div>
       ))}
       {

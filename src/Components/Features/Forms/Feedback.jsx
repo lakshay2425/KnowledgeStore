@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import axios from "axios";
+import axiosInstance from "../../utils/Axios";
 import { FaUser } from "react-icons/fa";
 import { IoIosMail } from "react-icons/io";
 
@@ -27,7 +27,7 @@ const Feedback = () => {
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
-      const response = await axios.post(
+      const response = await axiosInstance.post(
         "http://localhost:3000/forms/feedbackDetails",
         details,
         {

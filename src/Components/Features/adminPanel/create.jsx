@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
-import axios from 'axios';
-import "../Forms/form.css";
+import "./create.css";
+import axiosInstance from "../../utils/Axios"
 
 
 const Create = () => {
@@ -26,7 +26,7 @@ const Create = () => {
   const handleSubmit = async (e) => {
       try {
         e.preventDefault();
-        const response = await axios.post('http://localhost:3000/admin/create', details,
+        const response = await axiosInstance.post('http://localhost:3000/admin/create', details,
           {
             headers: {
               'Content-Type': 'application/json'

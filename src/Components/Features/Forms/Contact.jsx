@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import axios from "axios";
 import "./form.css";
 import { FaPhone } from "react-icons/fa6";
 import { IoIosMail } from "react-icons/io";
 import { FaUser,FaLock,FaPen } from "react-icons/fa";
+import axiosInstance from "../../utils/Axios"
+
 
 const Contact = () => {
 
@@ -29,7 +30,7 @@ const Contact = () => {
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
-      const response = await axios.post(
+      const response = await axiosInstance.post(
         "http://localhost:3000/forms/contactDetails",
         {details},
         {

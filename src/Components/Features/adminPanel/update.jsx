@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import axios from 'axios';
+import axiosInstance from "../../utils/Axios"
 import "../Forms/form.css";
 import { useNavigate, useLocation } from 'react-router-dom';
 
@@ -26,7 +26,7 @@ const Update = () => {
         // if(!isLoaded){
             try {
                 const apiUrl = `http://localhost:3000/search/${bookName}`;
-                const response = await axios.get(apiUrl);
+                const response = await axiosInstance.get(apiUrl);
                 if(response.status == 200){
                     console.log(response.data.message);
                     setDetails(response.data.result[0]);
@@ -57,7 +57,7 @@ const Update = () => {
   const handleSubmit = async (e) => {
       try {
         e.preventDefault();
-        const response = await axios.put(`http://localhost:3000/admin/update/${bookName}`, details,
+        const response = await axiosInstance.put(`http://localhost:3000/admin/update/${bookName}`, details,
           {
             headers: {
               'Content-Type': 'application/json'

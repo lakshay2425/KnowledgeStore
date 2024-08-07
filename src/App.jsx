@@ -1,104 +1,281 @@
-import React from 'react'
-import { createBrowserRouter, Router, RouterProvider } from 'react-router-dom'
-import Navbar from './Components/Navbar/Navbar'
-import Home from './Components/Home/Home'
-import Finance from './Components/Categories/Finance'
-import Biography from './Components/Categories/Biography'
-import Skillbased  from './Components/Categories/Skillbased'
-import SelfHelp from './Components/Categories/SelfHelp'
-import Fictional from './Components/Categories/Fictional'
-import Contact from './Components/Features/Forms/contact'
-import Suggestion from './Components/Features/Forms/suggestion'
-import Feedback from './Components/Features/Forms/feedback'
-import Login from './Components/Features/Forms/login'
-import Signup from './Components/Features/Forms/signup'
-import Cart from './Components/Features/cart'
-import Account from './Components/Features/account'
-import Footer from "./Components/Home/Footer"
-import Create from "./Components/Features/adminPanel/create"
-import Read from "./Components/Features/adminPanel/read"
-import Update from './Components/Features/adminPanel/update'
-import Wishlist from './Components/Features/Wishlist'
+import React, { Suspense, lazy, useEffect } from 'react';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+
+const Navbar = lazy(()=> import("./Components/Navbar/Navbar"));
+const Home = lazy(() => import('./Components/Home/Home'));
+const Finance = lazy(() => import('./Components/Categories/Finance'));
+const Biography = lazy(() => import('./Components/Categories/Biography'));
+const Skillbased = lazy(() => import('./Components/Categories/Skillbased'));
+const SelfHelp = lazy(() => import('./Components/Categories/SelfHelp'));
+const Fictional = lazy(() => import('./Components/Categories/Fictional'));
+const Contact = lazy(() => import('./Components/Features/Forms/contact'));
+const Suggestion = lazy(() => import('./Components/Features/Forms/suggestion'));
+const Feedback = lazy(() => import('./Components/Features/Forms/feedback'));
+const Login = lazy(() => import('./Components/Features/Forms/login'));
+const Signup = lazy(() => import('./Components/Features/Forms/signup'));
+const Cart = lazy(() => import('./Components/Features/cart'));
+const Account = lazy(() => import('./Components/Features/account'));
+const Create = lazy(() => import('./Components/Features/adminPanel/create'));
+const Read = lazy(() => import('./Components/Features/adminPanel/read'));
+const Update = lazy(() => import('./Components/Features/adminPanel/update'));
+const Wishlist = lazy(() => import('./Components/Features/Wishlist'));
+const Footer = lazy(()=> import("./Components/Home/Footer"));
+import axios from 'axios';
+
 
 const App = () => {
-  const router =createBrowserRouter([
+  axios.defaults.withCredentials = true;
+  const router = createBrowserRouter([
     {
-      path : "/",
-      element : <><Navbar/><Home/><Footer/></>
+      path: '/',
+      element: (
+        <>
+          <Navbar />
+          <Suspense fallback={<div>Loading...</div>}>
+            <Home />
+          </Suspense>
+          <Footer />
+        </>
+      ),
     },
     {
-      path : "/Finance",
-      element : <><Navbar/><Finance/><Footer/></>
+      path: '/Finance',
+      element: (
+        <>
+          <Navbar />
+          <Suspense fallback={<div>Loading...</div>}>
+            <Finance />
+          </Suspense>
+          <Footer />
+        </>
+      ),
     },
     {
-      path : "/feedback",
-      element : <><Navbar/><Feedback/><Footer/></>
+      path: '/feedback',
+      element: (
+        <>
+          <Navbar />
+          <Suspense fallback={<div>Loading...</div>}>
+            <Feedback />
+          </Suspense>
+          <Footer />
+        </>
+      ),
     },
     {
-      path : "/suggestion",
-      element : <><Navbar/><Suggestion/><Footer/></>
+      path: '/suggestion',
+      element: (
+        <>
+          <Navbar />
+          <Suspense fallback={<div>Loading...</div>}>
+            <Suggestion />
+          </Suspense>
+          <Footer />
+        </>
+      ),
     },
     {
-      path : "/Biography",
-      element : <><Navbar/><Biography/><Footer/></>
+      path: '/Biography',
+      element: (
+        <>
+          <Navbar />
+          <Suspense fallback={<div>Loading...</div>}>
+            <Biography />
+          </Suspense>
+          <Footer />
+        </>
+      ),
     },
     {
-      path : "/Fictional",
-      element : <><Navbar/><Fictional/><Footer/></>
+      path: '/Fictional',
+      element: (
+        <>
+          <Navbar />
+          <Suspense fallback={<div>Loading...</div>}>
+            <Fictional />
+          </Suspense>
+          <Footer />
+        </>
+      ),
     },
     {
-      path : "/SelfHelp",
-      element : <><Navbar/><SelfHelp/><Footer/></>
+      path: '/SelfHelp',
+      element: (
+        <>
+          <Navbar />
+          <Suspense fallback={<div>Loading...</div>}>
+            <SelfHelp />
+          </Suspense>
+          <Footer />
+        </>
+      ),
     },
     {
-      path : "/SkillBased",
-      element : <><Navbar/><Skillbased/><Footer/></>
+      path: '/SkillBased',
+      element: (
+        <>
+          <Navbar />
+          <Suspense fallback={<div>Loading...</div>}>
+            <Skillbased />
+          </Suspense>
+          <Footer />
+        </>
+      ),
     },
     {
-      path : "/Contact",
-      element : <><Navbar/><Contact/><Footer/></>
+      path: '/Contact',
+      element: (
+        <>
+          <Navbar />
+          <Suspense fallback={<div>Loading...</div>}>
+            <Contact />
+          </Suspense>
+          <Footer />
+        </>
+      ),
     },
     {
-      path : "/Suggestions",
-      element : <><Navbar/><Suggestion/><Footer/></>
+      path: '/Suggestions',
+      element: (
+        <>
+          <Navbar />
+          <Suspense fallback={<div>Loading...</div>}>
+            <Suggestion />
+          </Suspense>
+          <Footer />
+        </>
+      ),
     },
     {
-      path : "/Feedback",
-      element : <><Navbar/><Feedback/><Footer/></>
+      path: '/Feedback',
+      element: (
+        <>
+          <Navbar />
+          <Suspense fallback={<div>Loading...</div>}>
+            <Feedback />
+          </Suspense>
+          <Footer />
+        </>
+      ),
     },
     {
-      path : "/Login",
-      element : <><Navbar/><Login/><Footer/></>
+      path: '/Login',
+      element: (
+        <>
+          <Navbar />
+          <Suspense fallback={<div>Loading...</div>}>
+            <Login />
+          </Suspense>
+          <Footer />
+        </>
+      ),
     },
     {
-      path : "/Signup",
-      element : <><Navbar/><Signup/><Footer/></>
+      path: '/Signup',
+      element: (
+        <>
+          <Navbar />
+          <Suspense fallback={<div>Loading...</div>}>
+            <Signup />
+          </Suspense>
+          <Footer />
+        </>
+      ),
     },
     {
-      path : "/Cart",
-      element : <><Navbar/><Cart/><Footer/></>
+      path: '/Cart',
+      element: (
+        <>
+          <Navbar />
+          <Suspense fallback={<div>Loading...</div>}>
+            <Cart />
+          </Suspense>
+          <Footer />
+        </>
+      ),
     },
     {
-      path : "/Account",
-      element : <><Navbar/><Account/><Footer/></>
+      path: '/Account',
+      element: (
+        <>
+          <Navbar />
+          <Suspense fallback={<div>Loading...</div>}>
+            <Account />
+          </Suspense>
+          <Footer />
+        </>
+      ),
     },
     {
-      path : "/Create",
-      element : <><Navbar/><Create/><Footer/></>
+      path: '/Create',
+      element: (
+        <>
+          <Navbar />
+          <Suspense fallback={<div>Loading...</div>}>
+            <Create />
+          </Suspense>
+          <Footer />
+        </>
+      ),
     },
     {
-      path : "/Read",
-      element: <><Navbar/><Read/><Footer/></>
+      path: '/Read',
+      element: (
+        <>
+          <Navbar />
+          <Suspense fallback={<div>Loading...</div>}>
+            <Read />
+          </Suspense>
+          <Footer />
+        </>
+      ),
     },
     {
-      path : "/Update",
-      element : <><Navbar/><Update/><Footer/></>
+      path: '/Update',
+      element: (
+        <>
+          <Navbar />
+          <Suspense fallback={<div>Loading...</div>}>
+            <Update />
+          </Suspense>
+          <Footer />
+        </>
+      ),
     },
     {
-      path : "/Wishlist",
-      element : <><Navbar/><Wishlist/><Footer/></>
-    }
+      path: '/Wishlist',
+      element: (
+        <>
+          <Navbar />
+          <Suspense fallback={<div>Loading...</div>}>
+            <Wishlist />
+          </Suspense>
+          <Footer />
+        </>
+      ),
+    },
   ]);
+
+  useEffect(() => {
+    document.addEventListener('contextmenu', (e) => {
+      e.preventDefault();
+    });
+  
+    document.addEventListener('keydown', (e) => {
+      if (e.ctrlKey && (e.key === 'u' || e.key === 's' || e.key === 'a')) {
+        e.preventDefault();
+      }
+    });
+  
+    return () => {
+      document.removeEventListener('contextmenu', (e) => e.preventDefault());
+      document.removeEventListener('keydown', (e) => {
+        if (e.ctrlKey && (e.key === 'u' || e.key === 's' || e.key === 'a')) {
+          e.preventDefault();
+        }
+      });
+    };
+  }, []);
   return (
     <>
      <RouterProvider router = {router}/> 

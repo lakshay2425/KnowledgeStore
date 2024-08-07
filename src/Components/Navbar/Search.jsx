@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import axios from "axios";
+import axiosInstance from "../utils/Axios";
 import { SearchIcon } from "../utils/SearchIcon"; 
 
 const Search = () => {
@@ -16,7 +16,7 @@ const Search = () => {
     e.preventDefault();
     try {
       // Send GET request with bookName as query parameter
-      const response = await axios.get(
+      const response = await axiosInstance.get(
         `http://localhost:3000/search/${bookName}`,
       {
           headers: {

@@ -9,13 +9,6 @@ import Search from "./Search";
 import Categories from "./Categories";
 import FormDropDown from "./formDropDown";
 import AdminPanel from "./adminPanel";
-import {
-  Dropdown,
-  DropdownTrigger,
-  DropdownMenu,
-  Button,
-  DropdownItem
-} from "@nextui-org/react";
 
 var  Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -40,7 +33,7 @@ var  Navbar = () => {
               </p>
             </Link>            
             <Categories/>
-            <Link>
+            <Link to= "/Wishlist">
               <p>Wishlist</p>
             </Link>
             {/* &nbsp; */}   

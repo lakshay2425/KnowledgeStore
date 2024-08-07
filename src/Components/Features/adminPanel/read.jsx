@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import axiosInstance from "../../utils/Axios"
 import "./table.css";
 import "../Forms/form.css";
 import { useNavigate } from 'react-router-dom';
@@ -16,7 +16,7 @@ const Read = () => {
           if (books.length === 0 && !isLoaded) { // Check if books data already exists
             try {
                 const apiUrl = "http://localhost:3000/books";
-                const response = await axios.get(apiUrl);
+                const response = await axiosInstance.get(apiUrl);
                 if(response.status == 200){
                     setBooks(response.data.result);
                     console.log(response.data.message);
@@ -44,7 +44,7 @@ const Read = () => {
     const handleDelete = async (book_name) => {
         const apiUrl = `http://localhost:3000/admin/delete/${book_name}`;
         try {
-            const response = await axios.delete(apiUrl);
+            const response = await axiosInstance.delete(apiUrl);
             if(response.status === 200){
                 const result = response.data.message
                 console.log(result);

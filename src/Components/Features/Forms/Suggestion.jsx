@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import axios from "axios";
+import axiosInstance from "../../utils/Axios"
 import { FaUser,FaLock,FaPen } from "react-icons/fa";
 import { IoIosMail } from "react-icons/io";
 import { FaPhone } from "react-icons/fa6";
 
 const Suggestion = () => {
+
   const [details, setDetails] = useState({
     username: "",
     gmail: "",
@@ -12,6 +13,7 @@ const Suggestion = () => {
     bookName: "",
     author: "",
   });
+
   const handleInputChange = (e) => {
     setDetails((currData) => {
       return {
@@ -23,7 +25,7 @@ const Suggestion = () => {
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
-      const response = await axios.post(
+      const response = await axiosInstance.post(
         "http://localhost:3000/forms/suggestionDetails",
         details,
         {
@@ -41,7 +43,6 @@ const Suggestion = () => {
         bookName: "",
         author: "",
       });
-  
       console.log(response);
     } catch (error) {
       console.log(error);

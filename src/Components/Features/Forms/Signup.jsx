@@ -1,12 +1,20 @@
 import React, { useState } from "react";
-import axios from "axios";
+import axiosInstance from "../../utils/Axios"
 import "./signup.css";
 import { FaUser,FaLock } from "react-icons/fa";
 import { IoIosMail } from "react-icons/io";
 import { FaPhone } from "react-icons/fa6";
 import { useNavigate } from 'react-router-dom';
+import Cookies from 'js-cookie';
+//import {decode} from 'jwt-decode';
 
 const Signup = () => {
+  const [token, setToken] = useState("");
+  const getToken = () => {
+    setToken(Cookies.get('token')); // 'token' is the cookie name
+    console.log(token); // Prints the token value
+    return token;
+  };  
   const navigate = useNavigate();
   const [details, setDetails] = useState({
     fullName: "",
@@ -32,7 +40,7 @@ const Signup = () => {
     e.preventDefault();
       try {
         if(details.password === details.cpassword){
-        const response = await axios.post('http://localhost:3000/auth/signupDetails', details,
+        const response = await axiosInstance.post('http://localhost:3000/auth/signupDetails', details,
           {
             headers: {
               'Content-Type': 'application/json'
@@ -41,20 +49,48 @@ const Signup = () => {
         );
         const result = response.data;
         console.log(result);
-        navigate("/Login");
+        getToken();
+        if(token){
+          console.log("Signup Successfully");
+          // const data = decode(token);
+          // console.log(data);
+          setDetails({
+            fullName : '',
+            username : '',
+            gmail : '',
+            number : '',
+            address : '',
+            password : '',
+            cpassword : '',
+            gender : ''
+            });
+          navigate("/Login");          
+        }else{
+          console.log("Signup failed");
+          setDetails({
+            fullName : '',
+            username : '',
+            gmail : '',
+            number : '',
+            address : '',
+            password : '',
+            cpassword : '',
+            gender : ''
+            });
+        }
         }else{
           console.log("Password and Confirm password didn't match");
+          setDetails({
+            fullName : '',
+            username : '',
+            gmail : '',
+            number : '',
+            address : '',
+            password : '',
+            cpassword : '',
+            gender : ''
+            });
         }
-      setDetails({
-        fullName : '',
-        username : '',
-        gmail : '',
-        number : '',
-        address : '',
-        password : '',
-        cpassword : '',
-        gender : ''
-        });
     } catch (error) {
         console.log(error);
         setDetails({
