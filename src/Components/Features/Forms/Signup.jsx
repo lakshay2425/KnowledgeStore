@@ -6,16 +6,12 @@ import { IoIosMail } from "react-icons/io";
 import { FaPhone } from "react-icons/fa6";
 import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
-//import {decode} from 'jwt-decode';
+import { jwtDecode } from "jwt-decode";
 
 const Signup = () => {
-  const [token, setToken] = useState("");
-  const getToken = () => {
-    setToken(Cookies.get('token')); // 'token' is the cookie name
-    console.log(token); // Prints the token value
-    return token;
-  };  
+  const [token, setToken] = useState("");  
   const navigate = useNavigate();
+
   const [details, setDetails] = useState({
     fullName: "",
     gmail: "",
@@ -49,11 +45,12 @@ const Signup = () => {
         );
         const result = response.data;
         console.log(result);
-        getToken();
+        setToken(Cookies.get('token')); // 'token' is the cookie name
+        console.log(token); // Prints the token value
         if(token){
           console.log("Signup Successfully");
-          // const data = decode(token);
-          // console.log(data);
+          const decoded = jwtDecode(token);
+          console.log(decoded);
           setDetails({
             fullName : '',
             username : '',
