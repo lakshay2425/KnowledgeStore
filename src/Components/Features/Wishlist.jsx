@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import ProductCard from "../utils/ProductCard";
-const axiosInstance = require("../utils/Axios");
+import axiosInstance from "../utils/Axios";
 
 
 const Wishlist = () => {

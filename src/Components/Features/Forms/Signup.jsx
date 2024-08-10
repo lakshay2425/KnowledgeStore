@@ -8,8 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import { jwtDecode } from "jwt-decode";
 
-const Signup = () => {
-  const [token, setToken] = useState("");  
+const Signup = () => {  
   const navigate = useNavigate();
 
   const [details, setDetails] = useState({
@@ -45,7 +44,7 @@ const Signup = () => {
         );
         const result = response.data;
         console.log(result);
-        setToken(Cookies.get('token')); // 'token' is the cookie name
+        token = Cookies.get('token'); // 'token' is the cookie name
         console.log(token); // Prints the token value
         if(token){
           console.log("Signup Successfully");

@@ -3,6 +3,8 @@ import axiosInstance from "../../utils/Axios"
 import { FaUser,FaLock,FaPen } from "react-icons/fa";
 import { IoIosMail } from "react-icons/io";
 import { FaPhone } from "react-icons/fa6";
+import "./signup.css";
+
 
 const Suggestion = () => {
 
