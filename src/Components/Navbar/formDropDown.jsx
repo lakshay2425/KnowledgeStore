@@ -15,7 +15,6 @@ import { useSelector } from 'react-redux';
 
 const FormDropDown = () => {
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
-  console.log(isLoggedIn);
   return (
     <>
       <Dropdown backdrop="blur">

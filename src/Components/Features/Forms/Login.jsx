@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { jwtDecode } from "jwt-decode";
 import { Link } from "react-router-dom";
 import { useDispatch } from 'react-redux';
-import { setLoginState, setAdminState, setUserState, setGmailState } from '../../../Store/store'; // Adjust the path as necessary
+import { setLoginState, setAdminState, setUserState, setEmailState } from '../../../Store/store'; // Adjust the path as necessary
 
 
 const Login = () => {
@@ -42,22 +42,18 @@ const Login = () => {
         }
       );
       const result = response.data;
-      console.log(result);
       const token = Cookies.get('token'); // 'token' is the cookie name
-      console.log(token); // Prints the token value
       const role = Cookies.get('role');
-      console.log(role); // 'role' is the cookie name
       if(token && role){
         console.log("Logged In Successfully");
         const decoded = jwtDecode(token);
-        dispatch(setGmailState(decoded));
+        dispatch(setEmailState(decoded.data));
         dispatch(setLoginState(true));
         if(role === "admin"){
           dispatch(setAdminState(true)); // Or false depending on your logic     
         }else{
           dispatch(setUserState(true)); // Or false depending on your logic
         }
-        console.log(decoded);
         setDetails({
           username: "",
           password: "",

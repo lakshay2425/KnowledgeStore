@@ -4,9 +4,12 @@ import { Image } from "@nextui-org/react";
 import { IoBagHandleOutline } from "react-icons/io5";
 import { AiOutlineClose } from "react-icons/ai";
  import axiosInstance from "../utils/Axios";
+ import { useSelector } from 'react-redux';
 
 
 const ProductCard = ({ books }) => {
+  const email  = useSelector((state) => state.auth.email);
+  const isLoggedIn  = useSelector((state) => state.auth.isLoggedIn);
   var [isOpen, setIsOpen] = useState(false);
   let [num, setnum] = useState(1);
   var Preview = (id) => {
@@ -20,7 +23,12 @@ const ProductCard = ({ books }) => {
     try {
       console.log(bookName);
       const apiUrl = `http://localhost:3000/user/${bookName}/wishlist`;
-      const response = await axiosInstance.get(apiUrl);
+      const response = await axiosInstance.get(apiUrl,email,
+        {
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        });  
       console.log(response.data);
     } catch (error) {
       console.log(error.message); 
@@ -28,10 +36,17 @@ const ProductCard = ({ books }) => {
   };
 
     //Function to add book to Cart
-  const hanldeCart = async (bookName) => {
+  const hanldeCart = async (bookName,email) => {
     try {
-      const apiUrl = `http://localhost:3000/user/${bookName}/cart`;
-      const response = await axiosInstance.get(apiUrl);
+      const response = await axiosInstance.post(
+        `http://localhost:3000/user/${bookName}/cart`,
+        {email},
+        {
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        }
+      );
       console.log(response.data);
     } catch (error) {
       console.log(error.message); 
@@ -41,7 +56,13 @@ const ProductCard = ({ books }) => {
   const hanldeDeletion = async(bookName) => {
     try {
       const apiUrl = `http://localhost:3000/user/${bookName}/cart/delete`;
-      const response = await axiosInstance.delete(apiUrl);
+      const response = await axiosInstance.delete(apiUrl,email,
+        {
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        }
+      );
       const result  = response;
       console.log(result);
       // setBooks((prevBooks) => prevBooks.filter((book) => book.book_name !== bookName));
@@ -49,7 +70,6 @@ const ProductCard = ({ books }) => {
       console.log(error.message); 
     }
   }
-
   return (
     <>
       {books.map((book) => (
@@ -66,13 +86,15 @@ const ProductCard = ({ books }) => {
             <span className="product-name max-md:text-sm">{book.book_name}</span>
             <span className="product-price max-md:text-sm">&#8377;{book.price}</span>
           </div>
-          <div className="product-card-chip">
+          {/* <div className="product-card-chip">
             <span className="product-author max-md:text-sm">By {book.author}</span>
             <span className="genre max-md:text-sm">{book.genre}</span>
-          </div>
+          </div> */}
           {/* <p className="product-total-items">Total Items: {totalItems}</p> */}
           {/* <button className="product-btn" onClick={()=> hanldeDeletion(book.book_name)}>Delete<IoBagHandleOutline /></button>0 */}
-          <button className="product-btn " onClick={()=> hanldeCart(book.book_name)}  disabled={book.Quantity <= 0}>Add to Cart<IoBagHandleOutline /></button>
+          {isLoggedIn && (
+            <button className="product-btn " onClick={()=> hanldeCart(book.book_name, email)}  disabled={book.Quantity <= 0}>Add to Cart<IoBagHandleOutline /></button>
+          )}
         </div>
       ))}
       {

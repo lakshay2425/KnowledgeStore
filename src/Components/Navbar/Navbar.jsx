@@ -10,6 +10,7 @@ import Categories from "./Categories";
 import FormDropDown from "./formDropDown";
 import AdminPanel from "./adminPanel";
 import { useSelector } from 'react-redux';
+import Logout from "./Logout";
 
 var  Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -44,6 +45,9 @@ var  Navbar = () => {
               <p className="about">About Us</p>
             </Link>
           </div>
+          {isLoggedIn && (
+            <Logout/>
+          )}
           <Search/>
           {isLoggedIn && (
             <Link className="cart-icon " to="/Cart">
