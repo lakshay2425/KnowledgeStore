@@ -1,15 +1,25 @@
-
-
 import React, { useState } from "react";
-import axios from "axios";
+import axiosInstance from "../../utils/Axios";
 import "./form.css";
 import { FaUser, FaLock } from "react-icons/fa";
+import Cookies from 'js-cookie';
+import { useNavigate } from 'react-router-dom';
+import { jwtDecode } from "jwt-decode";
+import { Link } from "react-router-dom";
+import { useDispatch } from 'react-redux';
+import { setLoginState, setAdminState, setUserState, setGmailState } from '../../../Store/store'; // Adjust the path as necessary
 
-const Contact = () => {
+
+const Login = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+
   const [details, setDetails] = useState({
     username: "",
     password: "",
   });
+
   const handleInputChange = (e) => {
     setDetails((currData) => {
       return {
@@ -18,22 +28,57 @@ const Contact = () => {
       };
     });
   };
+
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    setDetails({
-      username: "",
-      password: "",
-    });
     try {
-      const response = await axios.post(
-        "http://localhost/Programs/bookRental/login.php",
-        details
+      e.preventDefault();
+      const response = await axiosInstance.post(
+        "http://localhost:3000/auth/loginDetails",
+        details,
+        {
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        }
       );
-      console.log("Server response:", response.data);
+      const result = response.data;
+      console.log(result);
+      const token = Cookies.get('token'); // 'token' is the cookie name
+      console.log(token); // Prints the token value
+      const role = Cookies.get('role');
+      console.log(role); // 'role' is the cookie name
+      if(token && role){
+        console.log("Logged In Successfully");
+        const decoded = jwtDecode(token);
+        dispatch(setGmailState(decoded));
+        dispatch(setLoginState(true));
+        if(role === "admin"){
+          dispatch(setAdminState(true)); // Or false depending on your logic     
+        }else{
+          dispatch(setUserState(true)); // Or false depending on your logic
+        }
+        console.log(decoded);
+        setDetails({
+          username: "",
+          password: "",
+        });
+        navigate("/");
+      }else{
+        console.log("Failed to Login");
+        setDetails({
+          username: "",
+          password: "",
+        });
+      }
     } catch (error) {
       console.error("Error submitting form:", error);
+      setDetails({
+        username : '',
+        password : ''
+        });
     }
   };
+
   return (
     <>
       <div className="container">
@@ -76,7 +121,7 @@ const Contact = () => {
               <button type="submit">Login</button>
               <div className="register-link">
                 <p>
-                  Don't have an account <a href="Signup.jsx">Register</a>
+                  Don't have an account <Link to="http://localhost:4000/Signup">Register</Link>
                 </p>
               </div>
             </form>
@@ -87,4 +132,4 @@ const Contact = () => {
   );
 };
 
-export default Contact;
+export default Login;

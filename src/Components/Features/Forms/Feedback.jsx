@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import axios from "axios";
+import axiosInstance from "../../utils/Axios";
 import { FaUser } from "react-icons/fa";
 import { IoIosMail } from "react-icons/io";
-const Contact = () => {
+
+const Feedback = () => {
   const [details, setDetails] = useState({
     username: "",
     gmail: "",
@@ -25,87 +26,39 @@ const Contact = () => {
       feedback: "",
     });
     try {
-      const response = await axios.post(
-        "http://localhost/Programs/BookRental/FeedbackData.php",
-        details
+      e.preventDefault();
+      const response = await axiosInstance.post(
+        "http://localhost:3000/forms/feedbackDetails",
+        details,
+        {
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        }
       );
-      if (response.status === 200) {
-        <div
-          className="alert alert-success alert-dismissible fade show"
-          role="alert"
-        >
-          <strong>Thank you {details.username}</strong> for submitting feedback
-          <button
-            type="button"
-            className="btn-close"
-            data-bs-dismiss="alert"
-            aria-label="Close"
-          ></button>
-        </div>;
-      } else {
-        <div
-          className="alert alert-danger alert-dismissible fade show"
-          role="alert"
-        >
-          <strong>Feedback not submitted successfully</strong>
-          <button
-            type="button"
-            className="btn-close"
-            data-bs-dismiss="alert"
-            aria-label="Close"
-          ></button>
-        </div>;
-      }
+      const result = response.data;
+      console.log(result);
+      setDetails({
+        username: "",
+        gmail: "",
+        feedback: "",
+      });
     } catch (error) {
       console.error("Error submitting form:", error);
+      setDetails({
+        fullName : '',
+        username : '',
+        gmail : '',
+        number : '',
+        address : '',
+        password : '',
+        cpassword : '',
+        gender : ''
+        });
     }
   };
   return (
     <>
-      {/*  /*<div className="container">
-        <div className="wrapper">
-          <div className="form-box login">
-            <form method="post" onSubmit={handleSubmit}>
-              <h1>feedback</h1>
-              <div className="input-box">
-                <input
-                  type="text"
-                  id="username"
-                  onChange={handleInputChange}
-                  placeholder="Enter your username"
-                  name="username"
-                  value={details.username}
-                />
-                <FaUser className="icon"/>
-              </div>
-              <div className="input-box">
-                <input
-                  type="gmail"
-                  id="gmail"
-                  onChange={handleInputChange}
-                  placeholder="Enter your gmail"
-                  name="gmail"
-                  value={details.gmail}
-                />
-                <IoIosMail className="icon"/>
-              </div>
-              <div className="text">
-                <textarea
-                  name="feedback"
-                  id="feedback"
-                  onChange={handleInputChange}
-                  cols="33"
-                  value={details.feedback}
-                  rows="5"
-                  placeholder="Enter your feedback in detail"
-                ></textarea>
-
-              </div>
-              <button type="submit">Submit</button>
-            </form>
-          </div>
-        </div>
-       </div> */}
       <div className="grid grid-cols-2 w-full px-[5vw] py-6 pt-14 justify-between max-md:grid-cols-1">
         <div className="max-w-96  pt-16 max-md:pt-0">
           <div className="flex-col space-y-4 max-md:">
@@ -186,4 +139,4 @@ const Contact = () => {
   );
 };
 
-export default Contact;
+export default Feedback;

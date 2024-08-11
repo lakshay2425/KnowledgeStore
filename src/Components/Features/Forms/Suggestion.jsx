@@ -1,10 +1,13 @@
 import React, { useState } from "react";
-import axios from "axios";
+import axiosInstance from "../../utils/Axios"
 import { FaUser,FaLock,FaPen } from "react-icons/fa";
 import { IoIosMail } from "react-icons/io";
 import { FaPhone } from "react-icons/fa6";
+import "./signup.css";
 
-const Contact = () => {
+
+const Suggestion = () => {
+
   const [details, setDetails] = useState({
     username: "",
     gmail: "",
@@ -12,6 +15,7 @@ const Contact = () => {
     bookName: "",
     author: "",
   });
+
   const handleInputChange = (e) => {
     setDetails((currData) => {
       return {
@@ -21,49 +25,39 @@ const Contact = () => {
     });
   };
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    setDetails({
-      username: "",
-      gmail: "",
-      genre: "",
-      bookName: "",
-      author: "",
-    });
     try {
-      const response = await axios.post(
-        "http://localhost/Programs/BookRental/SuggestionFormData.php",
-        details
+      e.preventDefault();
+      const response = await axiosInstance.post(
+        "http://localhost:3000/forms/suggestionDetails",
+        details,
+        {
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        }
       );
+      const result = response.data;
+      console.log(result);
+      setDetails({
+        username: "",
+        gmail: "",
+        genre: "",
+        bookName: "",
+        author: "",
+      });
       console.log(response);
-      if (response.status === 200) {
-        <div
-          class="alert alert-success alert-dismissible fade show"
-          role="alert"
-        >
-          <strong>Thank you {details.username}</strong>for your suggestion
-          <button
-            type="button"
-            class="btn-close"
-            data-bs-dismiss="alert"
-            aria-label="Close"
-          ></button>
-        </div>;
-      } else {
-        <div
-          class="alert alert-danger alert-dismissible fade show"
-          role="alert"
-        >
-          <strong>Suggestion not submitted.</strong>Try again later.
-          <button
-            type="button"
-            class="btn-close"
-            data-bs-dismiss="alert"
-            aria-label="Close"
-          ></button>
-        </div>;
-      }
     } catch (error) {
       console.log(error);
+      setDetails({
+        fullName : '',
+        username : '',
+        gmail : '',
+        number : '',
+        address : '',
+        password : '',
+        cpassword : '',
+        gender : ''
+        });
     }
   };
   return (
@@ -138,4 +132,4 @@ const Contact = () => {
   );
 };
 
-export default Contact;
+export default Suggestion;

@@ -1,13 +1,16 @@
 import React, { useState } from "react";
-import axios from "axios";
+import axiosInstance from "../../utils/Axios"
 import "./signup.css";
 import { FaUser,FaLock } from "react-icons/fa";
 import { IoIosMail } from "react-icons/io";
 import { FaPhone } from "react-icons/fa6";
-//import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import Cookies from 'js-cookie';
+import { jwtDecode } from "jwt-decode";
 
-const Contact = () => {
-  //const history = useHistory();
+const Signup = () => {  
+  const navigate = useNavigate();
+
   const [details, setDetails] = useState({
     fullName: "",
     gmail: "",
@@ -18,7 +21,7 @@ const Contact = () => {
     cpassword: "",
     gender: "",
   });
-  const [alert, setAlert] = useState({ show: false, message: "", type: "" });
+
   const handleInputChange = (e) => {
     setDetails((currData) => {
       return {
@@ -27,65 +30,82 @@ const Contact = () => {
       };
     });
   };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      const response = await axios.post(
-        "http://localhost/Programs/BookRental/SignupData.php",
-        details
-      );
-      if (response.status == 200) {
-        setAlert({
-          show: true,
-          message: "Account Created Successfully",
-          type: "success",
-        });
-        console.log(alert);
-      } else {
-        setAlert({
-          show: true,
-          message: "Account not Created Successfully",
-          type: "danger",
-        });
-        console.log(alert);
-      }
-      setDetails({
-        fullName: "",
-        username: "",
-        gmail: "",
-        number: "",
-        address: "",
-        password: "",
-        cpassword: "",
-        gender: "",
-      });
+      try {
+        if(details.password === details.cpassword){
+        const response = await axiosInstance.post('http://localhost:3000/auth/signupDetails', details,
+          {
+            headers: {
+              'Content-Type': 'application/json'
+            }
+          }
+        );
+        const result = response.data;
+        console.log(result);
+        token = Cookies.get('token'); // 'token' is the cookie name
+        console.log(token); // Prints the token value
+        if(token){
+          console.log("Signup Successfully");
+          const decoded = jwtDecode(token);
+          console.log(decoded);
+          setDetails({
+            fullName : '',
+            username : '',
+            gmail : '',
+            number : '',
+            address : '',
+            password : '',
+            cpassword : '',
+            gender : ''
+            });
+          navigate("/Login");          
+        }else{
+          console.log("Signup failed");
+          setDetails({
+            fullName : '',
+            username : '',
+            gmail : '',
+            number : '',
+            address : '',
+            password : '',
+            cpassword : '',
+            gender : ''
+            });
+        }
+        }else{
+          console.log("Password and Confirm password didn't match");
+          setDetails({
+            fullName : '',
+            username : '',
+            gmail : '',
+            number : '',
+            address : '',
+            password : '',
+            cpassword : '',
+            gender : ''
+            });
+        }
     } catch (error) {
-      console.log(error);
-      setAlert({
-        show: true,
-        message: "An error occurred. Please try again.",
-        type: "danger",
-      });
-      console.log(alert);
+        console.log(error);
+        setDetails({
+          fullName : '',
+          username : '',
+          gmail : '',
+          number : '',
+          address : '',
+          password : '',
+          cpassword : '',
+          gender : ''
+          });
     }
   };
+
   return (
     <>
       <div className="Container">
         <div className="Wrapper">
-          {alert.show && (
-            <div
-              className={`alert alert-${alert.type} alert-dismissible fade show`}
-              role="alert"
-            >
-              {alert.message}
-              <button
-                type="button"
-                className="btn-close"
-                onClick={() => setAlert({ show: false, message: "", type: "" })}
-              ></button>
-            </div>
-          )}
           <div className="Form-box login">
             <form method="post" className="signup" onSubmit={handleSubmit}>
               <h1>sign up</h1>
@@ -125,6 +145,8 @@ const Contact = () => {
                 <input
                   type="number"
                   id="contact"
+                  minLength={10}
+                  maxLength={10}
                   onChange={handleInputChange}
                   placeholder="Enter your contact number"
                   name="number"
@@ -182,17 +204,17 @@ const Contact = () => {
                   value={details.gender}
                   size={1}
                   >
-                  <option value="Male">Male</option>
-                  <option value="Female">Female</option>
-                  <option value="others">Others</option>
-                  <option value="not_specified">Prefer not to say</option>
+                  <option name="gender" value="Male">Male</option>
+                  <option name="gender" value="Female">Female</option>
+                  <option name="gender" value="others">Others</option>
+                  <option name="gender" value="not_specified">Prefer not to say</option>
                 </select>
                   </div>
                     </div>
-                  <button type="submit">signup</button>
+                  <button type="submit">Signup</button>
               <div className="register-link">
                 <p>
-                  already't have an account <a href="Signup.jsx">Register</a>
+                  Already't have an account <a href="Signup.jsx">Register</a>
                 </p>
               </div>
             </form>
@@ -203,4 +225,4 @@ const Contact = () => {
   );
 };
 
-export default Contact;
+export default Signup;

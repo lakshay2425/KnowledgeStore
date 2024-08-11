@@ -1,0 +1,15 @@
+.best-seller-container{
+    max-width: 90%;
+    margin: auto;
+    height: 700px;
+}
+
+
+.best-seller-title{
+    padding-bottom: 2%;
+    margin-top: 5%;
+    left: 5%;
+    font-size: 2em;
+    font-weight: 720;
+}
+/* for more refer to index.css */

@@ -3,33 +3,56 @@ import { Image } from "@nextui-org/react";
 // import ProductPreview from "./ProductPreview";
 import { IoBagHandleOutline } from "react-icons/io5";
 import { AiOutlineClose } from "react-icons/ai";
+import axiosInstance from "../utils/Axios";
+
+
 const ProductCard = ({ books }) => {
   const img = "https://bestlifeonline.com/wp-content/uploads/sites/3/2020/10/The-Hobbit-book-cover.jpg";
-  // const cart = () => {
-  //   try {
-  //     const response = await axios.post('http://localhost/Programs/Book_rental%20Project/Cart.php', details);
-  // }
-  // catch(e){
 
-  // }
 
   var [isOpen, setIsOpen] = useState(false);
   let [num, setnum] = useState(1);
   var Preview = (id) => {
     setIsOpen(!isOpen);
-
     setnum(id);
   };
-  let arr = { num };
 
   console.log(num);
-  // console.log(isOpen);
 
-  // if (isOpen) {
-  //   return (
+  //Function to add book to wishlist
+  const handleWishList = async (bookName) => {
+    try {
+      console.log(bookName);
+      const apiUrl = `http://localhost:3000/user/${bookName}/wishlist`;
+      const response = await axiosInstance.get(apiUrl);
+      console.log(response.data);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
 
-  //   )
-  // }
+  //Function to add book to Cart
+  const hanldeCart = async (bookName) => {
+    try {
+      const apiUrl = `http://localhost:3000/user/${bookName}/cart`;
+      const response = await axiosInstance.get(apiUrl);
+      console.log(response.data);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+  const hanldeDeletion = async (bookName) => {
+    try {
+      const apiUrl = `http://localhost:3000/user/${bookName}/cart/delete`;
+      const response = await axiosInstance.delete(apiUrl);
+      const result = response;
+      console.log(result);
+      // setBooks((prevBooks) => prevBooks.filter((book) => book.book_name !== bookName));
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
 
   return (
     <>
@@ -52,7 +75,7 @@ const ProductCard = ({ books }) => {
           </div>
 
           {/* <p className="product-total-items">Total Items: {totalItems}</p> */}
-          <button className="product-btn">Add <IoBagHandleOutline /></button>
+          <button className="product-btn " onClick={() => hanldeCart(book.book_name)} disabled={book.Quantity <= 0}>Add to Cart<IoBagHandleOutline /></button>
 
         </div>
 
@@ -68,13 +91,13 @@ const ProductCard = ({ books }) => {
 
                 <div className='flex w-2/5 justify-center items-center max-md:w-full max-md:'>
                   <Image
-                    
+
                     className="w-96 max-md:w-fit max-md:my-12"
                     alt={num.book_name}
                     src={num.img_link}
 
                   />
-                  
+
                 </div>
                 <div className='flex-col w-2/4 mx-auto my-auto max-md:w-4/5'>
                   <h2 className='text-4xl leading-relaxed pb-2'>{num.book_name}</h2>
@@ -85,7 +108,7 @@ const ProductCard = ({ books }) => {
                     Laboriosam, nihil voluptas praesentium deleniti dolores modi illo aliquam quidem repellat ab qui cupiditate tempore numquam minus consequuntur rem animi debitis, fugit, tempora non ullam possimus voluptate pariatur iure. Cum.
                     Est doloribus minus voluptatum impedit amet officia porro temporibus quos eum, labore soluta fugit cupiditate nemo! Distinctio magnam laborum, ipsam mollitia ipsum beatae dolorum nam illo odit eaque tenetur minima! Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsam, eos! Amet nostrum, temporibus ad nobis quaerat quas nam distinctio aliquid doloribus totam facere mollitia, sapiente sit eos aspernatur quae officia.
                   </p>
-                  <button className="product-btn ">Add <IoBagHandleOutline /></button>
+                  <button className="product-btn " onClick={() => hanldeCart(num.book_name)} disabled={num.Quantity <= 0}>Add to Cart<IoBagHandleOutline /></button>
                 </div>
 
               </div>
