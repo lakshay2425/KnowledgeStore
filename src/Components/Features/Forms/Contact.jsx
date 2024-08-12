@@ -3,10 +3,12 @@ import "./form.css";
 import { FaPhone } from "react-icons/fa6";
 import { IoIosMail } from "react-icons/io";
 import { FaUser,FaLock,FaPen } from "react-icons/fa";
-import axiosInstance from "../../utils/Axios"
+import axiosInstance from "../../utils/Axios";
+import {useAlert} from "../../utils/setAlert";
 
 
 const Contact = () => {
+  const { handleSuccess, handleError } = useAlert();
 
     //Managing state of the form's data 
   const [details, setDetails] = useState({
@@ -41,6 +43,7 @@ const Contact = () => {
       );
       const result = response.data;
       console.log(result);
+      handleSuccess(response.data.message);
     setDetails({
       username: "",
       gmail: "",
@@ -49,6 +52,7 @@ const Contact = () => {
     });
     } catch (error) {
       console.error("Error submitting form:", error);
+      handleError(response.data.message);
     }
   };
 

@@ -1,9 +1,11 @@
 import React, {useState} from 'react';
 import "./create.css";
-import axiosInstance from "../../utils/Axios"
+import axiosInstance from "../../utils/Axios";
+import {useAlert} from "../../utils/setAlert";
 
 
 const Create = () => {
+  const { handleSuccess, handleError } = useAlert();
 
   const [details, setDetails] = useState({
     author: "",
@@ -34,6 +36,7 @@ const Create = () => {
           }
         );
         const result = response.data.result;
+        handleSuccess("Book Data inserted successfully");
         setDetails({
           author: "",
           genre: "",
@@ -44,6 +47,7 @@ const Create = () => {
         });
     } catch (error) {
         console.error('Error submitting form:', error);
+        handleError("Failed to insert book data");
         setDetails({
           author: "",
           genre: "",

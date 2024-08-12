@@ -3,9 +3,10 @@ import axiosInstance from "../../utils/Axios";
 import { FaUser } from "react-icons/fa";
 import { IoIosMail } from "react-icons/io";
 import "./signup.css";
-
+import {useAlert} from "../../utils/setAlert";
 
 const Feedback = () => {
+  const { handleSuccess, handleError } = useAlert();
 
   //Managing state of the form's data 
   const [details, setDetails] = useState({
@@ -39,6 +40,7 @@ const Feedback = () => {
       );
       const result = response.data;
       console.log(result);
+      handleSuccess(response.data.message);
       setDetails({
         username: "",
         gmail: "",
@@ -46,6 +48,7 @@ const Feedback = () => {
       });
     } catch (error) {
       console.error("Error submitting form:", error);
+      handleError(response.data.message);
       setDetails({
         fullName : '',
         username : '',

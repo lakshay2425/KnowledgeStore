@@ -4,9 +4,11 @@ import { FaUser,FaLock,FaPen } from "react-icons/fa";
 import { IoIosMail } from "react-icons/io";
 import { FaPhone } from "react-icons/fa6";
 import "./signup.css";
+import {useAlert} from "../../utils/setAlert";
 
 
 const Suggestion = () => {
+  const { handleSuccess, handleError } = useAlert();
 
   const [details, setDetails] = useState({
     username: "",
@@ -38,6 +40,7 @@ const Suggestion = () => {
       );
       const result = response.data;
       console.log(result);
+      handleSuccess(response.data.message);
       setDetails({
         username: "",
         gmail: "",
@@ -47,6 +50,7 @@ const Suggestion = () => {
       });
       console.log(response);
     } catch (error) {
+      handleError(error.message);
       console.log(error);
       setDetails({
         fullName : '',

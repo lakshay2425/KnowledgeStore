@@ -3,9 +3,11 @@ import axiosInstance from "../../utils/Axios"
 import "./table.css";
 import "../Forms/form.css";
 import { useNavigate } from 'react-router-dom';
+import {useAlert} from "../../utils/setAlert";
 
 
 const Read = () => {
+    const { handleSuccess, handleError } = useAlert();
     const [books, setBooks] = useState([]);
     const [isLoaded, setIsLoaded] = useState(false); // Track if data is loaded
     const navigate = useNavigate();
@@ -47,11 +49,11 @@ const Read = () => {
             const response = await axiosInstance.delete(apiUrl);
             if(response.status === 200){
                 const result = response.data.message
-                console.log(result);
+                handleSuccess(result);
                 setBooks((prevBooks) => prevBooks.filter((book) => book.book_name !== book_name));
             }else{
                 const result = response.data.message
-                console.log(result);
+                handleError(result);
             }          
         } catch (error) {
             console.error('Error deleting data:', error);

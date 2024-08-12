@@ -8,11 +8,12 @@ import { jwtDecode } from "jwt-decode";
 import { Link } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 import { setLoginState, setAdminState, setUserState, setEmailState } from '../../../Store/store'; // Adjust the path as necessary
-
+import {useAlert} from "../../utils/setAlert";
 
 const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { handleSuccess, handleError } = useAlert();
 
 
   const [details, setDetails] = useState({
@@ -46,6 +47,7 @@ const Login = () => {
       const role = Cookies.get('role');
       if(token && role){
         console.log("Logged In Successfully");
+        handleSuccess("Logged In Successfully");
         const decoded = jwtDecode(token);
         dispatch(setEmailState(decoded.data));
         dispatch(setLoginState(true));
@@ -61,6 +63,7 @@ const Login = () => {
         navigate("/");
       }else{
         console.log("Failed to Login");
+        handleError("Failed to Login")
         setDetails({
           username: "",
           password: "",
@@ -68,6 +71,7 @@ const Login = () => {
       }
     } catch (error) {
       console.error("Error submitting form:", error);
+      handleError("Failed to Login");
       setDetails({
         username : '',
         password : ''

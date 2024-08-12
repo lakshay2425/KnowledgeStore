@@ -2,9 +2,11 @@ import React, {useState, useEffect} from 'react';
 import axiosInstance from "../../utils/Axios"
 import "../Forms/form.css";
 import { useNavigate, useLocation } from 'react-router-dom';
+import {useAlert} from "../../utils/setAlert";
 
 
 const Update = () => {
+  const { handleSuccess, handleError } = useAlert();
     const [details, setDetails] = useState({
         author: "",
         genre: "",
@@ -65,6 +67,7 @@ const Update = () => {
           }
         );
         const result = response.data.result;
+        handleSuccess("Updated Book Details Successfully");
         console.log(result, response.data.message);
         setDetails({
             author: "",
@@ -77,6 +80,7 @@ const Update = () => {
           navigate("/Read");
         } catch (error) {
         console.error('Error submitting form:', error.message);
+        handleError("Failed to update book details");
         setDetails({
             author: "",
             genre: "",

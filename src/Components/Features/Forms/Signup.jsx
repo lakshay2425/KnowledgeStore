@@ -7,9 +7,11 @@ import { FaPhone } from "react-icons/fa6";
 import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import { jwtDecode } from "jwt-decode";
+import {useAlert} from "../../utils/setAlert";
 
 const Signup = () => {  
   const navigate = useNavigate();
+  const { handleSuccess, handleError } = useAlert();
 
   const [details, setDetails] = useState({
     fullName: "",
@@ -50,6 +52,7 @@ const Signup = () => {
           console.log("Signup Successfully");
           const decoded = jwtDecode(token);
           console.log(decoded);
+          handleSuccess("Signup Successfully");
           setDetails({
             fullName : '',
             username : '',
@@ -63,6 +66,7 @@ const Signup = () => {
           navigate("/Login");          
         }else{
           console.log("Signup failed");
+          handleError("Signup failed");
           setDetails({
             fullName : '',
             username : '',
@@ -76,6 +80,7 @@ const Signup = () => {
         }
         }else{
           console.log("Password and Confirm password didn't match");
+          handleError("Password and Confirm password didn't match");
           setDetails({
             fullName : '',
             username : '',
@@ -89,6 +94,7 @@ const Signup = () => {
         }
     } catch (error) {
         console.log(error);
+        handleError(error.message);
         setDetails({
           fullName : '',
           username : '',
