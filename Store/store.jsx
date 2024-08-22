@@ -7,7 +7,7 @@ const authSlice = createSlice({
     isLoggedIn: false,
     admin: false,
     user: false,
-    gmail : ""
+    email : ""
   },
   reducers: {
     setLoginState: (state, action) => {
@@ -19,19 +19,41 @@ const authSlice = createSlice({
     setUserState: (state, action) => {
       state.user = action.payload;
     },
-    setGmailState: (state, action) => {
-      state.gmail = action.payload;
+    setEmailState: (state, action) => {
+      state.email = action.payload;
     },
   },
 });
 
+const alertSlice = createSlice({
+  name: 'alert',
+  initialState: {
+    type: '', // e.g., 'success', 'error', 'info', etc.
+    message: '',
+    isVisible: false, // to control the visibility of the alert
+  },
+  reducers : {
+    setAlert: (state, action) => {
+      state.type = action.payload.type;
+      state.message = action.payload.message;
+      state.isVisible = true;
+    },
+    clearAlert: (state) => {
+      state.type = '';
+      state.message = '';
+      state.isVisible = false;
+    }
+  }
+})
 // Export actions
-export const { setLoginState, setAdminState, setUserState , setGmailState} = authSlice.actions;
+export const { setLoginState, setAdminState, setUserState , setEmailState } = authSlice.actions;
+export const {setAlert, clearAlert} = alertSlice.actions;
 
 // Configure and export the store
 const store = configureStore({
   reducer: {
     auth: authSlice.reducer,
+    alert : alertSlice.reducer
   },
 });
 

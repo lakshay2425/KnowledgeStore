@@ -1,12 +1,14 @@
 import React, { useState } from "react";
-
 import { FaPhone } from "react-icons/fa6";
 import { IoIosMail } from "react-icons/io";
 import { FaUser,FaLock,FaPen } from "react-icons/fa";
-import axiosInstance from "../../utils/Axios"
+import axiosInstance from "../../utils/Axios";
+import {useAlert} from "../../utils/setAlert";
+
 
 
 const Contact = () => {
+  const { handleSuccess, handleError } = useAlert();
 
     //Managing state of the form's data 
   const [details, setDetails] = useState({
@@ -17,7 +19,7 @@ const Contact = () => {
   });
 
     //Function to handle change in input fields value
-  const handleInputChange = (e) => {
+    const handleInputChange = (e) => {
     setDetails((currData) => {
       return {
         ...currData,
@@ -41,7 +43,11 @@ const Contact = () => {
       );
       const result = response.data;
       console.log(result);
-    setDetails({
+      handleSuccess(response.data.message);
+      setTimeout(()=>{
+        clearAlert();
+      },3000)
+      setDetails({
       username: "",
       gmail: "",
       number: "",
@@ -49,6 +55,10 @@ const Contact = () => {
     });
     } catch (error) {
       console.error("Error submitting form:", error);
+      handleError(response.data.message);
+      setTimeout(()=>{
+        clearAlert();
+      },3000)
     }
   };
 

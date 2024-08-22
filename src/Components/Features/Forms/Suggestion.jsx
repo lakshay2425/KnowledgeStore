@@ -3,6 +3,8 @@ import axiosInstance from "../../utils/Axios"
 import { FaUser,FaLock,FaPen } from "react-icons/fa";
 import { IoIosMail } from "react-icons/io";
 import { FaPhone } from "react-icons/fa6";
+import {useAlert} from "../../utils/setAlert";
+import { clearAlert } from "../../../Store/store";
 
 
 
@@ -24,6 +26,7 @@ const Suggestion = () => {
       };
     });
   };
+  
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
@@ -38,6 +41,7 @@ const Suggestion = () => {
       );
       const result = response.data;
       console.log(result);
+      handleSuccess(response.data.message);
       setDetails({
         username: "",
         gmail: "",
@@ -45,19 +49,20 @@ const Suggestion = () => {
         bookName: "",
         author: "",
       });
+      setTimeout(()=>{
+        clearAlert();
+      },3000)
       console.log(response);
     } catch (error) {
+      handleError(error.message);
       console.log(error);
       setDetails({
-        fullName : '',
-        username : '',
-        gmail : '',
-        number : '',
-        address : '',
-        password : '',
-        cpassword : '',
-        gender : ''
-        });
+        username: "",
+        gmail: "",
+        genre: "",
+        bookName: "",
+        author: "",
+      });
     }
   };
   return (

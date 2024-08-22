@@ -1,7 +1,12 @@
 import React, {useState} from 'react';
-import axios from 'axios';
+import "./create.css";
+import axiosInstance from "../../utils/Axios";
+import {useAlert} from "../../utils/setAlert";
 
-const Admin = () => {
+
+const Create = () => {
+  const { handleSuccess, handleError } = useAlert();
+
   const [details, setDetails] = useState({
     author: "",
     genre: "",
@@ -10,6 +15,8 @@ const Admin = () => {
     book_name: "",
     img_link: ''
   });
+
+  //To handle inputs in the form
   const handleInputChange = (e) => {
     setDetails((currData) => {
       return{
@@ -17,23 +24,41 @@ const Admin = () => {
       }
     })
   }
+  //To handle form submission
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    setDetails({
-        author: "",
-        genre: "",
-        price: "",
-        quantity: "",
-        book_name: "",
-        img_link: ''
-      });
       try {
-        const response = await axios.post('http://localhost/Programs/BookRental/AdminData.php', details);
-        console.log('Server response:', response.data);
+        e.preventDefault();
+        const response = await axiosInstance.post('http://localhost:3000/admin/create', details,
+          {
+            headers: {
+              'Content-Type': 'application/json'
+            }
+          }
+        );
+        const result = response.data.result;
+        handleSuccess("Book Data inserted successfully");
+        setDetails({
+          author: "",
+          genre: "",
+          price: "",
+          quantity: "",
+          book_name: "",
+          img_link: ''
+        });
     } catch (error) {
         console.error('Error submitting form:', error);
+        handleError("Failed to insert book data");
+        setDetails({
+          author: "",
+          genre: "",
+          price: "",
+          quantity: "",
+          book_name: "",
+          img_link: ''
+        });
     }
   }
+
   return (
     <>
     <div className="container ">
@@ -45,7 +70,7 @@ const Admin = () => {
             <label htmlFor="author">Author</label>
           </td>
           <td>
-            <input type="text" id='author'  onChange={handleInputChange} placeholder='Enterthe author name' name='author' value={details.author} />
+            <input type="text" id='author'  onChange={handleInputChange} placeholder='Enter the author name' name='author' value={details.author} />
           </td>
         </tr>
         <tr>
@@ -68,7 +93,7 @@ const Admin = () => {
           <td>
             <label htmlFor="price">Price</label></td>
           <td>
-            <input type="number" id='price' onChange={handleInputChange} placeholder='Enterthe book price' name='price' value={details.price} />
+            <input type="number" id='price' onChange={handleInputChange} placeholder='Enter the book price' name='price' value={details.price} />
           </td>
         </tr>
         <tr>
@@ -100,4 +125,4 @@ const Admin = () => {
   );
 };
 
-export default Admin;
+export default Create;

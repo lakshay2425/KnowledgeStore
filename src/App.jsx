@@ -1,179 +1,286 @@
-import React from "react";
-import { createBrowserRouter, Router, RouterProvider } from "react-router-dom";
-import Navbar from "./Components/Navbar";
-import Home from "./Components/Home/Home";
-import Finance from "./Components/Categories/Finance/Finance";
-import Biography from "./Components/Categories/Biography/Biography";
-import Skillbased from "./Components/Categories/Skillbased/Skillbased";
-import SelfHelp from "./Components/Categories/SelfHelp/SelfHelp";
-import Fictional from "./Components/Categories/Fictional/Fictional";
-import Contact from "./Components/Features/Forms/Contact";
-import Suggestion from "./Components/Features/Forms/Suggestion";
-import Feedback from "./Components/Features/Forms/Feedback";
-import Login from "./Components/Features/Forms/Login";
-import Signup from "./Components/Features/Forms/Signup";
-import Cart from "./Components/Features/Cart";
-import Account from "./Components/Features/Account";
-import Footer from "./Components/Footer";
+import React, { Suspense, lazy, useEffect } from 'react';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+
+const Navbar = lazy(()=> import("./Components/Navbar/Navbar"));
+const Home = lazy(() => import('./Components/Home/Home'));
+const Finance = lazy(() => import('./Components/Categories/Finance'));
+const Biography = lazy(() => import('./Components/Categories/Biography'));
+const Skillbased = lazy(() => import('./Components/Categories/Skillbased'));
+const SelfHelp = lazy(() => import('./Components/Categories/SelfHelp'));
+const Fictional = lazy(() => import('./Components/Categories/Fictional'));
+const Contact = lazy(() => import('./Components/Features/Forms/contact'));
+const Suggestion = lazy(() => import('./Components/Features/Forms/suggestion'));
+const Feedback = lazy(() => import('./Components/Features/Forms/feedback'));
+const Login = lazy(() => import('./Components/Features/Forms/login'));
+const Signup = lazy(() => import('./Components/Features/Forms/signup'));
+const Cart = lazy(() => import('./Components/Features/cart'));
+const Account = lazy(() => import('./Components/Features/account'));
+const Create = lazy(() => import('./Components/Features/adminPanel/create'));
+const Read = lazy(() => import('./Components/Features/adminPanel/read'));
+const Update = lazy(() => import('./Components/Features/adminPanel/update'));
+const Wishlist = lazy(() => import('./Components/Features/Wishlist'));
+const Footer = lazy(()=> import("./Components/Home/Footer"));
+import axios from 'axios';
 
 
 const App = () => {
+  axios.defaults.withCredentials = true;
   const router = createBrowserRouter([
     {
-      path: "/",
+      path: '/',
       element: (
         <>
           <Navbar />
-          <Home />
+          <Suspense fallback={<div>Loading...</div>}>
+            <Home />
+          </Suspense>
           <Footer />
         </>
       ),
     },
     {
-      path: "/Finance",
+      path: '/Finance',
       element: (
         <>
           <Navbar />
-          <Finance />
+          <Suspense fallback={<div>Loading...</div>}>
+            <Finance />
+          </Suspense>
           <Footer />
         </>
       ),
     },
     {
-      path: "/feedback",
+      path: '/feedback',
       element: (
         <>
           <Navbar />
-          <Feedback />
+          <Suspense fallback={<div>Loading...</div>}>
+            <Feedback />
+          </Suspense>
           <Footer />
         </>
       ),
     },
     {
-      path: "/suggestion",
+      path: '/suggestion',
       element: (
         <>
           <Navbar />
-          <Suggestion />
+          <Suspense fallback={<div>Loading...</div>}>
+            <Suggestion />
+          </Suspense>
           <Footer />
         </>
       ),
     },
     {
-      path: "/Biography",
+      path: '/Biography',
       element: (
         <>
           <Navbar />
-          <Biography />
-        </>
-      ),
-    },
-    {
-      path: "/Fictional",
-      element: (
-        <>
-          <Navbar />
-          <Fictional />
+          <Suspense fallback={<div>Loading...</div>}>
+            <Biography />
+          </Suspense>
           <Footer />
         </>
       ),
     },
     {
-      path: "/SelfHelp",
+      path: '/Fictional',
       element: (
         <>
           <Navbar />
-          <SelfHelp />
+          <Suspense fallback={<div>Loading...</div>}>
+            <Fictional />
+          </Suspense>
           <Footer />
         </>
       ),
     },
     {
-      path: "/SkillBased",
+      path: '/SelfHelp',
       element: (
         <>
           <Navbar />
-          <Skillbased />
+          <Suspense fallback={<div>Loading...</div>}>
+            <SelfHelp />
+          </Suspense>
           <Footer />
         </>
       ),
     },
     {
-      path: "/Contact",
+      path: '/SkillBased',
       element: (
         <>
           <Navbar />
-          <Contact />
+          <Suspense fallback={<div>Loading...</div>}>
+            <Skillbased />
+          </Suspense>
           <Footer />
         </>
       ),
     },
     {
-      path: "/Suggestions",
+      path: '/Contact',
       element: (
         <>
           <Navbar />
-          <Suggestion />
+          <Suspense fallback={<div>Loading...</div>}>
+            <Contact />
+          </Suspense>
           <Footer />
         </>
       ),
     },
     {
-      path: "/Feedback",
+      path: '/Suggestions',
       element: (
         <>
           <Navbar />
-          <Feedback />
+          <Suspense fallback={<div>Loading...</div>}>
+            <Suggestion />
+          </Suspense>
           <Footer />
         </>
       ),
     },
     {
-      path: "/Login",
+      path: '/Feedback',
       element: (
         <>
           <Navbar />
-          <Login />
+          <Suspense fallback={<div>Loading...</div>}>
+            <Feedback />
+          </Suspense>
           <Footer />
         </>
       ),
     },
     {
-      path: "/Signup",
+      path: '/Login',
       element: (
         <>
           <Navbar />
-          <Signup />
+          <Suspense fallback={<div>Loading...</div>}>
+            <Login />
+          </Suspense>
           <Footer />
         </>
       ),
     },
     {
-      path: "/Cart",
+      path: '/Signup',
       element: (
         <>
           <Navbar />
-          <Cart />
+          <Suspense fallback={<div>Loading...</div>}>
+            <Signup />
+          </Suspense>
           <Footer />
         </>
       ),
     },
     {
-      path: "/Account",
+      path: '/Cart',
       element: (
         <>
           <Navbar />
-          <Account />
+          <Suspense fallback={<div>Loading...</div>}>
+            <Cart />
+          </Suspense>
+          <Footer />
+        </>
+      ),
+    },
+    {
+      path: '/Account',
+      element: (
+        <>
+          <Navbar />
+          <Suspense fallback={<div>Loading...</div>}>
+            <Account />
+          </Suspense>
+          <Footer />
+        </>
+      ),
+    },
+    {
+      path: '/Create',
+      element: (
+        <>
+          <Navbar />
+          <Suspense fallback={<div>Loading...</div>}>
+            <Create />
+          </Suspense>
+          <Footer />
+        </>
+      ),
+    },
+    {
+      path: '/Read',
+      element: (
+        <>
+          <Navbar />
+          <Suspense fallback={<div>Loading...</div>}>
+            <Read />
+          </Suspense>
+          <Footer />
+        </>
+      ),
+    },
+    {
+      path: '/Update',
+      element: (
+        <>
+          <Navbar />
+          <Suspense fallback={<div>Loading...</div>}>
+            <Update />
+          </Suspense>
+          <Footer />
+        </>
+      ),
+    },
+    {
+      path: '/Wishlist',
+      element: (
+        <>
+          <Navbar />
+          <Suspense fallback={<div>Loading...</div>}>
+            <Wishlist />
+          </Suspense>
           <Footer />
         </>
       ),
     },
   ]);
+
+  useEffect(() => {
+    document.addEventListener('contextmenu', (e) => {
+      e.preventDefault();
+    });
+  
+    document.addEventListener('keydown', (e) => {
+      if (e.ctrlKey && (e.key === 'u' || e.key === 's' || e.key === 'a')) {
+        e.preventDefault();
+      }
+    });
+  
+    return () => {
+      document.removeEventListener('contextmenu', (e) => e.preventDefault());
+      document.removeEventListener('keydown', (e) => {
+        if (e.ctrlKey && (e.key === 'u' || e.key === 's' || e.key === 'a')) {
+          e.preventDefault();
+        }
+      });
+    };
+  }, []);
   return (
     <>
-      <RouterProvider router={router} />
+     <RouterProvider router = {router}/> 
     </>
-  );
-};
+  )
+}
 
 export default App;

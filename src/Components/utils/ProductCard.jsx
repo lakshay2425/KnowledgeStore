@@ -17,8 +17,6 @@ const ProductCard = ({ books }) => {
     setnum(id);
   };
 
-  console.log(num);
-
   //Function to add book to wishlist
   const handleWishList = async (bookName) => {
     try {
@@ -63,22 +61,12 @@ const ProductCard = ({ books }) => {
             className="max-w-[280px] h-[450px] max-md:h-80 max-md:max-w-48 "
             alt={book.book_name}
             src={book.img_link}
-
           />
           <div className="product-card-chip">
             <span className="product-name max-md:text-sm">{book.book_name}</span>
             <span className="product-price max-md:text-sm">&#8377;{book.price}</span>
           </div>
-          <div className="product-card-chip">
-            <span className="product-author max-md:text-sm">By {book.author}</span>
-            <span className="genre max-md:text-sm">{book.genre}</span>
-          </div>
-
-          {/* <p className="product-total-items">Total Items: {totalItems}</p> */}
-          <button className="product-btn " onClick={() => hanldeCart(book.book_name)} disabled={book.Quantity <= 0}>Add to Cart<IoBagHandleOutline /></button>
-
         </div>
-
       ))}
       {
         isOpen ? (<>

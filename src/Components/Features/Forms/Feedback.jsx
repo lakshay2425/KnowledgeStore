@@ -4,11 +4,16 @@ import { FaUser } from "react-icons/fa";
 import { IoIosMail } from "react-icons/io";
 
 const Feedback = () => {
+  const { handleSuccess, handleError } = useAlert();
+
+  //Managing state of the form's data 
   const [details, setDetails] = useState({
     username: "",
     gmail: "",
     feedback: "",
   });
+
+  //Function to handle change in input fields value
   const handleInputChange = (e) => {
     setDetails((currData) => {
       return {
@@ -18,13 +23,8 @@ const Feedback = () => {
     });
   };
 
+  //FUnction to handle form submission
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    setDetails({
-      username: "",
-      gmail: "",
-      feedback: "",
-    });
     try {
       e.preventDefault();
       const response = await axiosInstance.post(
@@ -38,6 +38,10 @@ const Feedback = () => {
       );
       const result = response.data;
       console.log(result);
+      handleSuccess(response.data.message);
+      setTimeout(()=>{
+        clearAlert();
+      },3000)
       setDetails({
         username: "",
         gmail: "",
@@ -45,6 +49,10 @@ const Feedback = () => {
       });
     } catch (error) {
       console.error("Error submitting form:", error);
+      handleError(response.data.message);
+      setTimeout(()=>{
+        clearAlert();
+      },3000)
       setDetails({
         fullName : '',
         username : '',

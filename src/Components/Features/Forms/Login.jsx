@@ -4,18 +4,19 @@ import { FaUser, FaLock } from "react-icons/fa";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
-import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import {
   setLoginState,
   setAdminState,
   setUserState,
-  setGmailState,
-} from "../../../Store/store"; // Adjust the path as necessary
+  setEmailState,
+} from "../../../Store/store";
+import {useAlert} from "../../utils/setAlert";
 
 const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { handleSuccess, handleError } = useAlert();
 
   const [details, setDetails] = useState({
     username: "",
@@ -39,34 +40,32 @@ const Login = () => {
         details,
         {
           headers: {
-            "Content-Type": "application/json",
-          },
+            'Content-Type': 'application/json'
+          }
         }
       );
       const result = response.data;
-      console.log(result);
-      const token = Cookies.get("token"); // 'token' is the cookie name
-      console.log(token); // Prints the token value
-      const role = Cookies.get("role");
-      console.log(role); // 'role' is the cookie name
-      if (token && role) {
+      const token = Cookies.get('token'); // 'token' is the cookie name
+      const role = Cookies.get('role');
+      if(token && role){
         console.log("Logged In Successfully");
+        handleSuccess("Logged In Successfully");
         const decoded = jwtDecode(token);
-        dispatch(setGmailState(decoded));
+        dispatch(setEmailState(decoded.data));
         dispatch(setLoginState(true));
-        if (role === "admin") {
-          dispatch(setAdminState(true)); // Or false depending on your logic
-        } else {
+        if(role === "admin"){
+          dispatch(setAdminState(true)); // Or false depending on your logic     
+        }else{
           dispatch(setUserState(true)); // Or false depending on your logic
         }
-        console.log(decoded);
         setDetails({
           username: "",
           password: "",
         });
         navigate("/");
-      } else {
+      }else{
         console.log("Failed to Login");
+        handleError("Failed to Login")
         setDetails({
           username: "",
           password: "",
@@ -74,13 +73,13 @@ const Login = () => {
       }
     } catch (error) {
       console.error("Error submitting form:", error);
+      handleError("Failed to Login");
       setDetails({
-        username: "",
-        password: "",
-      });
+        username : '',
+        password : ''
+        });
     }
   };
-
   return (
     <>
       <div className="grid grid-cols-2 w-full px-[5vw] py-6 pt-14 justify-between max-md:grid-cols-1">
