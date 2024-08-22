@@ -14,7 +14,7 @@ const Feedback = lazy(() => import('./Components/Features/Forms/feedback'));
 const Login = lazy(() => import('./Components/Features/Forms/login'));
 const Signup = lazy(() => import('./Components/Features/Forms/signup'));
 const Cart = lazy(() => import('./Components/Features/cart'));
-const Account = lazy(() => import('./Components/Features/account'));
+const Account = lazy(() => import('./Components/Features/Account'));
 const Create = lazy(() => import('./Components/Features/adminPanel/create'));
 const Read = lazy(() => import('./Components/Features/adminPanel/read'));
 const Update = lazy(() => import('./Components/Features/adminPanel/update'));
@@ -45,18 +45,6 @@ const App = () => {
           <Navbar />
           <Suspense fallback={<div>Loading...</div>}>
             <Finance />
-          </Suspense>
-          <Footer />
-        </>
-      ),
-    },
-    {
-      path: '/feedback',
-      element: (
-        <>
-          <Navbar />
-          <Suspense fallback={<div>Loading...</div>}>
-            <Feedback />
           </Suspense>
           <Footer />
         </>

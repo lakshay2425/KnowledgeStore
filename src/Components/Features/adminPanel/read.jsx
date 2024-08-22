@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axiosInstance from "../../utils/Axios"
 import "./table.css";
-import "../Forms/form.css";
 import { useNavigate } from 'react-router-dom';
 import {useAlert} from "../../utils/setAlert";
 

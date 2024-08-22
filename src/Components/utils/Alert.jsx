@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { clearAlert } from '../../Store/store';
+import { clearAlert } from '../../../Store/store';
 import "./alert.css";
 
 const Alert = () => {

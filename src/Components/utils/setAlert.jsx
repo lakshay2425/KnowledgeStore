@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux';
-import { setAlert } from '../../Store/store';
+import { setAlert } from '../../../Store/store';
 
 export const useAlert = () => {
   const dispatch = useDispatch();

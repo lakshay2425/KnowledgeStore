@@ -9,11 +9,11 @@ import {
     DropdownItem,
     Input,
 } from "@nextui-org/react";
-import { SearchIcon } from "./utils/SearchIcon";
+import { SearchIcon } from "../utils/SearchIcon";
 import { IoBagHandleOutline } from "react-icons/io5";
 
 import { Listbox, ListboxItem, cn } from "@nextui-org/react";
-import { ListboxWrapper } from "./Others/ListboxWrapper";
+import { ListboxWrapper } from "../Others/ListboxWrapper";
 function NavbarMobile() {
 
 

@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react';
 import axiosInstance from "../../utils/Axios"
-import "../Forms/form.css";
 import { useNavigate, useLocation } from 'react-router-dom';
 import {useAlert} from "../../utils/setAlert";
 
