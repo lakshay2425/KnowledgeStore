@@ -1,7 +1,7 @@
 import React from 'react'
 import axiosInstance from "../utils/Axios";
 import { useDispatch } from 'react-redux';
-import { setLoginState, setAdminState, setUserState, setEmailState } from '../../../Store/store';
+import { setLoginState, setAdminState, setUserState, setEmailState } from '../../../features/authSlice';
 import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 

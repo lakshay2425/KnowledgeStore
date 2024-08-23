@@ -3,7 +3,7 @@ import axiosInstance from "../../utils/Axios";
 import { FaUser } from "react-icons/fa";
 import { IoIosMail } from "react-icons/io";
 import {useAlert} from "../../utils/setAlert";
-import { clearAlert } from "../../../../Store/store";
+import { clearAlert } from "../../../../features/alertSlice";
 
 const Feedback = () => {
   const { handleSuccess, handleError } = useAlert();

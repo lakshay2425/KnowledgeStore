@@ -10,7 +10,7 @@ import {
   setAdminState,
   setUserState,
   setEmailState,
-} from "../../../../Store/store";
+} from "../../../../features/authSlice";
 import {useAlert} from "../../utils/setAlert";
 
 const Login = () => {

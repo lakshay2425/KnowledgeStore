@@ -65,7 +65,7 @@ const Signup = () => {
             cpassword : '',
             gender : ''
             });
-          navigate("/");          
+          navigate("/Login");          
         }else{
           console.log("Signup failed");
           handleError("Signup failed");
