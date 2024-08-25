@@ -1,8 +1,6 @@
 .alert {
     padding: 1em;
-    margin: 1em 0;
-    border-radius: 4px;
-    position: relative;
+    
   }
   
   .alert-success {
@@ -17,7 +15,7 @@
   
   .dismiss-btn {
     position: absolute;
-    right: 10px;
+    right: 20px;
     top: 10px;
     background: none;
     border: none;

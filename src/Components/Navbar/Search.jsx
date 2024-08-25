@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axiosInstance from "../utils/Axios";
 import { SearchIcon } from "../utils/SearchIcon"; 
-
+import { Input } from "@nextui-org/react";
 const Search = () => {
   // Use useState to manage bookName state
   const [bookName, setBookName] = useState("");
@@ -36,14 +36,17 @@ const Search = () => {
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <div className="search">
-          <input
-            type="text"
+        <div className="search flex bg-transparent">
+          <Input
+            variant="underlined"
+            radius="lg"
+            type="search"
             name="bookName"
             value={bookName}
             onChange={handleInputChange}
             placeholder="Search For Books!"
             className="w-42 h-10"
+            
           />
           <button type="submit">
             <SearchIcon />
