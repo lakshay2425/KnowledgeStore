@@ -9,14 +9,10 @@ import Search from "./Search";
 import Categories from "./Categories";
 import FormDropDown from "./formDropDown";
 import AdminPanel from "./adminPanel";
-import { useSelector } from 'react-redux';
 import Logout from "./Logout";
 
 var  Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-
-  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
-  const isAdmin = useSelector((state) => state.auth.admin);
 
     const toggleMenu = () => {
         setIsOpen(!isOpen);
@@ -33,28 +29,21 @@ var  Navbar = () => {
           </div>
           <div className="nav-links">            
             <Categories/>
-            {isLoggedIn &&(
               <Link to= "/Wishlist">
               <p>Wishlist</p>
               </Link>
-            )} 
             <FormDropDown/>
-            {isAdmin && (
               <AdminPanel/>
-            )}
             <Link>
               <p className="about">About Us</p>
             </Link>
           </div>
-          {isLoggedIn && (
+
             <Logout/>
-          )}
           <Search/>
-          {isLoggedIn && (
             <Link className="cart-icon " to="/Cart">
               <IoBagHandleOutline />
             </Link>
-          )}
 
           <div className="nav-menu-btn z-20" onClick={toggleMenu} >
             {isOpen ? <AiOutlineClose size={20}/> :  <AiOutlineMenu size={20}/>}

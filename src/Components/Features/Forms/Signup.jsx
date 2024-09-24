@@ -52,9 +52,6 @@ const Signup = () => {
           const decoded = jwtDecode(token);
           console.log(decoded);
           handleSuccess("Signup Successfully");
-          setTimeout(() => {
-            clearAlert();
-          }, 2000)
           setDetails({
             fullName : '',
             username : '',
@@ -69,9 +66,6 @@ const Signup = () => {
         }else{
           console.log("Signup failed");
           handleError("Signup failed");
-          setTimeout(() => {
-            clearAlert();
-          }, 3000)
           setDetails({
             fullName: '',
             username: '',

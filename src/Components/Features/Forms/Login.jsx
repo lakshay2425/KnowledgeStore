@@ -4,18 +4,10 @@ import { FaUser, FaLock } from "react-icons/fa";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
-import { useDispatch } from "react-redux";
-import {
-  setLoginState,
-  setAdminState,
-  setUserState,
-  setEmailState,
-} from "../../../../features/authSlice";
 import {useAlert} from "../../utils/setAlert";
 
 const Login = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
   const { handleSuccess, handleError } = useAlert();
 
   const [details, setDetails] = useState({
@@ -51,13 +43,7 @@ const Login = () => {
         console.log("Logged In Successfully");
         handleSuccess("Logged In Successfully");
         const decoded = jwtDecode(token);
-        dispatch(setEmailState(decoded.data));
-        dispatch(setLoginState(true));
-        if (role === "admin") {
-          dispatch(setAdminState(true)); // Or false depending on your logic     
-        } else {
-          dispatch(setUserState(true)); // Or false depending on your logic
-        }
+        const email = decoded.data;
         setDetails({
           username: "",
           password: "",

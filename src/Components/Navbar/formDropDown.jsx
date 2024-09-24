@@ -9,12 +9,10 @@ import {
   Button,
   DropdownItem
 } from "@nextui-org/react";
-import { useSelector } from 'react-redux';
 
 
 
 const FormDropDown = () => {
-  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   return (
     <>
       <Dropdown backdrop="blur">
@@ -24,41 +22,31 @@ const FormDropDown = () => {
           </Button>
         </DropdownTrigger>
         <DropdownMenu variant="faded" aria-label="Static Actions">
-          {(!isLoggedIn) && (
-            <DropdownItem key="login">
+        <DropdownItem key="login">
               <Link className="dropdown-item" to="/Login">
                 Login
               </Link>
             </DropdownItem>
-          )}
-          {(!isLoggedIn) && (
             <DropdownItem key="signup">
               <Link className="dropdown-item" to="/Signup">
                 Signup
               </Link>
             </DropdownItem>
-          )}
-          {isLoggedIn && (
             <DropdownItem key="feedback">
               <Link className="dropdown-item" to="/feedback">
                 Feedback
               </Link>
             </DropdownItem>
-          )}
-          {isLoggedIn && (
             <DropdownItem key="suggestion">
               <Link className="dropdown-item" to="/suggestion">
                 Suggestion
               </Link>
             </DropdownItem>
-          )}
-          {isLoggedIn && (
             <DropdownItem key="contact">
               <Link className="dropdown-item" to="/Contact">
                 Contact
               </Link>
             </DropdownItem>
-          )}
         </DropdownMenu>
       </Dropdown>
     </>

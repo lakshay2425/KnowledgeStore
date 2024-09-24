@@ -6,8 +6,6 @@ import { FaPhone } from "react-icons/fa6";
 import {useAlert} from "../../utils/setAlert";
 //import { clearAlert } from "../../../../Store/store";
 
-
-
 const Suggestion = () => {
 
   const [details, setDetails] = useState({
