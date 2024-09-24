@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom';
 import {
     Dropdown,
@@ -9,7 +9,7 @@ import {
     DropdownItem,
     Input,
 } from "@nextui-org/react";
-import { Listbox, ListboxItem, cn } from "@nextui-org/react";
+import { Listbox, ListboxSection, ListboxItem } from "@nextui-org/react";
 import { ListboxWrapper } from "../Others/ListboxWrapper";
 import Search from "./Search";
 import Categories from "./Categories";
@@ -23,10 +23,7 @@ function NavbarMobile() {
     return (
         <ListboxWrapper>
             <Listbox variant="faded" aria-label="Listbox menu with icons">
-                <ListboxItem
-                    key="new"
-
-                >
+                <ListboxItem>
                     <Link>
                         <Button variant="" className="nav-btn px-1">
                             <p href="/" className="nav-menu-link">
@@ -36,10 +33,15 @@ function NavbarMobile() {
 
                     </Link>
                 </ListboxItem>
-                <Categories />
-                <ListboxItem
-                    key="Wishlist"
-                >
+                <ListboxItem className="nav-menu-link">
+                <p href="/" className="nav-menu-link">
+                                <Categories />
+                            </p>
+                    
+                </ListboxItem>
+
+
+                <ListboxItem>
                     <Link>
                         <Button variant="" className="nav-btn px-1 w-full justify-start">
                             <p className="nav-menu-link">Wishlist</p>
@@ -47,8 +49,14 @@ function NavbarMobile() {
 
                     </Link>
                 </ListboxItem>
-                <FormDropDown />
-                <AdminPanel />
+                <ListboxItem>
+                    <FormDropDown />
+                </ListboxItem>
+                <ListboxItem>
+                    <AdminPanel />
+                </ListboxItem>
+
+
                 <ListboxItem>
                     <Link>
                         <Button variant="" className="nav-btn px-1 w-full justify-start">
@@ -57,8 +65,15 @@ function NavbarMobile() {
 
                     </Link>
                 </ListboxItem>
-                <Logout />
-                <Search />
+                <ListboxItem>
+                    <Logout />
+                </ListboxItem>
+                <ListboxItem>
+                    <Search />
+                </ListboxItem>
+
+
+
             </Listbox>
         </ListboxWrapper>
     )
