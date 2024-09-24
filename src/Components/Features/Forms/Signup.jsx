@@ -56,17 +56,17 @@ const Signup = () => {
             clearAlert();
           }, 2000)
           setDetails({
-            fullName: '',
-            username: '',
-            gmail: '',
-            number: '',
-            address: '',
-            password: '',
-            cpassword: '',
-            gender: ''
-          });
-          navigate("/");
-        } else {
+            fullName : '',
+            username : '',
+            gmail : '',
+            number : '',
+            address : '',
+            password : '',
+            cpassword : '',
+            gender : ''
+            });
+          navigate("/");          
+        }else{
           console.log("Signup failed");
           handleError("Signup failed");
           setTimeout(() => {

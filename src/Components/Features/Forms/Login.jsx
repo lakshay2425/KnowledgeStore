@@ -10,8 +10,8 @@ import {
   setAdminState,
   setUserState,
   setEmailState,
-} from "../../../../Store/store";
-import { useAlert } from "../../utils/setAlert";
+} from "../../../../features/authSlice";
+import {useAlert} from "../../utils/setAlert";
 
 const Login = () => {
   const navigate = useNavigate();

@@ -1,8 +1,7 @@
 import React, {useEffect} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { clearAlert } from '../../../Store/store';
 import { AiOutlineClose } from 'react-icons/ai';
-
+import { clearAlert } from '../../../features/alertSlice';
 import "./alert.css";
 
 const Alert = () => {
