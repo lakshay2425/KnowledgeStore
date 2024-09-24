@@ -15,8 +15,8 @@ const Categories = () => {
     <>
       <Dropdown backdrop="blur">
               <DropdownTrigger>
-                <Button variant="" className="nav-btn">
-                  <p>Categories</p>
+                <Button variant="" className="nav-bnav-btn px-1 w-full justify-start">
+                  <p className="nav-menu-link" >Categories</p>
                 </Button>
               </DropdownTrigger>
               <DropdownMenu variant="faded" aria-label="Static Actions">

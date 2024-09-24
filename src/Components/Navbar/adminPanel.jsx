@@ -16,8 +16,8 @@ const AdminPanel = () => {
     <>
       <Dropdown backdrop="blur">
               <DropdownTrigger>
-                <Button variant="" className="nav-btn">
-                  <p>Admin</p>
+                <Button variant="" className="nav-btn px-1 w-full justify-start">
+                  <p className="nav-menu-link">Admin</p>
                 </Button>
               </DropdownTrigger>
               <DropdownMenu variant="faded" aria-label="Static Actions">

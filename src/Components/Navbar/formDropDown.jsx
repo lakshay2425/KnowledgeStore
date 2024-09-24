@@ -17,8 +17,8 @@ const FormDropDown = () => {
     <>
       <Dropdown backdrop="blur">
         <DropdownTrigger>
-          <Button variant="" className="nav-btn">
-            <p>Contact Us</p>
+          <Button variant="" className="nav-btn px-1 w-full justify-start">
+            <p className="nav-menu-link">Contact Us</p>
           </Button>
         </DropdownTrigger>
         <DropdownMenu variant="faded" aria-label="Static Actions">

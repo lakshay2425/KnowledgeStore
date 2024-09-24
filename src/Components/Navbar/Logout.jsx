@@ -22,7 +22,7 @@ const Logout = () => {
   }
   return (
     <>
-      <input type="submit" onClick={handleSubmit} value="Logout" className='btn btn-danger' />
+      <input type="submit" onClick={handleSubmit} value="Logout" className='btn btn-danger nav-btn px-1 w-full justify-start' />
     </>
   )
 }

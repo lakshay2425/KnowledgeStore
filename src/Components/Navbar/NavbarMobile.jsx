@@ -1,14 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
-import {
-    Dropdown,
-    DropdownTrigger,
-    DropdownMenu,
-    Button,
-    DropdownSection,
-    DropdownItem,
-    Input,
-} from "@nextui-org/react";
+import { Button } from "@nextui-org/react";
 import { Listbox, ListboxSection, ListboxItem } from "@nextui-org/react";
 import { ListboxWrapper } from "../Others/ListboxWrapper";
 import Search from "./Search";
@@ -25,7 +17,7 @@ function NavbarMobile() {
             <Listbox variant="faded" aria-label="Listbox menu with icons">
                 <ListboxItem>
                     <Link>
-                        <Button variant="" className="nav-btn px-1">
+                        <Button variant="" className="nav-btn px-1 w-full justify-start">
                             <p href="/" className="nav-menu-link">
                                 Books
                             </p>
@@ -34,10 +26,10 @@ function NavbarMobile() {
                     </Link>
                 </ListboxItem>
                 <ListboxItem className="nav-menu-link">
-                <p href="/" className="nav-menu-link">
-                                <Categories />
-                            </p>
-                    
+                    <p href="/" className="nav-menu-link">
+                        <Categories />
+                    </p>
+
                 </ListboxItem>
 
 
@@ -68,7 +60,7 @@ function NavbarMobile() {
                 <ListboxItem>
                     <Logout />
                 </ListboxItem>
-                <ListboxItem>
+                <ListboxItem className="nav-btn px-1 w-full justify-start">
                     <Search />
                 </ListboxItem>
 
