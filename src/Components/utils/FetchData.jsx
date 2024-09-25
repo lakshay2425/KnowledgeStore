@@ -12,9 +12,10 @@ const FetchData = ({ apiUrl }) => {
             if (books.length === 0 && !isLoaded) { // Check if books data already exists
             try {
                 const response = await axiosInstance.get(apiUrl);
+                console.log(response.data, "API Response");
                 if(response.status == 200){
-                    setBooks(response.data.result);    
-                    console.log(response.data.message);
+                    setBooks(response.data);    
+                    console.log(response.data);
                     setIsLoaded(true); // Mark as loaded
                 }
             } catch (error) {

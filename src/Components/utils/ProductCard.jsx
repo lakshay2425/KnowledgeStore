@@ -8,7 +8,7 @@ import axiosInstance from "../utils/Axios";
 
 const ProductCard = ({ books }) => {
   const img = "https://bestlifeonline.com/wp-content/uploads/sites/3/2020/10/The-Hobbit-book-cover.jpg";
-
+  console.log(books, "From Product card");
 
   var [isOpen, setIsOpen] = useState(false);
   let [num, setnum] = useState(1);
@@ -59,11 +59,11 @@ const ProductCard = ({ books }) => {
           <Image
             onClick={() => Preview(book)}
             className="max-w-[280px] h-[450px] max-md:h-80 max-md:max-w-48 "
-            alt={book.book_name}
-            src={book.img_link}
+            alt={book.title}
+            src={book.imageLink}
           />
           <div className="product-card-chip">
-            <span className="product-name max-md:text-sm">{book.book_name}</span>
+            <span className="product-name max-md:text-sm">{book.title}</span>
             <span className="product-price max-md:text-sm">&#8377;{book.price}</span>
           </div>
         </div>
