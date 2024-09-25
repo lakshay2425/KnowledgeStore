@@ -8,11 +8,11 @@ const Update = () => {
   const { handleSuccess, handleError } = useAlert();
     const [details, setDetails] = useState({
         author: "",
-        genre: "",
+        genres: "",
         price: "",
-        Quantity: "",
-        book_name: "",
-        img_link: ''
+        quantity: "",
+        title: "",
+        imageLink: ''
       });
     const [isLoaded, setIsLoaded] = useState(false); // Track if data is loaded
     const location = useLocation();
@@ -29,11 +29,11 @@ const Update = () => {
                 const apiUrl = `http://localhost:3000/search/${bookName}`;
                 const response = await axiosInstance.get(apiUrl);
                 if(response.status == 200){
-                    console.log(response.data.message);
-                    setDetails(response.data.result[0]);
+                    // console.log(response.data);
+                    setDetails(response.data.book);
                     setIsLoaded(true); // Mark as loaded
                 }else{
-                    console.log(response.data.message);
+                    console.log(response.data);
                 }
             } catch (error) {
                 console.error('Error fetching data:', error);
@@ -70,11 +70,11 @@ const Update = () => {
         console.log(result, response.data.message);
         setDetails({
             author: "",
-            genre: "",
+            genres: "",
             price: "",
-            Quantity: "",
-            book_name: "",
-            img_link: ''
+            quantity: "",
+            title: "",
+            imageLink: ''
           });  
           navigate("/Read");
         } catch (error) {
@@ -82,11 +82,11 @@ const Update = () => {
         handleError("Failed to update book details");
         setDetails({
             author: "",
-            genre: "",
+            genres: "",
             price: "",
-            Quantity: "",
-            book_name: "",
-            img_link: ''
+            quantity: "",
+            title: "",
+            imageLink: ''
           });  
         }
   }
@@ -107,18 +107,18 @@ const Update = () => {
         </tr>
         <tr>
           <td>
-            <label htmlFor="book_name">Book Name</label>
+            <label htmlFor="title">Book Name</label>
           </td>
           <td>
-            <input type="text" id='book_name' name='book_name'  onChange={handleInputChange} value={details.book_name}  required/>
+            <input type="text" id='title' name='title'  onChange={handleInputChange} value={details.title}  required/>
           </td>
         </tr>
         <tr>
           <td>
-            <label htmlFor="genre">Genre</label>
+            <label htmlFor="genres">genres</label>
           </td>
           <td>
-            <input type="text" id='genre'  onChange={handleInputChange}  name='genre' value= {details.genre} />
+            <input type="text" id='genres'  onChange={handleInputChange}  name='genres' value= {details.genres} />
           </td>
         </tr>
         <tr>
@@ -130,17 +130,17 @@ const Update = () => {
         </tr>
         <tr>
           <td>
-            <label htmlFor="img_link">Image Link</label>
+            <label htmlFor="imageLink">Image Link</label>
           </td>
           <td>
-            <input type="url" id='img_link'  onChange={handleInputChange}  name='img_link' value= {details.img_link} />
+            <input type="url" id='imageLink'  onChange={handleInputChange}  name='imageLink' value= {details.imageLink} />
           </td>
         </tr>
         <tr>
           <td>
-            <label htmlFor="Quantity">Quantity</label></td>
+            <label htmlFor="quantity">quantity</label></td>
           <td>
-            <input name= "Quantity"  id= "Quantity" onChange={handleInputChange}  value= {details.Quantity}/>
+            <input name= "quantity"  id= "quantity" onChange={handleInputChange}  value= {details.quantity}/>
           </td>
         </tr>
         <tr>

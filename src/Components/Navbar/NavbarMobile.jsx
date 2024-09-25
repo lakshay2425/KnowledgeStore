@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom';
 import { Button } from "@nextui-org/react";
 import { Listbox, ListboxSection, ListboxItem } from "@nextui-org/react";
@@ -10,14 +10,28 @@ import AdminPanel from "./adminPanel";
 import Logout from "./Logout";
 
 function NavbarMobile() {
+    const [role, setRole] = useState(sessionStorage.getItem("role"));
+    const [isLoggedIn, setIsLoggedIn] = useState(sessionStorage.getItem("isLoggedIn") === "true");
+    //console.log(sessionStorage.getItem("isLoggedIn"));
 
+        //TO update isLoggedIn value based on sessionStorage
+    useEffect(() => {
+      setIsLoggedIn(sessionStorage.getItem("isLoggedIn") === "true");
+    }, [sessionStorage.getItem("isLoggedIn")]);
+    //console.log(isLoggedIn, "State variable")
+
+    //TO update role value based on sessionStorage
+    useEffect(() => {
+        setRole(sessionStorage.getItem("role"))
+      }, [sessionStorage.getItem("role")])
+   
 
     return (
         <ListboxWrapper>
             <Listbox variant="faded" aria-label="Listbox menu with icons">
                 <ListboxItem>
                     <Link>
-                        <Button variant="" className="nav-btn px-1 w-full justify-start">
+                        <Button variant="" className="nav-btn px-1">
                             <p href="/" className="nav-menu-link">
                                 Books
                             </p>
@@ -29,23 +43,32 @@ function NavbarMobile() {
                     <p href="/" className="nav-menu-link">
                         <Categories />
                     </p>
-
                 </ListboxItem>
 
 
                 <ListboxItem>
-                    <Link>
-                        <Button variant="" className="nav-btn px-1 w-full justify-start">
-                            <p className="nav-menu-link">Wishlist</p>
-                        </Button>
+                    {isLoggedIn && (
+                        <ListboxItem
+                            key="Wishlist"
+                        >
+                            <Link>
+                                <Button variant="" className="nav-btn px-1 w-full justify-start">
+                                    <p className="nav-menu-link">Wishlist</p>
+                                </Button>
 
-                    </Link>
+                            </Link>
+                        </ListboxItem>
+                    )}
                 </ListboxItem>
+
                 <ListboxItem>
                     <FormDropDown />
                 </ListboxItem>
+
                 <ListboxItem>
-                    <AdminPanel />
+                    {role === "admin" && (
+                        <AdminPanel />
+                    )}
                 </ListboxItem>
 
 
@@ -57,15 +80,16 @@ function NavbarMobile() {
 
                     </Link>
                 </ListboxItem>
+
                 <ListboxItem>
-                    <Logout />
+                    {isLoggedIn && (
+                        <Logout />
+                    )}
                 </ListboxItem>
-                <ListboxItem className="nav-btn px-1 w-full justify-start">
+                <ListboxItem>
                     <Search />
                 </ListboxItem>
-
-
-
+                
             </Listbox>
         </ListboxWrapper>
     )

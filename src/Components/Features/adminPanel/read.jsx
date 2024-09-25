@@ -19,11 +19,11 @@ const Read = () => {
                 const apiUrl = "http://localhost:3000/books";
                 const response = await axiosInstance.get(apiUrl);
                 if(response.status == 200){
-                    setBooks(response.data.result);
-                    console.log(response.data.message);
+                    setBooks(response.data);
+                    console.log(response.data);
                     setIsLoaded(true); // Mark as loaded
                 }else{
-                    console.log(response.data.message);
+                    console.log(response.data);
                 }
             } catch (error) {
               console.error('Error fetching data:', error);
@@ -42,14 +42,14 @@ const Read = () => {
         return str;
     };  
 
-    const handleDelete = async (book_name) => {
-        const apiUrl = `http://localhost:3000/admin/delete/${book_name}`;
+    const handleDelete = async (title) => {
+        const apiUrl = `http://localhost:3000/admin/delete/${title}`;
         try {
             const response = await axiosInstance.delete(apiUrl);
             if(response.status === 200){
                 const result = response.data.message
                 handleSuccess(result);
-                setBooks((prevBooks) => prevBooks.filter((book) => book.book_name !== book_name));
+                setBooks((prevBooks) => prevBooks.filter((book) => book.title !== title));
             }else{
                 const result = response.data.message
                 handleError(result);
@@ -81,14 +81,14 @@ const Read = () => {
         </thead>
         <tbody>
         {books.map((book) => (
-            <tr key={book.s_no}>
-                <td>{book.book_name}</td>
+            <tr key={book._id}>
+                <td>{book.title}</td>
                 <td>&#8377;{book.price}</td>
                 <td>{book.author}</td>
-                <td>{book.genre}</td>
-                <td>{truncateString(book.img_link)}</td>
-                <td><button onClick={() => handleEdit(book.book_name)}>Edit</button></td>
-                <td><button onClick={() => handleDelete(book.book_name)}>Delete</button></td>
+                <td>{book.genres}</td>
+                <td>{truncateString(book.imageLink)}</td>
+                <td><button onClick={() => handleEdit(book.title)}>Edit</button></td>
+                <td><button onClick={() => handleDelete(book.title)}>Delete</button></td>
             </tr>
         ))}
         </tbody>

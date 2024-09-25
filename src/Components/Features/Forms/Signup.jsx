@@ -50,7 +50,10 @@ const Signup = () => {
         if (token) {
           console.log("Signup Successfully");
           const decoded = jwtDecode(token);
-          console.log(decoded);
+          const gmail = decoded.data;
+          sessionStorage.setItem("isLoggedIn", true);
+          sessionStorage.setItem("gmail", gmail);
+          sessionStorage.setItem("role", "user");
           handleSuccess("Signup Successfully");
           setDetails({
             fullName : '',

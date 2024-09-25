@@ -43,7 +43,14 @@ const Login = () => {
         console.log("Logged In Successfully");
         handleSuccess("Logged In Successfully");
         const decoded = jwtDecode(token);
-        const email = decoded.data;
+        const gmail = decoded.data;
+        sessionStorage.setItem("isLoggedIn", true);
+        sessionStorage.setItem("gmail", gmail);
+        if(role === 'admin'){
+          sessionStorage.setItem("role", "admin");
+        }else{
+          sessionStorage.setItem("role", "user");
+        }
         setDetails({
           username: "",
           password: "",

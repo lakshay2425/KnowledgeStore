@@ -7,9 +7,6 @@ import axiosInstance from "../utils/Axios";
 
 
 const ProductCard = ({ books }) => {
-  const img = "https://bestlifeonline.com/wp-content/uploads/sites/3/2020/10/The-Hobbit-book-cover.jpg";
-  console.log(books, "From Product card");
-
   var [isOpen, setIsOpen] = useState(false);
   let [num, setnum] = useState(1);
   var Preview = (id) => {
@@ -55,7 +52,7 @@ const ProductCard = ({ books }) => {
   return (
     <>
       {books.map((book) => (
-        <div key={book.s_no} className="product-card max-md:w-52 rounded-[--nextui-radius-large] shadow-small px-4 py-3 m-2 backdrop-blur-lg max-md:p-2 z-0">
+        <div key={book._id} className="product-card max-md:w-52 rounded-[--nextui-radius-large] shadow-small px-4 py-3 m-2 backdrop-blur-lg max-md:p-2 z-0">
           <Image
             onClick={() => Preview(book)}
             className="max-w-[280px] h-[450px] max-md:h-80 max-md:max-w-48 "
@@ -83,7 +80,6 @@ const ProductCard = ({ books }) => {
                     className="w-96 max-md:w-fit max-md:my-12"
                     alt={num.book_name}
                     src={num.img_link}
-
                   />
 
                 </div>
