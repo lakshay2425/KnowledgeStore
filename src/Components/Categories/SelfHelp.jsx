@@ -1,11 +1,16 @@
 import React from 'react';
-import FetchData from '../utils/FetchData';
-
+import { useSelector } from 'react-redux';
+import ProductCard from '../utils/ProductCard';
+import  CallAPIConditionally  from '../utils/CallAPIConditionally';
 
 const SelfHelp = () => {
-    const selfHelpApiUrl = 'http://localhost:3000/books/Self-Help';
-
-    return <div className="product-show"><FetchData apiUrl={selfHelpApiUrl} />;</div>
+    //CallAPIConditionally();
+    const book = useSelector((state) => state.book?.selfHelpBookInfo || [])
+    return (
+    <div className="product-show">
+        <ProductCard books={book}/>
+        </div>
+    )
 };
 
 export default SelfHelp;

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Image } from "@nextui-org/react";
 // import ProductPreview from "./ProductPreview";
 import { IoBagHandleOutline } from "react-icons/io5";
@@ -8,18 +8,23 @@ import axiosInstance from "../utils/Axios";
 
 const ProductCard = ({ books }) => {
   var [isOpen, setIsOpen] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(sessionStorage.getItem("isLoggedIn"));
   let [num, setnum] = useState(1);
   var Preview = (id) => {
     setIsOpen(!isOpen);
     setnum(id);
   };
+  useEffect(()=>{
+    setIsLoggedIn(sessionStorage.getItem("isLoggedIn"));
+    // console.log(isLoggedIn);
+  }, [sessionStorage.getItem("isLoggedIn")])
 
   //Function to add book to wishlist
   const handleWishList = async (bookName) => {
     try {
       console.log(bookName);
       const apiUrl = `http://localhost:3000/user/${bookName}/wishlist`;
-      const response = await axiosInstance.get(apiUrl);
+      const response = await axiosInstance.post(apiUrl);
       console.log(response.data);
     } catch (error) {
       console.log(error.message);
@@ -30,7 +35,8 @@ const ProductCard = ({ books }) => {
   const hanldeCart = async (bookName) => {
     try {
       const apiUrl = `http://localhost:3000/user/${bookName}/cart`;
-      const response = await axiosInstance.get(apiUrl);
+      console.log("Add to cart API called");
+      const response = await axiosInstance.post(apiUrl);
       console.log(response.data);
     } catch (error) {
       console.log(error.message);
@@ -78,23 +84,18 @@ const ProductCard = ({ books }) => {
                   <Image
 
                     className="w-96 max-md:w-fit max-md:my-12"
-                    alt={num.book_name}
-                    src={num.img_link}
+                    alt={num.title}
+                    src={num.imageLink}
                   />
 
                 </div>
                 <div className='flex-col w-2/4 mx-auto my-auto max-md:w-4/5'>
-                  <h2 className='text-4xl leading-relaxed pb-2'>{num.book_name}</h2>
+                  <h2 className='text-4xl leading-relaxed pb-2'>{num.title}</h2>
                   <p className='text-xl pb-2'>&#8377;{num.price}</p>
-                  <p className='pb-2'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro temporibus quisquam iure, voluptatem consequuntur aperiam cum doloremque, excepturi eum praesentium vero totam numquam inventore itaque maiores libero quos rem architecto.
-                    Eaque magnam molestiae adipisci ex ullam, laboriosam id porro laborum dolor perferendis veniam vero excepturi totam earum voluptatem repudiandae est, impedit illo quidem perspiciatis culpa minus quam? Iste, maiores dolor?
-                    Aspernatur placeat voluptas, ea fugiat ipsum consequuntur eos, reiciendis fuga, non possimus repudiandae nisi. Esse tempore consectetur nulla labore, at quod debitis perspiciatis quaerat enim natus consequatur sequi praesentium nam.
-                    Laboriosam, nihil voluptas praesentium deleniti dolores modi illo aliquam quidem repellat ab qui cupiditate tempore numquam minus consequuntur rem animi debitis, fugit, tempora non ullam possimus voluptate pariatur iure. Cum.
-                    Est doloribus minus voluptatum impedit amet officia porro temporibus quos eum, labore soluta fugit cupiditate nemo! Distinctio magnam laborum, ipsam mollitia ipsum beatae dolorum nam illo odit eaque tenetur minima! Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsam, eos! Amet nostrum, temporibus ad nobis quaerat quas nam distinctio aliquid doloribus totam facere mollitia, sapiente sit eos aspernatur quae officia.
+                  <p className='pb-2'>{num.genres}
                   </p>
-                  <button className="product-btn " onClick={() => hanldeCart(num.book_name)} disabled={num.Quantity <= 0}>Add to Cart<IoBagHandleOutline /></button>
+                  <button className= "product-btn" onClick={() => hanldeCart(num.book_name)} disabled={num.Quantity <= 0}>Add to Cart<IoBagHandleOutline /></button>
                 </div>
-
               </div>
             </div >
           </div>

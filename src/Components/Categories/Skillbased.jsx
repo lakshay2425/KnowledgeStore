@@ -1,11 +1,15 @@
 import React from 'react';
-import FetchData from '../utils/FetchData';
-
+import { useSelector } from 'react-redux';
+import ProductCard from '../utils/ProductCard';
+import CallAPIConditionally  from '../utils/CallAPIConditionally';
 
 const SkillBased = () => {
-    const skillBasedApiUrl = 'http://localhost:3000/books/Skill-based';
-
-    return  <div className="product-show"><FetchData apiUrl={skillBasedApiUrl} />;</div>
+    //CallAPIConditionally();
+    const book = useSelector((state) => state.book?.skillBasedInfo || [])
+    return (<div className="product-show">
+        <ProductCard books={book} />
+    </div>
+    )
 };
 
 export default SkillBased;

@@ -1,9 +1,16 @@
 import React from 'react';
-import FetchData from '../utils/FetchData';
+import { useSelector } from 'react-redux';
+import ProductCard from '../utils/ProductCard';
+import  CallAPIConditionally  from '../utils/CallAPIConditionally';
 
 const Biography = () => {
-    const biographyApiUrl = 'http://localhost:3000/books/Biography';
-    return <div className="product-show"><FetchData apiUrl={biographyApiUrl} />;</div>
+  //CallAPIConditionally();
+  const book = useSelector((state)=> state.book?.biographyBookInfo || [])
+    return( 
+    <div className="product-show">
+        <ProductCard books={book}/>
+        </div>
+    )
 };
 
 export default Biography;

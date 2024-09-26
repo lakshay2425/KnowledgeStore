@@ -1,16 +1,19 @@
-import React from 'react';
-import FetchData from '../utils/FetchData';
+import React, { useEffect } from 'react';
 import './BestSellers.css'
-const BestSeller = () => {
-    const ApiUrl = 'http://localhost:3000/books';
+import ProductCard from '../utils/ProductCard';
+import { useSelector} from 'react-redux';
+import CallAPI from '../utils/CallAPI';
 
+const BestSeller = () => {
+  CallAPI();
+    const bookInfo = useSelector((state)=> state.book?.booksInfo || []);
     return <>
     <div className="best-seller-container">
         
             <h1 className="best-seller-title">Bestsellers</h1>
         
         <div className="product-show product-container">
-            <FetchData apiUrl={ApiUrl} />
+           <ProductCard books={bookInfo}/>
         </div>
     </div>
     
