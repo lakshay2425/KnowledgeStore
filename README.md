@@ -11,4 +11,15 @@ Knowledge Store
 
  Our platforms is specifically for those who read books or want to start their journey of reading books.
 
+Technologies used in the project
+
+1. ReactJS: Frontend
+2. Express: Backend
+3. MongoDB : Database
+4. Resend: Email Service
+5. Cloudinary: To store images 
+6. Redux: Central state management for the application
+7. Zod: Form Validations 
+
+
  If you want to contribute or talk to the project team. You can contact at the following gmail address:.
