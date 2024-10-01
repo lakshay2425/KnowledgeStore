@@ -15,14 +15,14 @@ const initialState = {
 export const fetchBooks = createAsyncThunk(
   'books/fetchBooks',
   async () => {
-    try {
-      const response = await axiosInstance.get('http://localhost:3000/books');
-      console.log("Calling API From Redux Store");
-      return response.data;
-    } catch (error) {
-      throw error; // Re-throw error for handling in extraReducers
+      try {
+        const response = await axiosInstance.get('http://localhost:3000/books');
+        console.log("Calling API From Redux Store");
+        return response.data;
+      } catch (error) {
+        return rejectWithValue(error.response ? error.response.data : error.message);
+      }
     }
-  }
 );
 
 const bookReducer = createSlice({
@@ -44,6 +44,7 @@ const bookReducer = createSlice({
         state.skillBasedInfo = state.booksInfo.filter((book)=> book.genres === "Skill-based");
         state.fetched = true;
         state.loading = false;
+        console.log(state.fetched, "After fetching the data")
       })
       .addCase(fetchBooks.rejected, (state, action) => {
         console.error('Failed to fetch books:', action.error.message);

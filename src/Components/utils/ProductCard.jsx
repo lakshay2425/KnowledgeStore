@@ -9,6 +9,7 @@ import axiosInstance from "../utils/Axios";
 const ProductCard = ({ books }) => {
   var [isOpen, setIsOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(sessionStorage.getItem("isLoggedIn"));
+  const [isDisabled, setIsDisabled] = useState(false);
   let [num, setnum] = useState(1);
   var Preview = (id) => {
     setIsOpen(!isOpen);
@@ -18,6 +19,13 @@ const ProductCard = ({ books }) => {
     setIsLoggedIn(sessionStorage.getItem("isLoggedIn"));
     // console.log(isLoggedIn);
   }, [sessionStorage.getItem("isLoggedIn")])
+
+  //To disable the button when user isn't loggedIn or book quantity is equal to zero
+  useEffect(()=>{
+    if((!(isLoggedIn))|| (books.quantity == 0)){
+      setIsDisabled(true);
+    }
+  },[isLoggedIn, books.quantity])
 
   //Function to add book to wishlist
   const handleWishList = async (bookName) => {
@@ -82,7 +90,6 @@ const ProductCard = ({ books }) => {
 
                 <div className='flex w-2/5 justify-center items-center max-md:w-full max-md:'>
                   <Image
-
                     className="w-96 max-md:w-fit max-md:my-12"
                     alt={num.title}
                     src={num.imageLink}
@@ -94,7 +101,7 @@ const ProductCard = ({ books }) => {
                   <p className='text-xl pb-2'>&#8377;{num.price}</p>
                   <p className='pb-2'>{num.genres}
                   </p>
-                  <button className= "product-btn" onClick={() => hanldeCart(num.book_name)} disabled={num.Quantity <= 0}>Add to Cart<IoBagHandleOutline /></button>
+                  <button className= "product-btn" onClick={() => hanldeCart(num.title)} disabled={isDisabled}>Add to Cart<IoBagHandleOutline /></button>
                 </div>
               </div>
             </div >

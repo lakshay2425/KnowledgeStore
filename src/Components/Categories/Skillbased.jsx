@@ -1,10 +1,10 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import ProductCard from '../utils/ProductCard';
-import CallAPIConditionally  from '../utils/CallAPIConditionally';
+import CallAPI from '../utils/CallAPI';
 
 const SkillBased = () => {
-    //CallAPIConditionally();
+    CallAPI();
     const book = useSelector((state) => state.book?.skillBasedInfo || [])
     return (<div className="product-show">
         <ProductCard books={book} />
