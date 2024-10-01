@@ -10,6 +10,7 @@ const ProductCard = ({ books }) => {
   var [isOpen, setIsOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(sessionStorage.getItem("isLoggedIn"));
   const [isDisabled, setIsDisabled] = useState(false);
+  const [email , setEmail] = useState(sessionStorage.getItem("gmail"));
   let [num, setnum] = useState(1);
   var Preview = (id) => {
     setIsOpen(!isOpen);
@@ -19,6 +20,10 @@ const ProductCard = ({ books }) => {
     setIsLoggedIn(sessionStorage.getItem("isLoggedIn"));
     // console.log(isLoggedIn);
   }, [sessionStorage.getItem("isLoggedIn")])
+
+  useEffect(()=>{
+    setEmail(sessionStorage.getItem("gmail"));
+  }, [sessionStorage.getItem("gmail")])
 
   //To disable the button when user isn't loggedIn or book quantity is equal to zero
   useEffect(()=>{
@@ -32,7 +37,7 @@ const ProductCard = ({ books }) => {
     try {
       console.log(bookName);
       const apiUrl = `http://localhost:3000/user/${bookName}/wishlist`;
-      const response = await axiosInstance.post(apiUrl);
+      const response = await axiosInstance.post(apiUrl, {email : email});
       console.log(response.data);
     } catch (error) {
       console.log(error.message);
@@ -44,17 +49,17 @@ const ProductCard = ({ books }) => {
     try {
       const apiUrl = `http://localhost:3000/user/${bookName}/cart`;
       console.log("Add to cart API called");
-      const response = await axiosInstance.post(apiUrl);
+      const response = await axiosInstance.post(apiUrl,{email : email});
       console.log(response.data);
     } catch (error) {
-      console.log(error.message);
+      console.log(error.response);
     }
   };
 
   const hanldeDeletion = async (bookName) => {
     try {
       const apiUrl = `http://localhost:3000/user/${bookName}/cart/delete`;
-      const response = await axiosInstance.delete(apiUrl);
+      const response = await axiosInstance.delete(apiUrl, {email : email});
       const result = response;
       console.log(result);
       // setBooks((prevBooks) => prevBooks.filter((book) => book.book_name !== bookName));

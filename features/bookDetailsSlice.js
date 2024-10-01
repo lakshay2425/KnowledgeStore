@@ -9,20 +9,24 @@ const initialState = {
   selfHelpBookInfo: [],
   skillBasedInfo: [],
   fetched: false,
-  loading : false,
+  loading: false,
 };
 
 export const fetchBooks = createAsyncThunk(
   'books/fetchBooks',
-  async () => {
-      try {
+  async (_, { getState, rejectWithValue }) => {
+    try {
+      const { book } = getState();
+      //console.log((!(book.fetched)), "Condition value");
+      if ((!(book.fetched))) {
         const response = await axiosInstance.get('http://localhost:3000/books');
-        console.log("Calling API From Redux Store");
+        //console.log("Calling API From Redux Store", book.fetched);
         return response.data;
-      } catch (error) {
-        return rejectWithValue(error.response ? error.response.data : error.message);
       }
+    } catch (error) {
+      return rejectWithValue(error.response ? error.response.data : error.message);
     }
+  }
 );
 
 const bookReducer = createSlice({
@@ -37,14 +41,14 @@ const bookReducer = createSlice({
       })
       .addCase(fetchBooks.fulfilled, (state, action) => {
         state.booksInfo = action.payload || [];
-        state.financeBookInfo = state.booksInfo.filter((book)=> book.genres === "Finance");
-        state.fictionalBookInfo = state.booksInfo.filter((book)=> book.genres === "Fictional");
-        state.biographyBookInfo = state.booksInfo.filter((book)=> book.genres === "Biography");
-        state.selfHelpBookInfo = state.booksInfo.filter((book)=> book.genres === "Self-Help");
-        state.skillBasedInfo = state.booksInfo.filter((book)=> book.genres === "Skill-based");
+        state.financeBookInfo = state.booksInfo.filter((book) => book.genres === "Finance");
+        state.fictionalBookInfo = state.booksInfo.filter((book) => book.genres === "Fictional");
+        state.biographyBookInfo = state.booksInfo.filter((book) => book.genres === "Biography");
+        state.selfHelpBookInfo = state.booksInfo.filter((book) => book.genres === "Self-Help");
+        state.skillBasedInfo = state.booksInfo.filter((book) => book.genres === "Skill-based");
         state.fetched = true;
         state.loading = false;
-        console.log(state.fetched, "After fetching the data")
+        //console.log(state.fetched, "After fetching the data")
       })
       .addCase(fetchBooks.rejected, (state, action) => {
         console.error('Failed to fetch books:', action.error.message);

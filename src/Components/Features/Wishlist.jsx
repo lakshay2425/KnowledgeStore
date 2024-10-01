@@ -1,12 +1,17 @@
 import React, { useEffect, useState } from "react";
 import ProductCard from "../utils/ProductCard";
 import axiosInstance from "../utils/Axios";
-import { useSelector } from 'react-redux';
 
 
 const Wishlist = () => {
   const [data, setData] = useState([]);
-  const email  = useSelector((state) => state.auth.email);
+  const [email, setEmail]  = useState(sessionStorage.getItem("gmail"));
+  
+  //To update gmail value from sessionStorage
+  useEffect(()=>{
+    setEmail(sessionStorage.getItem("gmail"))
+  },[sessionStorage.getItem("gmail")])
+  
   useEffect(() => {
     const fetchData = async () => {
         try {
