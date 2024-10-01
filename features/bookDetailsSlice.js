@@ -14,14 +14,16 @@ const initialState = {
 
 export const fetchBooks = createAsyncThunk(
   'books/fetchBooks',
-  async () => {
+  async (_, { getState, rejectWithValue }) => {
     try {
-      const response = await axiosInstance.get('http://localhost:3000/books');
+      const { book } = getState();
+      if(!(book.fetched)){
+       const response = await axiosInstance.get('http://localhost:3000/books');
       console.log("Calling API From Redux Store");
-      return response.data;
+      return response.data; 
+      }
     } catch (error) {
-      throw error; // Re-throw error for handling in extraReducers
-    }
+      return rejectWithValue(error.response ? error.response.data : error.message);    }
   }
 );
 
