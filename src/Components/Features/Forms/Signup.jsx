@@ -171,7 +171,7 @@ const Signup = () => {
                   type="number"
                   id="contact"
 
-                  max={10}
+                  // max={11}
                   min={10}
                   onChange={handleInputChange}
                   placeholder="Enter your contact number"
