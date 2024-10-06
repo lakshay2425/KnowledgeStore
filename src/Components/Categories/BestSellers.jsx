@@ -26,13 +26,13 @@ const BestSeller = () => {
         
             <div className='flex pt-12 pb-4 justify-between'>
                 <h1 className="text-zinc-800 text-3xl text font-bold ">All Books</h1>
-            <div className='text-2xl flex gap-2 w-max max-sm:hidden'>
+            {/* <div className='text-2xl flex gap-2 w-max max-sm:hidden'>
                 <button className="flex items-center justify-center rounded-full  w-8 h-8 shadow-xl backdrop-blur-lg transition ease-in-out hover:scale-125 duration-300" onClick={scrollLeft}><FaCaretLeft /></button>
                 <button className="flex items-center justify-center rounded-full w-8 h-8 shadow-xl backdrop-blur-lg transition ease-in-out  hover:scale-125 duration-300" onClick={scrollRight}><FaCaretRight /></button>
-            </div>
+            </div> */}
             </div>
         
-        <div ref={containerRef} className="product-show product-container">
+        <div ref={containerRef} className=" grid grid-cols-5 max-md:grid-cols-3 max-sm:grid-cols-2">
            <ProductCard books={bookInfo}/>
         </div>
     </div>

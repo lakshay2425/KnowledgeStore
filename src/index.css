@@ -37,7 +37,7 @@ body {
     width: 100%;
     align-items: center;
     justify-content: space-between;
-    overflow: hidden;
+    
     
 }
 .slide{
@@ -45,9 +45,9 @@ body {
     color: black;
     font-weight: 700;
     width: 60%;
-    text-wrap: nowrap;
+    /* text-wrap: nowrap; */
     max-height: 5vh;
-    overflow-x:scroll;
+    /* overflow-x:scroll; */
     z-index: 5;
 }
 .product-name{
@@ -60,9 +60,9 @@ body {
 .product-name::-webkit-scrollbar{
     display: none;
 }
-.product-name:hover{
+/* .product-name:hover{
     animation: slide-left 8s linear infinite;
-}
+} */
 @keyframes slide-left {
     from {
       -webkit-transform: translateX(0);
@@ -78,6 +78,7 @@ body {
 .product-price{
     font-size: 1rem;
     font-style: italic;
+    
     align-self: flex-end;
     color: black;
     font-weight: 700;

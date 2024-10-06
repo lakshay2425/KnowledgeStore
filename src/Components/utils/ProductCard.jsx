@@ -71,19 +71,19 @@ const ProductCard = ({ books }) => {
   return (
     <>
       {books.map((book) => (
-        <div key={book._id} className="product-card max-md:w-52 rounded-[--nextui-radius-large] shadow-small px-4 py-3 m-2 backdrop-blur-lg max-md:p-2 z-0">
+        <div key={book._id} className="product-card max-md:w-52 rounded-[--nextui-radius-large] shadow-small px-4 py-3 m-2 backdrop-blur-lg max-md:p-2 z-0 max-sm:w-48 max-sm:">
           <Image
             onClick={() => Preview(book)}
-            className="max-w-[280px] h-[450px] max-md:h-80 max-md:max-w-48 "
+            className="max-w-full h-[450px] max-md:h-80 max-md:max-w-48 max-sm:w-44"
             alt={book.title}
             src={book.imageLink}
           />
           <div className="product-card-chip">
-            <div className="product-name max-md:text-sm">
+            <div className="product-name max-md:text-sm max-sm:text-xs" >
               <span className="slide">{book.title}</span>
 
             </div>
-            <span className="product-price max-md:text-sm">&#8377;{book.price}</span>
+            <span className="product-price max-md:text-sm max-sm:text-xs">&#8377;{book.price}</span>
           </div>
         </div>
       ))}
@@ -118,7 +118,7 @@ const ProductCard = ({ books }) => {
         </>
         ) : (
           <></>
-        )};
+        )}
 
     </>
   );
