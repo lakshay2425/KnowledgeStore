@@ -12,20 +12,26 @@
   font-weight: 700;
 }
 .nav-links {
-  width: 40%;
+  width: 80%;
+  align-content: flex-start;
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content:left;
   font-size: large;
   color: #ff0000;
-  margin-right: auto;
   margin-left: 2rem;
+  margin-right: ;
 }
-.nav-links p {
+.nav-links button{
+  width: max-content;
+}
+.nav-links p{
+  width: max-content;
   text-decoration: none;
   color: rgb(49, 49, 49);
   font-size: 0.9rem;
   font-weight: 500;
+  padding: 1rem;
 }
 .dropdown-item {
   text-decoration: none;
@@ -39,10 +45,8 @@
   font-family: "Mulish";
   text-decoration: none;
   color: rgb(79, 79, 79);
-  font-size: 1rem;
-  padding: 2%;
-  
-  font-weight: 500;
+  font-size: 1.2rem;
+  font-weight: 550;
 }
 .d-flex > li {
   list-style: none;

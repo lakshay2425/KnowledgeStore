@@ -40,16 +40,25 @@ body {
     overflow: hidden;
     
 }
-
-.product-name{
+.slide{
     font-size: 0.9rem;
     color: black;
     font-weight: 700;
     width: 60%;
     text-wrap: nowrap;
     max-height: 5vh;
-    overflow-x:hidden;
+    overflow-x:scroll;
+    z-index: 5;
+}
+.product-name{
+    background: inherit;
+    width: 60%;
+    z-index: 10;
     margin-top: 5%;
+    scroll-behavior: smooth;
+}
+.product-name::-webkit-scrollbar{
+    display: none;
 }
 .product-name:hover{
     animation: slide-left 8s linear infinite;
@@ -108,8 +117,7 @@ body {
 }
 .product-container{
     padding: 0%;
-    flex-wrap: nowrap;
-    overflow-x:scroll;
+    
     justify-content:stretch;
     
     scroll-behavior: smooth;
