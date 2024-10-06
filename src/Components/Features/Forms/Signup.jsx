@@ -4,7 +4,7 @@ import { FaUser, FaLock } from "react-icons/fa";
 import { IoIosMail } from "react-icons/io";
 import { FaPhone } from "react-icons/fa6";
 import { useNavigate } from 'react-router-dom';
-import Cookies from 'js-cookie';
+import Cookies from "js-cookie";
 import { jwtDecode } from "jwt-decode";
 import { useAlert } from "../../utils/setAlert";
 
@@ -45,55 +45,50 @@ const Signup = () => {
         );
         const result = response.data;
         console.log(result);
-        token = Cookies.get('token'); // 'token' is the cookie name
-        console.log(token); // Prints the token value
-        if (token) {
-          console.log("Signup Successfully");
-          const decoded = jwtDecode(token);
-          const gmail = decoded.data;
-          sessionStorage.setItem("isLoggedIn", true);
-          sessionStorage.setItem("gmail", gmail);
-          sessionStorage.setItem("role", "user");
-          handleSuccess("Signup Successfully");
-          setDetails({
-            fullName : '',
-            username : '',
-            gmail : '',
-            number : '',
-            address : '',
-            password : '',
-            cpassword : '',
-            gender : ''
+        if (result.success === true) {
+          const token = Cookies.get('token'); // 'token' is the cookie name
+          console.log(token); // Prints the token value
+          if (token) {
+            console.log("Signup Successfully");
+            const decoded = jwtDecode(token);
+            const gmail = decoded.data;
+            sessionStorage.setItem("isLoggedIn", true);
+            sessionStorage.setItem("gmail", gmail);
+            sessionStorage.setItem("role", "user");
+            handleSuccess("Signup Successfully");
+            setDetails({
+              fullName: '',
+              username: '',
+              gmail: '',
+              number: '',
+              address: '',
+              password: '',
+              cpassword: '',
+              gender: ''
             });
-          navigate("/");          
-        }else{
-          console.log("Signup failed");
-          handleError("Signup failed");
-          setDetails({
-            fullName: '',
-            username: '',
-            gmail: '',
-            number: '',
-            address: '',
-            password: '',
-            cpassword: '',
-            gender: ''
-          });
+            navigate("/");
+          } else {
+            console.log("Signup failed");
+            handleError("Signup failed");
+          }
+        } else if (result.exists === true) {
+          handleError("User already exists");
         }
       } else {
         console.log("Password and Confirm password didn't match");
         handleError("Password and Confirm password didn't match");
-        setDetails({
-          fullName: '',
-          username: '',
-          gmail: '',
-          number: '',
-          address: '',
-          password: '',
-          cpassword: '',
-          gender: ''
-        });
       }
+      console.log("After every conditional");
+      setDetails({
+        fullName: '',
+        username: '',
+        gmail: '',
+        number: '',
+        address: '',
+        password: '',
+        cpassword: '',
+        gender: ''
+      });
     } catch (error) {
       console.log(error);
       handleError(error.message);
@@ -171,8 +166,8 @@ const Signup = () => {
                   type="number"
                   id="contact"
 
-                  max={10}
-                  min={10}
+                  //max={10}
+                  // min={10}
                   onChange={handleInputChange}
                   placeholder="Enter your contact number"
                   name="number"
@@ -226,7 +221,7 @@ const Signup = () => {
               </div>
             </div>
             <div>
-              <p className="py-2">select your gender</p>
+              <p className="py-2">Gender</p>
               <div className="flex items-center space-x-2">
 
 
@@ -237,6 +232,7 @@ const Signup = () => {
                   value={details.gender}
                   size={1}
                 >
+                  <option name="gender" defaultChecked>Select your gender</option>
                   <option name="gender" value="Male" >Male</option>
                   <option name="gender" value="Female">Female</option>
                   <option name="gender" value="others">Others</option>
