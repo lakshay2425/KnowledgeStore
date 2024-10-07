@@ -11,7 +11,7 @@ import FormDropDown from "./formDropDown";
 import AdminPanel from "./adminPanel";
 import Logout from "./Logout";
 import UserAvatar from "./UserAvatar";
-import {Divider} from "@nextui-org/divider";
+import { Divider } from "@nextui-org/divider";
 
 var Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -23,7 +23,7 @@ var Navbar = () => {
     setIsLoggedIn(sessionStorage.getItem("isLoggedIn") === "true");
   }, [sessionStorage.getItem("isLoggedIn")]);
   //console.log(isLoggedIn, "State variable")
-  
+
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
@@ -55,10 +55,16 @@ var Navbar = () => {
             <Link>
               <p className="about">About Us</p>
             </Link>
-          </div>
-          {isLoggedIn && (
-            <Logout />
+            {isLoggedIn && (
+              <>
+              <p>
+                <Logout />
+              </p>
+              </>
+            
           )}
+          </div>
+          
           <Search />
           {isLoggedIn && (
             <Link className="cart-icon " to="/Cart">
@@ -70,8 +76,14 @@ var Navbar = () => {
             {isOpen ? <AiOutlineClose size={20} /> : <AiOutlineMenu size={20} />}
 
           </div>
-          <Divider orientation="vertical" className="h-6 w-[1.5px] mx-4 bg-zinc-800" />
-          <UserAvatar/>
+          {isLoggedIn && (
+            <>
+              <Divider orientation="vertical" className="h-6 w-[1.5px] mx-4 bg-zinc-800" />
+              <UserAvatar />
+            </>
+
+          )}
+
           <div className={isOpen ? 'flex nav-menu z-10 fixed right-90 top-15 ease-in-out duration-500' : 'hidden nav-menu fixed left-[100%] z-10'}>
             <NavbarMobile />
           </div>
