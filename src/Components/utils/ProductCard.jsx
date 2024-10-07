@@ -27,10 +27,10 @@ const ProductCard = ({ books }) => {
 
   //To disable the button when user isn't loggedIn or book quantity is equal to zero
   useEffect(() => {
-    if ((!(isLoggedIn)) || (books.quantity == 0)) {
+    if ((!(isLoggedIn))) {
       setIsDisabled(true);
     }
-  }, [isLoggedIn, books.quantity])
+  }, [isLoggedIn])
 
   //Function to add book to wishlist
   const handleWishList = async (bookName) => {

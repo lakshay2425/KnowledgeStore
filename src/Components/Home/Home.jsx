@@ -1,7 +1,5 @@
 import React from "react";
 import "./Home.css";
-//Use this route if you're using Xampp
-//import BestSellers from "../Categories/BestSellers/BestSellers.jsx";
 import BestSellers from "../Categories/BestSellers.jsx";
 import main from './main.png';
 
