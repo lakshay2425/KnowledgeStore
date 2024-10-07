@@ -8,6 +8,16 @@ const Alert = () => {
   const dispatch = useDispatch();
   const alert = useSelector((state) => state.alert);
 
+  useEffect(() => {
+    if (alert.isVisible) {
+      const timer = setTimeout(() => {
+        dispatch(clearAlert());
+      }, 5000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [alert.isVisible, dispatch]);
+  
   if (!alert.isVisible) return null;
 
  
