@@ -13,6 +13,7 @@ import Logout from "./Logout";
 import UserAvatar from "./UserAvatar";
 import { Divider } from "@nextui-org/divider";
 
+
 var Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [role, setRole] = useState(sessionStorage.getItem("role"));
@@ -31,6 +32,35 @@ var Navbar = () => {
   useEffect(() => {
     setRole(sessionStorage.getItem("role"))
   }, [sessionStorage.getItem("role")])
+
+  // Account
+  // const [email, setEmail] = useState(sessionStorage.getItem("gmail"));
+
+  // useEffect(() => {
+  //   setEmail(sessionStorage.getItem("gmail"))
+  // }, [sessionStorage.getItem("gmail")])
+
+  // useEffect(() => {
+  //   try {
+  //     async function profileDetail() {
+  //       //console.log(email, "User Email");
+  //       const response = await axiosInstance.post('http://localhost:3000/user/profile',
+  //         { email },
+  //         {
+  //           headers: {
+  //             'Content-Type': 'application/json'
+  //           }
+  //         }
+  //       );
+  //       console.log(response.data, "User Profile Details");
+  //   //    setDetails(response.data);
+  //   //    console.log(details);
+  //     }
+  //     profileDetail();
+  //   } catch (error) {
+  //     console.error("Error in fetching user profile details", error.message)
+  //   }
+  // }, [])
 
   return (
     <>
