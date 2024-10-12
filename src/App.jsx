@@ -20,6 +20,7 @@ const Read = lazy(() => import('./Components/Features/adminPanel/read'));
 const Update = lazy(() => import('./Components/Features/adminPanel/update'));
 const Wishlist = lazy(() => import('./Components/Features/Wishlist'));
 const Footer = lazy(()=> import("./Components/Home/Footer"));
+const Profile = lazy(() => import("./Components/Features/Account/Profile"));
 import axios from 'axios';
 
 
@@ -237,6 +238,18 @@ const App = () => {
           <Navbar />
           <Suspense fallback={<div>Loading...</div>}>
             <Wishlist />
+          </Suspense>
+          <Footer />
+        </>
+      ),
+    },
+    {
+      path: '/Profile',
+      element: (
+        <>
+          <Navbar />
+          <Suspense fallback={<div>Loading...</div>}>
+            <Profile />
           </Suspense>
           <Footer />
         </>

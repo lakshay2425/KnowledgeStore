@@ -1,20 +1,26 @@
 import { User, Link } from "@nextui-org/react";
 import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, Button } from "@nextui-org/react";
 import { Link as Navigate } from "react-router-dom";
+import { useState } from "react";
+import { useSelector } from 'react-redux';
 
-export default function UserAvatar(user) {
+export default function UserAvatar() {
+  const user = useSelector((state) => state.user);
+  const[data, setData] = useState(user)
+  // console.log("User: ", user.details.userDetails.fullName)
   return (
     <Dropdown>
-      <DropdownTrigger>
+      <DropdownTrigger className="p-6">
         <Button
           variant=""
           className=""
         >
+          
           <User
-            name="Junior Garcia"
+            // name={user.details.userDetails.fullName}
             description={(
               <Link href="https://twitter.com/jrgarciadev" size="sm" isExternal>
-                @jrgarciadev
+                {/* {user.details.userDetails.username} */}
               </Link>
             )}
             avatarProps={{
@@ -25,10 +31,8 @@ export default function UserAvatar(user) {
       </DropdownTrigger>
       <DropdownMenu aria-label="Static Actions">
         <DropdownItem key="Profile">
-          <Button>
-            <Navigate>
-              Profile
-            </Navigate>
+          <Button className="w-full ">
+            
           </Button>
         </DropdownItem>
         <DropdownItem key="copy">Copy link</DropdownItem>

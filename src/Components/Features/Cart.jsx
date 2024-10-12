@@ -66,7 +66,7 @@ const Cart = () => {
     );
     setCartData(updatedCart);
   };
-
+console.log(data)
   return (
     <div className="cart-container m-40 h-auto p-6 bg-gray-100">
       <div className="Top-bar flex justify-between">
@@ -74,11 +74,11 @@ const Cart = () => {
         <button className="text-red-400 underline">Remove All</button>
       </div>
 
-      {cartData.map((item, index) => (
+      {data.map((item, index) => (
         <div key={index} className="Product-Cart-Section mx-5 my-10 flex justify-between">
-          <img className="w-24 h-36 aspect-[4/3]" src={item.Imagelink} alt={item.ProductName} />
+          <img className="w-24 h-36 aspect-[4/3]" src={item.imageLink} alt={item.title} />
 
-          <p className="text-4xl font-semibold text-center pt-7">{item.ProductName}</p>
+          <p className="text-4xl font-semibold text-center pt-7">{item.title}</p>
 
           <div className="Quantity flex justify-center items-center">
             <FaCircleMinus

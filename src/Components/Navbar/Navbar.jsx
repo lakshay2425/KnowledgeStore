@@ -12,9 +12,13 @@ import AdminPanel from "./adminPanel";
 import Logout from "./Logout";
 import UserAvatar from "./UserAvatar";
 import { Divider } from "@nextui-org/divider";
+import axiosInstance from "../utils/Axios"
+import { useDispatch } from 'react-redux';
+import { setUserDetails } from "../../../features/userDetailsSlice";
 
 
 var Navbar = () => {
+  const dispatch = useDispatch();
   const [isOpen, setIsOpen] = useState(false);
   const [role, setRole] = useState(sessionStorage.getItem("role"));
 
@@ -34,33 +38,43 @@ var Navbar = () => {
   }, [sessionStorage.getItem("role")])
 
   // Account
-  // const [email, setEmail] = useState(sessionStorage.getItem("gmail"));
+  const [email, setEmail] = useState(sessionStorage.getItem("gmail"));
+  const [details, setDetails] = useState(null);
+  if (isLoggedIn) {
 
-  // useEffect(() => {
-  //   setEmail(sessionStorage.getItem("gmail"))
-  // }, [sessionStorage.getItem("gmail")])
 
-  // useEffect(() => {
-  //   try {
-  //     async function profileDetail() {
-  //       //console.log(email, "User Email");
-  //       const response = await axiosInstance.post('http://localhost:3000/user/profile',
-  //         { email },
-  //         {
-  //           headers: {
-  //             'Content-Type': 'application/json'
-  //           }
-  //         }
-  //       );
-  //       console.log(response.data, "User Profile Details");
-  //   //    setDetails(response.data);
-  //   //    console.log(details);
-  //     }
-  //     profileDetail();
-  //   } catch (error) {
-  //     console.error("Error in fetching user profile details", error.message)
-  //   }
-  // }, [])
+    useEffect(() => {
+      const storedEmail = sessionStorage.getItem("gmail");
+      if (storedEmail !== email) {
+        setEmail(storedEmail);
+      }
+    }, [sessionStorage.getItem("gmail")]);
+
+    useEffect(() => {
+      async function profileDetail() {
+        try {
+          const response = await axiosInstance.post('http://localhost:3000/user/profile', { email }, {
+            headers: {
+              'Content-Type': 'application/json'
+            }
+          });
+          // console.log(response.data, "User Profile Details");
+          setDetails(response.data);
+        } catch (error) {
+          console.error("Error in fetching user profile details", error.message);
+        }
+      }
+      if (email) {
+        profileDetail();
+      }
+      dispatch(setUserDetails(details))
+      console.log(details);
+    }, [email]);
+    
+    
+  }
+
+
 
   return (
     <>
@@ -87,14 +101,14 @@ var Navbar = () => {
             </Link>
             {isLoggedIn && (
               <>
-              <p>
-                <Logout />
-              </p>
+                <p>
+                  <Logout />
+                </p>
               </>
-            
-          )}
+
+            )}
           </div>
-          
+
           <Search />
           {isLoggedIn && (
             <Link className="cart-icon " to="/Cart">
@@ -109,7 +123,7 @@ var Navbar = () => {
           {isLoggedIn && (
             <>
               <Divider orientation="vertical" className="h-6 w-[1.5px] mx-4 bg-zinc-800" />
-              <UserAvatar />
+              <UserAvatar user={details} />
             </>
 
           )}
