@@ -44,17 +44,15 @@ const Signup = () => {
           }
         );
         const result = response.data;
-        console.log(result);
+        //console.log(result);
         if (result.success === true) {
           const token = Cookies.get('token'); // 'token' is the cookie name
-          console.log(token); // Prints the token value
           if (token) {
             console.log("Signup Successfully");
-            const decoded = jwtDecode(token);
-            const gmail = decoded.data;
-            sessionStorage.setItem("isLoggedIn", true);
-            sessionStorage.setItem("gmail", gmail);
-            sessionStorage.setItem("role", "user");
+            localStorage.setItem("isLoggedIn", true);
+            localStorage.setItem("gmail", details.gmail);
+            localStorage.setItem("userDetails", JSON.stringify(details));
+            localStorage.setItem("role", "user");
             handleSuccess("Signup Successfully");
             setDetails({
               fullName: '',

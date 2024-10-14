@@ -5,13 +5,13 @@ import axiosInstance from "../utils/Axios"; // Use 'import' instead of 'require'
 import { FaCircleMinus, FaCirclePlus } from "react-icons/fa6";
 const Cart = () => {
   const [data, setData] = useState([]);
-  const [email, setEmail] = useState(sessionStorage.getItem("gmail"));
+  const [email, setEmail] = useState(localStorage.getItem("gmail"));
   const [length, setLength] = useState(0);
 
-  //To update gmail value from sessionStorage
+  //To update gmail value from localStorage
   useEffect(() => {
-    setEmail(sessionStorage.getItem("gmail"))
-  }, [sessionStorage.getItem("gmail")])
+    setEmail(localStorage.getItem("gmail"))
+  }, [localStorage.getItem("gmail")])
 
   useEffect(() => {
     const fetchData = async () => {
@@ -24,7 +24,7 @@ const Cart = () => {
             }
           });
         setData(response.data.bookDetails);
-        console.log(response.data);
+        //console.log(response.data);
         setLength(response.data.numberOfBooks);
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -32,41 +32,24 @@ const Cart = () => {
     };
     fetchData();
   }, []);
-  const initialData = [
-    {
-      Imagelink: "https://m.media-amazon.com/images/I/91NxYvUNf6L._AC_UF1000,1000_QL80_.jpg",
-      ProductName: "One Piece",
-      price: "2.55",
-      quantity: 1,  // Adding quantity property
-    },
-    {
-      Imagelink: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQAy-HUe9e6ljMDYewJ-z_IgmHWaC52JdC60Q&s",
-      ProductName: "Naruto",
-      price: "3.66",
-      quantity: 1,  // isse quantity increase hogi 
-
-    },
-  ];
-  const [cartData, setCartData] = useState(initialData);
 
   // Function to handle increase quantity
   const handleIncreaseQuantity = (index) => {
-    const updatedCart = cartData.map((item, i) =>
+    const updatedCart = data.map((item, i) =>
       i === index ? { ...item, quantity: item.quantity + 1 } : item
     );
-    setCartData(updatedCart);
+    setData(updatedCart);
   };
 
   // Function to handle decrease quantity
   const handleDecreaseQuantity = (index) => {
-    const updatedCart = cartData.map((item, i) =>
+    const updatedCart = data.map((item, i) =>
       i === index && item.quantity > 1
         ? { ...item, quantity: item.quantity - 1 }
         : item
     );
-    setCartData(updatedCart);
+    setData(updatedCart);
   };
-console.log(data)
   return (
     <div className="cart-container m-40 h-auto p-6 bg-gray-100">
       <div className="Top-bar flex justify-between">

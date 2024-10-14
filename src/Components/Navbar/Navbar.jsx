@@ -13,68 +13,63 @@ import Logout from "./Logout";
 import UserAvatar from "./UserAvatar";
 import { Divider } from "@nextui-org/divider";
 import axiosInstance from "../utils/Axios"
-import { useDispatch } from 'react-redux';
-import { setUserDetails } from "../../../features/userDetailsSlice";
 
 
 var Navbar = () => {
-  const dispatch = useDispatch();
   const [isOpen, setIsOpen] = useState(false);
-  const [role, setRole] = useState(sessionStorage.getItem("role"));
+  const [role, setRole] = useState(localStorage.getItem("role"));
+  const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem("isLoggedIn") === "true");
+  const [email, setEmail] = useState(localStorage.getItem("gmail"));
+  let userData = "";
 
-  const [isLoggedIn, setIsLoggedIn] = useState(sessionStorage.getItem("isLoggedIn") === "true");
-  //console.log(sessionStorage.getItem("isLoggedIn"));
+  //To fetch isLoggedIn value from localStorage
   useEffect(() => {
-    setIsLoggedIn(sessionStorage.getItem("isLoggedIn") === "true");
-  }, [sessionStorage.getItem("isLoggedIn")]);
-  //console.log(isLoggedIn, "State variable")
+    setIsLoggedIn(localStorage.getItem("isLoggedIn") === "true");
+  }, [localStorage.getItem("isLoggedIn")]);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
 
+  //To fetch gmail from localStorage
   useEffect(() => {
-    setRole(sessionStorage.getItem("role"))
-  }, [sessionStorage.getItem("role")])
+    setEmail(localStorage.getItem("gmail"))
+  }, [localStorage.getItem("gmail")])
 
-  // Account
-  const [email, setEmail] = useState(sessionStorage.getItem("gmail"));
-  const [details, setDetails] = useState(null);
+  //To fetch useDetails from localStorage
+  useEffect(() => {
+    userData = JSON.parse(localStorage.getItem("userDetails"));
+  }, [localStorage.getItem("userDetails")])
+
+  //To fetch role of the user from localStorage
+  useEffect(() => {
+    setRole(localStorage.getItem("role"))
+  }, [localStorage.getItem("role")])
+
   if (isLoggedIn) {
-
-
-    useEffect(() => {
-      const storedEmail = sessionStorage.getItem("gmail");
-      if (storedEmail !== email) {
-        setEmail(storedEmail);
-      }
-    }, [sessionStorage.getItem("gmail")]);
-
-    useEffect(() => {
-      async function profileDetail() {
-        try {
-          const response = await axiosInstance.post('http://localhost:3000/user/profile', { email }, {
-            headers: {
-              'Content-Type': 'application/json'
+    console.log("LoggedIn")
+    if (!userData) {
+      try {
+        async function profileDetail() {
+          console.log("User Email", email);
+          const response = await axiosInstance.post('http://localhost:3000/user/profile',
+            { email },
+            {
+              headers: {
+                'Content-Type': 'application/json'
+              }
             }
-          });
-          // console.log(response.data, "User Profile Details");
-          setDetails(response.data);
-        } catch (error) {
-          console.error("Error in fetching user profile details", error.message);
+          );
+          userData = JSON.stringify(response.data.userDetails);
+          console.log("User Profile Details", userData);
+          localStorage.setItem("userDetails", userData);
         }
-      }
-      if (email) {
         profileDetail();
+      } catch (error) {
+        console.error("Error in fetching user profile details", error.message)
       }
-      dispatch(setUserDetails(details))
-      console.log(details);
-    }, [email]);
-    
-    
+    }
   }
-
-
 
   return (
     <>
@@ -123,7 +118,7 @@ var Navbar = () => {
           {isLoggedIn && (
             <>
               <Divider orientation="vertical" className="h-6 w-[1.5px] mx-4 bg-zinc-800" />
-              <UserAvatar user={details} />
+              <UserAvatar user={userData} />
             </>
 
           )}

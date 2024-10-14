@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./Navbar.css";
 import {
@@ -12,11 +12,11 @@ import {
 
 
 const FormDropDown = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(sessionStorage.getItem("isLoggedIn") === "true");
-  //console.log(sessionStorage.getItem("isLoggedIn"));
+  const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem("isLoggedIn") === "true");
+  //console.log(localStorage.getItem("isLoggedIn"));
   useEffect(() => {
-    setIsLoggedIn(sessionStorage.getItem("isLoggedIn") === "true");
-  }, [sessionStorage.getItem("isLoggedIn")]);
+    setIsLoggedIn(localStorage.getItem("isLoggedIn") === "true");
+  }, [localStorage.getItem("isLoggedIn")]);
   //console.log(isLoggedIn, "State variable")
   return (
     <>

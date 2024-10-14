@@ -36,20 +36,21 @@ const Login = () => {
           }
         }
       );
-      const result = response.data;
+      const result = response.data.userData;
+      //console.log(result, "Result");
       const token = Cookies.get('token'); // 'token' is the cookie name
-      const role = Cookies.get('role');
-      if (token && role) {
+      if (token) {
         console.log("Logged In Successfully");
         handleSuccess("Logged In Successfully");
         const decoded = jwtDecode(token);
-        const gmail = decoded.data;
-        sessionStorage.setItem("isLoggedIn", true);
-        sessionStorage.setItem("gmail", gmail);
+        const role = decoded.data;
+        localStorage.setItem("isLoggedIn", true);
+        localStorage.setItem("gmail", result.emailId);
+        localStorage.setItem("userDetails", JSON.stringify(result));
         if(role === 'admin'){
-          sessionStorage.setItem("role", "admin");
-        }else{
-          sessionStorage.setItem("role", "user");
+          localStorage.setItem("role", "admin");
+        }else if(role == "user"){
+          localStorage.setItem("role", "user");
         }
         setDetails({
           username: "",

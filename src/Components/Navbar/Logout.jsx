@@ -11,14 +11,11 @@ const Logout = () => {
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
-      const response = await axiosInstance.get("http://localhost:3000/auth/logout")
-      const result = response.data;
-      console.log(result);
-      sessionStorage.setItem("isLoggedIn", false);
-      sessionStorage.setItem("gmail", "");
-      sessionStorage.setItem("role", "");
+      const response = await axiosInstance.get("http://localhost:3000/auth/logout");
+      localStorage.setItem("isLoggedIn", false);
+      localStorage.setItem("role", "");
+      localStorage.setItem("userDetails", "");
       Cookies.remove('token');  // Remove the token cookie
-      Cookies.remove('role');   // Remove the role cookie
       navigate("/Login");
     } catch (error) {
       console.log(error.message);

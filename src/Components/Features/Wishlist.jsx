@@ -5,13 +5,13 @@ import axiosInstance from "../utils/Axios";
 
 const Wishlist = () => {
   const [data, setData] = useState([]);
-  const [email, setEmail]  = useState(sessionStorage.getItem("gmail"));
+  const [email, setEmail]  = useState(localStorage.getItem("gmail"));
   const [length, setLength] = useState(0);
 
-  //To update gmail value from sessionStorage
+  //To update gmail value from localStorage
   useEffect(()=>{
-    setEmail(sessionStorage.getItem("gmail"))
-  },[sessionStorage.getItem("gmail")])
+    setEmail(localStorage.getItem("gmail"))
+  },[localStorage.getItem("gmail")])
   
   useEffect(() => {
     const fetchData = async () => {
@@ -25,7 +25,7 @@ const Wishlist = () => {
               });
             setData(response.data.bookDetails);
             setLength(response.data.numberOfBooks);
-            console.log(data);
+            //console.log(data);
         } catch (error) {
             console.error('Error fetching data:', error);
         }

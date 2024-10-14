@@ -10,21 +10,20 @@ import AdminPanel from "./adminPanel";
 import Logout from "./Logout";
 
 function NavbarMobile() {
-    const [role, setRole] = useState(sessionStorage.getItem("role"));
-    const [isLoggedIn, setIsLoggedIn] = useState(sessionStorage.getItem("isLoggedIn") === "true");
-    //console.log(sessionStorage.getItem("isLoggedIn"));
+    const [role, setRole] = useState(localStorage.getItem("role"));
+    const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem("isLoggedIn") === "true");
 
-        //TO update isLoggedIn value based on sessionStorage
+    //To update isLoggedIn value based on localStorage
     useEffect(() => {
-      setIsLoggedIn(sessionStorage.getItem("isLoggedIn") === "true");
-    }, [sessionStorage.getItem("isLoggedIn")]);
+        setIsLoggedIn(localStorage.getItem("isLoggedIn") === "true");
+    }, [localStorage.getItem("isLoggedIn")]);
     //console.log(isLoggedIn, "State variable")
 
-    //TO update role value based on sessionStorage
+    //TO update role value based on localStorage
     useEffect(() => {
-        setRole(sessionStorage.getItem("role"))
-      }, [sessionStorage.getItem("role")])
-   
+        setRole(localStorage.getItem("role"))
+    }, [localStorage.getItem("role")])
+
 
     return (
         <ListboxWrapper>
@@ -89,7 +88,7 @@ function NavbarMobile() {
                 <ListboxItem>
                     <Search />
                 </ListboxItem>
-                
+
             </Listbox>
         </ListboxWrapper>
     )
