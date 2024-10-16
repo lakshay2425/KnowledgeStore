@@ -8,6 +8,7 @@ import Categories from "./Categories";
 import FormDropDown from "./formDropDown";
 import AdminPanel from "./adminPanel";
 import Logout from "./Logout";
+import UserAvatar from './UserAvatar';
 
 function NavbarMobile() {
     const [role, setRole] = useState(localStorage.getItem("role"));
@@ -78,6 +79,11 @@ function NavbarMobile() {
                         </Button>
 
                     </Link>
+                </ListboxItem>
+                <ListboxItem>
+                {isLoggedIn && (
+                        <UserAvatar/>
+                    )}
                 </ListboxItem>
 
                 <ListboxItem>

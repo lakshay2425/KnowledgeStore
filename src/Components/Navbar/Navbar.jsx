@@ -117,8 +117,11 @@ var Navbar = () => {
           </div>
           {isLoggedIn && (
             <>
-              <Divider orientation="vertical" className="h-6 w-[1.5px] mx-4 bg-zinc-800" />
-              <UserAvatar user={userData} />
+              <div className={isOpen ? 'hidden'  : 'flex items-center max-md:hidden'}>
+                <Divider orientation="vertical" className="h-6 w-[1.5px] mx-4 bg-zinc-800" />
+                <UserAvatar />
+              </div>
+
             </>
 
           )}
