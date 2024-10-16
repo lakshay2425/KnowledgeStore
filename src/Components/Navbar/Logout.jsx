@@ -15,6 +15,7 @@ const Logout = () => {
       localStorage.setItem("isLoggedIn", false);
       localStorage.setItem("role", "");
       localStorage.setItem("userDetails", "");
+      localStorage.setItem("gmail", "");
       Cookies.remove('token');  // Remove the token cookie
       navigate("/Login");
     } catch (error) {
