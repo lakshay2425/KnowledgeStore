@@ -5,6 +5,7 @@ import Recomended from "../Categories/Recomended.jsx";
 import main from './main.png';
 import { FaCaretRight } from "react-icons/fa6";
 import { FaCaretLeft } from "react-icons/fa6";
+import Error404 from "../utils/Error404.jsx";
 
 
 const Home = () => {
