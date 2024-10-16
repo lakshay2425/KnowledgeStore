@@ -24,7 +24,7 @@ const Search = () => {
           },
         }
       );
-      const result = response.data.result;
+      const result = response.data.bookDetails;
       console.log(result); // Handle the result as needed
       // Reset the bookName after search
       setBookName("");
