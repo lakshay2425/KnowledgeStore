@@ -22,6 +22,7 @@ const Wishlist = lazy(() => import('./Components/Features/Wishlist'));
 const Footer = lazy(()=> import("./Components/Home/Footer"));
 const Profile = lazy(() => import("./Components/Features/Account/Profile"));
 import axios from 'axios';
+const Error404 = lazy(()=> import("./Components/utils/Error404"));
 
 
 const App = () => {
@@ -255,6 +256,18 @@ const App = () => {
         </>
       ),
     },
+    {
+      path : "*",
+      element : (
+        <>
+        <Navbar/>
+        <Suspense fallback={<div>Loading...</div>}>
+            <Error404/>
+          </Suspense>
+          <Footer />
+        </>
+      )
+    }
   ]);
 
   useEffect(() => {

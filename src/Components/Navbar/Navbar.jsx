@@ -17,10 +17,10 @@ import axiosInstance from "../utils/Axios"
 
 var Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [role, setRole] = useState(localStorage.getItem("role"));
+  const [role, setRole] = useState((localStorage.getItem("role")));
   const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem("isLoggedIn") === "true");
-  const [email, setEmail] = useState(localStorage.getItem("gmail"));
-  let userData = "";
+  const [email, setEmail] = useState((localStorage.getItem("gmail")));
+ const  [userData, setUserData] = useState((localStorage.getItem("userDetails")))
 
   //To fetch isLoggedIn value from localStorage
   useEffect(() => {
@@ -31,45 +31,60 @@ var Navbar = () => {
     setIsOpen(!isOpen);
   };
 
-  //To fetch gmail from localStorage
+  // //To fetch gmail from localStorage
   useEffect(() => {
-    setEmail(localStorage.getItem("gmail"))
+    if (localStorage.getItem("gmail") != null) {
+      const mail = (localStorage.getItem("gmail"));
+      setEmail(mail)
+    }
   }, [localStorage.getItem("gmail")])
 
   //To fetch useDetails from localStorage
   useEffect(() => {
-    userData = JSON.parse(localStorage.getItem("userDetails"));
-  }, [localStorage.getItem("userDetails")])
+    if (!userData) {
+      const data = localStorage.getItem("userDetails");
+      if(data){
+       setUserData(JSON.parse(data)) 
+      }
+    }
+  }, [(localStorage.getItem("userDetails"))])
 
   //To fetch role of the user from localStorage
   useEffect(() => {
-    setRole(localStorage.getItem("role"))
+    const Role = localStorage.getItem("role");
+    setRole(Role)
   }, [localStorage.getItem("role")])
 
-  if (isLoggedIn) {
-    console.log("LoggedIn")
-    if (!userData) {
-      try {
-        async function profileDetail() {
-          console.log("User Email", email);
-          const response = await axiosInstance.post('http://localhost:3000/user/profile',
-            { email },
-            {
-              headers: {
-                'Content-Type': 'application/json'
-              }
-            }
-          );
-          userData = JSON.stringify(response.data.userDetails);
-          console.log("User Profile Details", userData);
-          localStorage.setItem("userDetails", userData);
-        }
-        profileDetail();
-      } catch (error) {
-        console.error("Error in fetching user profile details", error.message)
-      }
-    }
-  }
+  // if (isLoggedIn) {
+  //   console.log("LoggedIn")
+  //   const data = localStorage.getItem("userDetails");
+  //   if (!data) {
+  //     try {
+  //       async function profileDetail() {
+  //         console.log("User Email", email);
+  //         const response = await axiosInstance.post('http://localhost:3000/user/profile',
+  //           { email },
+  //           {
+  //             headers: {
+  //               'Content-Type': 'application/json'
+  //             }
+  //           }
+  //         );
+  //         let userDetails = JSON.stringify(response.data.userDetails);
+  //         console.log("User Profile Details", userDetails);
+  //         localStorage.setItem("userDetails", userDetails);
+  //       }
+  //       profileDetail();
+  //     } catch (error) {
+  //       console.error("Error in fetching user profile details", error.message)
+  //     }
+  //   }else{
+  //     if(!userData){
+  //       let parsedData = JSON.parse(data);
+  //     setUserData(parsedData);
+  //     }
+  //   }
+  // }
 
   return (
     <>
@@ -117,7 +132,7 @@ var Navbar = () => {
           </div>
           {isLoggedIn && (
             <>
-              <div className={isOpen ? 'hidden'  : 'flex items-center max-md:hidden'}>
+              <div className={isOpen ? 'hidden' : 'flex items-center max-md:hidden'}>
                 <Divider orientation="vertical" className="h-6 w-[1.5px] mx-4 bg-zinc-800" />
                 <UserAvatar />
               </div>

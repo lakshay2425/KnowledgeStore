@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axiosInstance from "../utils/Axios";
-import { SearchIcon } from "../utils/SearchIcon"; 
+import { SearchIcon } from "../utils/SearchIcon";
 import { Input } from "@nextui-org/react";
 const Search = () => {
   // Use useState to manage bookName state
@@ -18,14 +18,19 @@ const Search = () => {
       // Send GET request with bookName as query parameter
       const response = await axiosInstance.get(
         `http://localhost:3000/search/${bookName}`,
-      {
+        {
           headers: {
             'Content-Type': 'application/json',
           },
         }
       );
-      const result = response.data.bookDetails;
-      console.log(result); // Handle the result as needed
+      if (response.data.found) {
+        const result = response.data.bookDetails;
+        console.log(result); // Handle the result as needed
+      }else{
+        console.log("Book not found");
+      }
+
       // Reset the bookName after search
       setBookName("");
     } catch (error) {
@@ -46,7 +51,7 @@ const Search = () => {
             onChange={handleInputChange}
             placeholder="Search For Books!"
             className="w-42 h-10"
-            
+
           />
           <button type="submit">
             <SearchIcon />
