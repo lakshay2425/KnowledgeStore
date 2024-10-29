@@ -2,9 +2,12 @@ import React, { useState } from "react";
 import axiosInstance from "../utils/Axios";
 import { SearchIcon } from "../utils/SearchIcon";
 import { Input } from "@nextui-org/react";
+import { useNavigate } from 'react-router-dom';
+
 const Search = () => {
   // Use useState to manage bookName state
   const [bookName, setBookName] = useState("");
+  const navigate = useNavigate();
 
   // Function to handle change in input fields value
   const handleInputChange = (e) => {
@@ -26,7 +29,9 @@ const Search = () => {
       );
       if (response.data.found) {
         const result = response.data.bookDetails;
-        console.log(result); // Handle the result as needed
+        console.log(result); 
+        navigate('/SearchResult', { state: { book: result } });
+        // Handle the result as needed
       }else{
         console.log("Book not found");
       }

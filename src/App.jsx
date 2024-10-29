@@ -20,6 +20,7 @@ const Read = lazy(() => import('./Components/Features/adminPanel/read'));
 const Update = lazy(() => import('./Components/Features/adminPanel/update'));
 const Wishlist = lazy(() => import('./Components/Features/Wishlist'));
 const Footer = lazy(()=> import("./Components/Home/Footer"));
+const SearchResult = lazy(() => import("./Components/Navbar/SearchResult"));
 const Profile = lazy(() => import("./Components/Features/Account/Profile"));
 import axios from 'axios';
 const Error404 = lazy(()=> import("./Components/utils/Error404"));
@@ -39,6 +40,18 @@ const App = () => {
           <Footer />
         </>
       ),
+    },
+    {
+      path: '/SearchResult',
+      element: (
+        <>
+        <Navbar />
+        <Suspense fallback={<div>Loading...</div>}></Suspense>
+        <SearchResult />
+        <Footer/>
+        </>
+      )
+
     },
     {
       path: '/Finance',
