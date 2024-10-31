@@ -67,14 +67,14 @@ const ProductCard = ({ books }) => {
       console.log(error.message);
     }
   }
-
+  // console.log(books)
   return (
     <>
       {books.map((book) => (
         <div key={book._id} className="product-card max-md:w-52 rounded-[--nextui-radius-large] shadow-small px-4 py-3 m-2 backdrop-blur-lg max-md:p-2 z-0 max-sm:w-48 max-sm:">
           <Image
             onClick={() => Preview(book)}
-            className="max-w-full h-[450px] max-md:h-80 max-md:max-w-48 max-sm:w-44"
+            className="max-w-full h-[450px] max-md:h-80 max-md:max-w-48 max-sm:w-44 max-xl:h-[350px]"
             alt={book.title}
             src={book.imageLink}
           />
