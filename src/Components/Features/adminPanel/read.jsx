@@ -16,14 +16,12 @@ const Read = () => {
         const fetchBooks = async () => {
           if (books.length === 0 && !isLoaded) { // Check if books data already exists
             try {
-                const apiUrl = "http://localhost:3000/books";
+                const apiUrl = `${import.meta.env.VITE_BACKEND_URL}/books`;
                 const response = await axiosInstance.get(apiUrl);
                 if(response.status == 200){
                     setBooks(response.data);
-                    console.log(response.data);
                     setIsLoaded(true); // Mark as loaded
                 }else{
-                    console.log(response.data);
                 }
             } catch (error) {
               console.error('Error fetching data:', error);

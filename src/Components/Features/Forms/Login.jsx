@@ -4,7 +4,7 @@ import { FaUser, FaLock } from "react-icons/fa";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
-import {useAlert} from "../../utils/setAlert";
+import { useAlert } from "../../utils/setAlert";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -28,7 +28,7 @@ const Login = () => {
     try {
       e.preventDefault();
       const response = await axiosInstance.post(
-        "http://localhost:3000/auth/loginDetails",
+        `${import.meta.env.VITE_BACKEND_URL}/auth/loginDetails`,
         details,
         {
           headers: {
@@ -47,9 +47,9 @@ const Login = () => {
         localStorage.setItem("isLoggedIn", true);
         localStorage.setItem("gmail", result.emailId);
         localStorage.setItem("userDetails", JSON.stringify(result));
-        if(role === 'admin'){
+        if (role === 'admin') {
           localStorage.setItem("role", "admin");
-        }else if(role == "user"){
+        } else if (role == "user") {
           localStorage.setItem("role", "user");
         }
         setDetails({
@@ -67,7 +67,11 @@ const Login = () => {
       }
     } catch (error) {
       console.error("Error submitting form:", error);
-      handleError("Failed to Login");
+      if (error.response.status === 429) {
+        handleError('Rate limit exceeded. Please try again later.');
+      } else {
+        handleError("Failed to Login")
+      }
       setDetails({
         username: '',
         password: ''

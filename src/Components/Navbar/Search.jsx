@@ -17,7 +17,7 @@ const Search = () => {
     try {
       // Send GET request with bookName as query parameter
       const response = await axiosInstance.get(
-        `http://localhost:3000/search/${bookName}`,
+        `${import.meta.env.VITE_BACKEND_URL}/search/${bookName}`,
         {
           headers: {
             'Content-Type': 'application/json',

@@ -24,9 +24,9 @@ const Footer = () => {
                 <div className="w-full md:w-1/3 md:mb-0">
                     <h2 className="text-2xl font-bold mb-4">Quick Links</h2>
                     <ul>
-                        <li className="mb-2"><Link to="http://localhost:4000/" className="hover:underline">Home</Link></li>
+                        <li className="mb-2"><Link to={`${import.meta.env.VITE_FRONTEND_URL}/`} className="hover:underline">Home</Link></li>
                         <li className="mb-2"><Link to="#" className="hover:underline">About Us</Link></li>
-                        <li className="mb-2"><Link to="http://localhost:4000/Contact" className="hover:underline">Contact Us</Link></li>
+                        <li className="mb-2"><Link to={`${import.meta.env.VITE_FRONTEND_URL}/Contact`} className="hover:underline">Contact Us</Link></li>
                         <li className="mb-2"><Link to="#" className="hover:underline">Blog</Link></li>
                         <li className="mb-2"><Link to="#" className="hover:underline">FAQ</Link></li>
                     </ul>

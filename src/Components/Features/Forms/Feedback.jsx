@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import axiosInstance from "../../utils/Axios";
 import { FaUser } from "react-icons/fa";
 import { IoIosMail } from "react-icons/io";
-import {useAlert} from "../../utils/setAlert";
-import { clearAlert } from "../../../../features/alertSlice";
+import { useAlert } from "../../utils/setAlert";
 
 const Feedback = () => {
   const { handleSuccess, handleError } = useAlert();
@@ -30,7 +29,7 @@ const Feedback = () => {
     try {
       e.preventDefault();
       const response = await axiosInstance.post(
-        "http://localhost:3000/forms/feedbackDetails",
+        `${import.meta.env.VITE_BACKEND_URL}/forms/feedbackDetails`,
         details,
         {
           headers: {
@@ -41,9 +40,7 @@ const Feedback = () => {
       const result = response.data;
       console.log(result);
       handleSuccess(response.data.message);
-      setTimeout(()=>{
-        clearAlert();
-      },3000)
+
       setDetails({
         username: "",
         gmail: "",
@@ -51,20 +48,24 @@ const Feedback = () => {
       });
     } catch (error) {
       console.error("Error submitting form:", error);
-      handleError(response.data.message);
-      setTimeout(()=>{
+      if (error.response.status === 429) {
+        handleError('Rate limit exceeded. Please try again later.');
+      } else {
+        handleError(response.data.message);
+      }
+      setTimeout(() => {
         clearAlert();
-      },3000)
+      }, 3000)
       setDetails({
-        fullName : '',
-        username : '',
-        gmail : '',
-        number : '',
-        address : '',
-        password : '',
-        cpassword : '',
-        gender : ''
-        });
+        fullName: '',
+        username: '',
+        gmail: '',
+        number: '',
+        address: '',
+        password: '',
+        cpassword: '',
+        gender: ''
+      });
     }
   };
   return (
@@ -141,7 +142,7 @@ const Feedback = () => {
             <button type="submit" className="p-2 rounded-xl bg-slate-400 text-slate-100 hover:bg-slate-950 hover:scale-110 hover:border-medium">Send Feedback</button>
           </form>
         </div>
-        <div  className="col-span-2 h-80 shadow-inner drop-shadow-2xl rounded-2xl bg-[url('https://images.unsplash.com/photo-1524578271613-d550eacf6090?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')]">
+        <div className="col-span-2 h-80 shadow-inner drop-shadow-2xl rounded-2xl bg-[url('https://images.unsplash.com/photo-1524578271613-d550eacf6090?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')]">
           <img className="cover" src="" alt="" />
         </div>
       </div>

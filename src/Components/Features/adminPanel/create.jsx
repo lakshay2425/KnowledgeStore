@@ -28,7 +28,7 @@ const Create = () => {
   const handleSubmit = async (e) => {
       try {
         e.preventDefault();
-        const response = await axiosInstance.post('http://localhost:3000/admin/create', details,
+        const response = await axiosInstance.post(`${import.meta.env.VITE_BACKEND_URL}/admin/create`, details,
           {
             headers: {
               'Content-Type': 'application/json'

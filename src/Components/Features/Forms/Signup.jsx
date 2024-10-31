@@ -36,7 +36,7 @@ const Signup = () => {
     e.preventDefault();
     try {
       if (details.password === details.cpassword) {
-        const response = await axiosInstance.post('http://localhost:3000/auth/signupDetails', details,
+        const response = await axiosInstance.post(`${import.meta.env.VITE_BACKEND_URL}/auth/signupDetails`, details,
           {
             headers: {
               'Content-Type': 'application/json'
@@ -89,7 +89,11 @@ const Signup = () => {
       });
     } catch (error) {
       console.log(error);
-      handleError(error.message);
+      if (error.response.status === 429) {
+        handleError('Rate limit exceeded. Please try again later.');
+      } else {
+        handleError(error.message);
+      }
       setDetails({
         fullName: '',
         username: '',

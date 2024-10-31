@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import ProductCard from "../utils/ProductCard";
 import axiosInstance from "../utils/Axios";
-
+import { useAlert } from "../../utils/setAlert";
 
 const Wishlist = () => {
   const [data, setData] = useState([]);
   const [email, setEmail]  = useState(localStorage.getItem("gmail"));
   const [length, setLength] = useState(0);
+  const { handleError } = useAlert();
 
   //To update gmail value from localStorage
   useEffect(()=>{
@@ -16,7 +17,7 @@ const Wishlist = () => {
   useEffect(() => {
     const fetchData = async () => {
         try {
-            const response = await axiosInstance.post("http://localhost:3000/user/wishlist",
+            const response = await axiosInstance.post(`${import.meta.env.VITE_BACKEND_URL}/user/wishlist`,
               {email},
               {
                 headers: {
@@ -28,6 +29,9 @@ const Wishlist = () => {
             //console.log(data);
         } catch (error) {
             console.error('Error fetching data:', error);
+            if (error.response.status === 429) {
+              handleError('Rate limit exceeded. Please try again later.');
+            }
         }
     };
     fetchData();

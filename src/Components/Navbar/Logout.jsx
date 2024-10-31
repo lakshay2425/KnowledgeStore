@@ -11,7 +11,7 @@ const Logout = () => {
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
-      const response = await axiosInstance.get("http://localhost:3000/auth/logout");
+      const response = await axiosInstance.get(`${import.meta.env.VITE_BACKEND_URL}/auth/logout`);
       localStorage.setItem("isLoggedIn", false);
       localStorage.setItem("role", "");
       localStorage.setItem("userDetails", "");

@@ -36,7 +36,7 @@ const ProductCard = ({ books }) => {
   const handleWishList = async (bookName) => {
     try {
       console.log(bookName);
-      const apiUrl = `http://localhost:3000/user/${bookName}/wishlist`;
+      const apiUrl = `${import.meta.env.VITE_BACKEND_URL}/user/${bookName}/wishlist`;
       const response = await axiosInstance.post(apiUrl, { email: email });
       console.log(response.data);
     } catch (error) {
@@ -47,7 +47,7 @@ const ProductCard = ({ books }) => {
   //Function to add book to Cart
   const hanldeCart = async (bookName) => {
     try {
-      const apiUrl = `http://localhost:3000/user/${bookName}/cart`;
+      const apiUrl = `${import.meta.env.VITE_BACKEND_URL}/user/${bookName}/cart`;
       console.log("Add to cart API called");
       const response = await axiosInstance.post(apiUrl, { email: email });
       console.log(response.data);
@@ -58,7 +58,7 @@ const ProductCard = ({ books }) => {
 
   const hanldeDeletion = async (bookName) => {
     try {
-      const apiUrl = `http://localhost:3000/user/${bookName}/cart/delete`;
+      const apiUrl = `${import.meta.env.VITE_BACKEND_URL}/user/${bookName}/cart/delete`;
       const response = await axiosInstance.delete(apiUrl, { email: email });
       const result = response;
       console.log(result);

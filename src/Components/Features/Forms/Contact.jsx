@@ -34,7 +34,7 @@ const Contact = () => {
     try {
       e.preventDefault();
       const response = await axiosInstance.post(
-        "http://localhost:3000/forms/contactDetails",
+        `${import.meta.env.VITE_BACKEND_URL}/forms/contactDetails`,
         {details},
         {
           headers: {
@@ -56,10 +56,11 @@ const Contact = () => {
     });
     } catch (error) {
       console.error("Error submitting form:", error);
-      handleError(response.data.message);
-      setTimeout(()=>{
-        clearAlert();
-      },3000)
+      if (error.response.status === 429) {
+        handleError('Rate limit exceeded. Please try again later.');
+      }else{
+        handleError(response.data.message);
+      }
     }
   };
 

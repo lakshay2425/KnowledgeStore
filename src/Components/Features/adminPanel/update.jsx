@@ -26,7 +26,7 @@ const Update = () => {
     const fetchData = async () => {
         // if(!isLoaded){
             try {
-                const apiUrl = `http://localhost:3000/search/${bookName}`;
+                const apiUrl = `${import.meta.env.VITE_BACKEND_URL}/search/${bookName}`;
                 const response = await axiosInstance.get(apiUrl);
                 if(response.status == 200){
                     // console.log(response.data);
