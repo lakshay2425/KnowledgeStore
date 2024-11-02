@@ -1,5 +1,4 @@
-import React from 'react';
-
+import React, { useRef, useEffect } from 'react';
 const OrderConfirmation = () => {
   const videoRef = useRef(null);
 

@@ -1,5 +1,4 @@
-import React from 'react';
-
+import React, { useRef, useEffect } from 'react';
 const OrderFailure = () => {
   return (
     <div className="flex items-center justify-center min-h-screen bg-red-50">
