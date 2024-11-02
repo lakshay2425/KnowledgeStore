@@ -100,6 +100,7 @@ const Login = () => {
                 <input className="w-full p-2 rounded-lg bg-slate-100 border-medium"
                   type="text"
                   id="username"
+                  autoComplete="username"
                   onChange={handleInputChange}
                   placeholder="Enter your username"
                   name="username"
@@ -114,6 +115,7 @@ const Login = () => {
                 <input className="w-full p-2 rounded-lg bg-slate-100 border-medium"
                   type="password"
                   id="pass"
+                  autoComplete="password"
                   onChange={handleInputChange}
                   placeholder="Enter your password"
                   name="password"

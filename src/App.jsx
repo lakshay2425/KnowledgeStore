@@ -210,7 +210,7 @@ const App = () => {
       ),
     },
     {
-      path: '/Create',
+      path: '/Admin/Create',
       element: (
         <>
           <Navbar />
@@ -222,7 +222,7 @@ const App = () => {
       ),
     },
     {
-      path: '/Read',
+      path: '/Admin/Read',
       element: (
         <>
           <Navbar />
@@ -234,7 +234,7 @@ const App = () => {
       ),
     },
     {
-      path: '/Update',
+      path: '/Admin/Update',
       element: (
         <>
           <Navbar />

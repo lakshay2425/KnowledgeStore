@@ -124,6 +124,7 @@ const Signup = () => {
                 <input className="w-full p-2 rounded-lg bg-slate-100 border-medium"
                   type="text"
                   id="fullName"
+                  autoComplete="fullName"
                   onChange={handleInputChange}
                   placeholder="Enter your full name"
                   name="fullName"
@@ -138,6 +139,7 @@ const Signup = () => {
                 <input className="w-full p-2 rounded-lg bg-slate-100 border-medium"
                   type="text"
                   id="Username"
+                  autoComplete="off"
                   onChange={handleInputChange}
                   placeholder="Enter your user name"
                   name="username"
@@ -152,6 +154,7 @@ const Signup = () => {
                 <input className="w-full p-2 rounded-lg bg-slate-100 border-medium"
                   type="gmail"
                   id="gmail"
+                  autoComplete="email"
                   onChange={handleInputChange}
                   placeholder="Enter your gmail"
                   name="gmail"
@@ -166,10 +169,10 @@ const Signup = () => {
                 <input className="w-full p-2 rounded-lg bg-slate-100 border-medium ,
                 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                   type="number"
+                  autoComplete="number"
                   id="contact"
-
-                  //max={10}
-                  // min={10}
+                  minlength="10" 
+                  maxlength="10"
                   onChange={handleInputChange}
                   placeholder="Enter your contact number"
                   name="number"
@@ -200,6 +203,7 @@ const Signup = () => {
                   type="password"
                   id="pass"
                   name="password"
+                  autoComplete="off"
                   onChange={handleInputChange}
                   value={details.password}
                   placeholder="Enter your password"
@@ -214,6 +218,7 @@ const Signup = () => {
                   type="password"
                   id="cpass"
                   name="cpassword"
+                  autoComplete="off"
                   onChange={handleInputChange}
                   value={details.cpassword}
                   placeholder="Enter your confirm password"
@@ -230,6 +235,7 @@ const Signup = () => {
                 <select
                   name="gender"
                   className="gender w-full p-2 rounded-lg bg-slate-100 border-medium"
+                  autoComplete="on"
                   onChange={handleInputChange}
                   value={details.gender}
                   size={1}

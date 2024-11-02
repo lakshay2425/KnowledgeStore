@@ -57,7 +57,7 @@ const Read = () => {
         }
     }
     const handleEdit = async (book_name) => {
-        const url = "/Update";
+        const url = "/Admin/Update";
         navigate(url, {state : {data : book_name}});
     };
 

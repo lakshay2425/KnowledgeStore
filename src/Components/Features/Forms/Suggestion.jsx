@@ -4,7 +4,7 @@ import { FaUser, FaLock, FaPen } from "react-icons/fa";
 import { IoIosMail } from "react-icons/io";
 import { FaPhone } from "react-icons/fa6";
 import { useAlert } from "../../utils/setAlert";
-//import { clearAlert } from "../../../../Store/store";
+
 
 const Suggestion = () => {
 
@@ -82,6 +82,7 @@ const Suggestion = () => {
               <div className=" flex items-center space-x-2 ">
                 <input className="w-96 p-2 rounded-lg bg-slate-100 border-medium"
                   type="text"
+                  autoComplete="username"
                   id="username"
                   onChange={handleInputChange}
                   placeholder="Enter your username"
@@ -96,6 +97,7 @@ const Suggestion = () => {
               <div className=" flex items-center space-x-2 ">
                 <input className="w-full p-2 rounded-lg bg-slate-100 border-medium"
                   type="gmail"
+                  autoComplete="email"
                   id="gmail"
                   onChange={handleInputChange}
                   placeholder="Enter your gmail"
@@ -113,6 +115,7 @@ const Suggestion = () => {
                   type="text"
                   name="genre"
                   id="Category"
+                  autoComplete="on"
                   onChange={handleInputChange}
                   value={details.category}
                   placeholder="Enter the genre of book"
@@ -126,6 +129,7 @@ const Suggestion = () => {
 
                 <input className="w-full p-2 rounded-lg bg-slate-100 border-medium"
                   type="text"
+                  autoComplete="off"
                   name="bookName"
                   id="bookName"
                   onChange={handleInputChange}
@@ -139,6 +143,7 @@ const Suggestion = () => {
               <div className=" flex items-center space-x-2 ">
                 <input className="w-full p-2 rounded-lg bg-slate-100 border-medium"
                   type="text"
+                  autoComplete="off"
                   id="author"
                   onChange={handleInputChange}
                   placeholder="Enter the author name"
@@ -148,7 +153,7 @@ const Suggestion = () => {
                 <FaPen className="icon" />
               </div>
             </div>
-            <button type="submit" className="p-2 rounded-xl bg-slate-400 text-slate-100 hover:bg-slate-950 hover:scale-110 hover:border-medium">Send Feedback</button>
+            <button type="submit" className="p-2 rounded-xl bg-slate-400 text-slate-100 hover:bg-slate-950 hover:scale-110 hover:border-medium">Send Suggestion</button>
           </form>
         </div>
         <div className="col-span-2 h-80 shadow-inner drop-shadow-2xl rounded-2xl bg-[url('https://images.unsplash.com/photo-1524578271613-d550eacf6090?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')]">

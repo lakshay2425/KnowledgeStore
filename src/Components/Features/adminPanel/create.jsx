@@ -70,7 +70,7 @@ const Create = () => {
             <label htmlFor="author">Author</label>
           </td>
           <td>
-            <input type="text" id='author'  onChange={handleInputChange} placeholder='Enter the author name' name='author' value={details.author} />
+            <input type="text" id='author' autoComplete='off' onChange={handleInputChange} placeholder='Enter the author name' name='author' value={details.author} />
           </td>
         </tr>
         <tr>
@@ -78,7 +78,7 @@ const Create = () => {
             <label htmlFor="book_name">Book Name</label>
           </td>
           <td>
-            <input type="text" id='book_name' name='book_name'  onChange={handleInputChange} value={details.book_name} placeholder='Enter the book name' required/>
+            <input type="text" id='book_name' name='book_name' autoComplete='off'  onChange={handleInputChange} value={details.book_name} placeholder='Enter the book name' required/>
           </td>
         </tr>
         <tr>
@@ -86,14 +86,14 @@ const Create = () => {
             <label htmlFor="genre">Genre</label>
           </td>
           <td>
-            <input type="text" id='genre'  onChange={handleInputChange} placeholder='Enter the book genre' name='genre' value={details.genre} />
+            <input type="text" id='genre'  onChange={handleInputChange} autoComplete='off' placeholder='Enter the book genre' name='genre' value={details.genre} />
           </td>
         </tr>
         <tr>
           <td>
             <label htmlFor="price">Price</label></td>
           <td>
-            <input type="number" id='price' onChange={handleInputChange} placeholder='Enter the book price' name='price' value={details.price} />
+            <input type="number" id='price' onChange={handleInputChange} autoComplete='off' placeholder='Enter the book price' name='price' value={details.price} />
           </td>
         </tr>
         <tr>
@@ -101,14 +101,14 @@ const Create = () => {
             <label htmlFor="img_link">Image Link</label>
           </td>
           <td>
-            <input type="url" id='img_link'  onChange={handleInputChange} placeholder='Enter the image link' name='img_link' value={details.img_link} />
+            <input type="url" id='img_link'  onChange={handleInputChange} autoComplete='off' placeholder='Enter the image link' name='img_link' value={details.img_link} />
           </td>
         </tr>
         <tr>
           <td>
             <label htmlFor="quantity">Quantity</label></td>
           <td>
-            <input name="quantity" placeholder='Enter quantity of the book' id="quantity" onChange={handleInputChange}  value={details.quantity}/>
+            <input name="quantity" placeholder='Enter quantity of the book'  autoComplete="on" id="quantity" onChange={handleInputChange}  value={details.quantity}/>
           </td>
         </tr>
         <tr>

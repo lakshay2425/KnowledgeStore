@@ -81,6 +81,7 @@ const Contact = () => {
                 <input className="w-full p-2 rounded-lg bg-slate-100 border-medium"
                   type="text"
                   id="username"
+                  autoComplete="username"
                   onChange={handleInputChange}
                   placeholder="Enter your username"
                   name="username"
@@ -95,6 +96,7 @@ const Contact = () => {
                 <input  className="w-full p-2 rounded-lg bg-slate-100 border-medium"
                   type="gmailt"
                   id="gmail"
+                  autoComplete="email"
                   onChange={handleInputChange}
                   placeholder="Enter your gmail"
                   name="gmail"
@@ -109,6 +111,7 @@ const Contact = () => {
                 <input  className="w-full p-2 rounded-lg bg-slate-100 border-medium"
                   type="number"
                   id="contact"
+                  autoComplete="number"
                   onChange={handleInputChange}
                   placeholder="Enter your contact number"
                   name="number"
@@ -123,6 +126,7 @@ const Contact = () => {
                 <textarea className="w-full p-2 rounded-lg bg-slate-100 border-medium"
                   name="concern"
                   id="concern"
+                  autoCapitalize="off"
                   onChange={handleInputChange}
                   cols="33"
                   placeholder="Enter the reason why you want to contact"

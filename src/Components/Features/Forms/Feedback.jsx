@@ -87,6 +87,7 @@ const Feedback = () => {
                   className="w-full p-2 rounded-lg bg-slate-100 border-medium"
                   type="text"
                   id="username"
+                  autoComplete="name"
                   onChange={handleInputChange}
                   placeholder="Enter your username"
                   name="username"
@@ -103,6 +104,7 @@ const Feedback = () => {
                   className="w-full p-2 rounded-lg bg-slate-100 border-medium"
                   type="email"
                   id="gmail"
+                  autoComplete="email"
                   onChange={handleInputChange}
                   placeholder="Enter your email"
                   name="gmail"
@@ -116,7 +118,7 @@ const Feedback = () => {
             <div>
               <p className="py-2">Phone Number</p>
               <div className="flex items-center space-x-2">
-                <input type="number" name="" id="" placeholder="Enter your number" className="w-full p-2 rounded-lg bg-slate-100 border-medium" />
+                <input type="number" name="number" id="number" autoComplete="number" placeholder="Enter your number" className="w-full p-2 rounded-lg bg-slate-100 border-medium" />
               </div>
             </div>
 
@@ -127,13 +129,13 @@ const Feedback = () => {
                   className="w-full p-2 rounded-lg bg-slate-100 border-medium"
                   name="feedback"
                   id="feedback"
+                  autoComplete="off"
                   onChange={handleInputChange}
                   cols="33"
                   value={details.feedback}
                   rows="5"
                   placeholder="Enter your feedback in detail"
                 >
-
                 </textarea>
 
               </div>
