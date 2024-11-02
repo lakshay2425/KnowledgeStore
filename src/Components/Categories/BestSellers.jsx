@@ -32,7 +32,7 @@ const BestSeller = () => {
             </div> */}
             </div>
         
-        <div ref={containerRef} className=" grid grid-cols-5 max-md:grid-cols-3 max-sm:grid-cols-2 mb-10">
+        <div ref={containerRef} className=" grid grid-cols-5 max-md:grid-cols-3 max-sm:grid-cols-2 max-lg:grid-cols-3 mb-10 max-xl:grid-cols-4 max-2xl:grid-cols-4">
            <ProductCard books={bookInfo}/>
         </div>
     </div>
