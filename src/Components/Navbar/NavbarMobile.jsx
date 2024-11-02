@@ -13,24 +13,16 @@ import UserAvatar from './UserAvatar';
 function NavbarMobile() {
     const [role, setRole] = useState(localStorage.getItem("role"));
     const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem("isLoggedIn") === "true");
-    // const [email, setEmail] = useState(localStorage.getItem("gmail"));
-    // let userData = "";
-
+    
     //To update isLoggedIn value based on localStorage
     useEffect(() => {
         setIsLoggedIn(localStorage.getItem("isLoggedIn") === "true");
     }, [localStorage.getItem("isLoggedIn")]);
-    //console.log(isLoggedIn, "State variable")
-
+    
     //To update role value based on localStorage
     useEffect(() => {
         setRole(localStorage.getItem("role"))
     }, [localStorage.getItem("role")])
-
-    //To fetch gmail from localStorage
-    // useEffect(() => {
-    //     setEmail(localStorage.getItem("gmail"))
-    // }, [localStorage.getItem("gmail")])
 
     return (
         <ListboxWrapper>

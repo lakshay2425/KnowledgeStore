@@ -12,15 +12,12 @@ import AdminPanel from "./adminPanel";
 import Logout from "./Logout";
 import UserAvatar from "./UserAvatar";
 import { Divider } from "@nextui-org/divider";
-import axiosInstance from "../utils/Axios"
 
 
 var Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [role, setRole] = useState((localStorage.getItem("role")));
   const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem("isLoggedIn") === "true");
-  const [email, setEmail] = useState((localStorage.getItem("gmail")));
- const  [userData, setUserData] = useState((localStorage.getItem("userDetails")))
 
   //To fetch isLoggedIn value from localStorage
   useEffect(() => {
@@ -31,60 +28,12 @@ var Navbar = () => {
     setIsOpen(!isOpen);
   };
 
-  // //To fetch gmail from localStorage
-  useEffect(() => {
-    if (localStorage.getItem("gmail") != null) {
-      const mail = (localStorage.getItem("gmail"));
-      setEmail(mail)
-    }
-  }, [localStorage.getItem("gmail")])
-
-  //To fetch useDetails from localStorage
-  useEffect(() => {
-    if (!userData) {
-      const data = localStorage.getItem("userDetails");
-      if(data){
-       setUserData(JSON.parse(data)) 
-      }
-    }
-  }, [(localStorage.getItem("userDetails"))])
-
   //To fetch role of the user from localStorage
   useEffect(() => {
     const Role = localStorage.getItem("role");
     setRole(Role)
   }, [localStorage.getItem("role")])
 
-  // if (isLoggedIn) {
-  //   console.log("LoggedIn")
-  //   const data = localStorage.getItem("userDetails");
-  //   if (!data) {
-  //     try {
-  //       async function profileDetail() {
-  //         console.log("User Email", email);
-  //         const response = await axiosInstance.post('http://localhost:3000/user/profile',
-  //           { email },
-  //           {
-  //             headers: {
-  //               'Content-Type': 'application/json'
-  //             }
-  //           }
-  //         );
-  //         let userDetails = JSON.stringify(response.data.userDetails);
-  //         console.log("User Profile Details", userDetails);
-  //         localStorage.setItem("userDetails", userDetails);
-  //       }
-  //       profileDetail();
-  //     } catch (error) {
-  //       console.error("Error in fetching user profile details", error.message)
-  //     }
-  //   }else{
-  //     if(!userData){
-  //       let parsedData = JSON.parse(data);
-  //     setUserData(parsedData);
-  //     }
-  //   }
-  // }
 
   return (
     <>
@@ -106,9 +55,6 @@ var Navbar = () => {
             {role == "admin" && (
               <AdminPanel />
             )}
-            <Link>
-              <p className="about">About Us</p>
-            </Link>
             {isLoggedIn && (
               <>
                 <p>
