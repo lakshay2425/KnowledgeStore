@@ -22,12 +22,12 @@ const AdminPanel = () => {
               </DropdownTrigger>
               <DropdownMenu variant="faded" aria-label="Static Actions">
                 <DropdownItem key="create">
-                  <Link className="dropdown-item" to="/Create">
+                  <Link className="dropdown-item" to="/Admin/Create">
                     Create
                   </Link>
                 </DropdownItem>
                 <DropdownItem key="read">
-                  <Link className="dropdown-item" to="/Read">
+                  <Link className="dropdown-item" to="/Admin/Read">
                     Read
                   </Link>
                 </DropdownItem>

@@ -51,7 +51,8 @@ const Signup = () => {
             console.log("Signup Successfully");
             localStorage.setItem("isLoggedIn", true);
             localStorage.setItem("gmail", details.gmail);
-            localStorage.setItem("userDetails", JSON.stringify(details));
+            localStorage.setItem("fullName", details.fullName);
+            localStorage.setItem("username", details.username);
             localStorage.setItem("role", "user");
             handleSuccess("Signup Successfully");
             setDetails({

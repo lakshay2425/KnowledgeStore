@@ -1,20 +1,36 @@
 import React, { useState, useEffect } from "react";
 import UserSection from './UserSection';
-import ProfileSection from './ProfileSection';
 import Sidebar from './Sidebar';
 import UserInfo from './UserInfo';
 
 function Profile() {
-    const [data, setData] = useState((localStorage.getItem("userDetails")));
+    const [fullName, setFullName] = useState("");
+    const [userName, setUserName] = useState("");
+    const [gmail, setGmail] = useState('');
 
-    //To update useDetails from localStorage
+    //To update fullName from localStorage
     useEffect(() => {
-        if (data) {
-            const userData = JSON.parse(localStorage.getItem("userDetails"));
-            setData(userData);
-            //console.log(userData)
+      const name = localStorage.getItem("fullName");
+      if (name) {
+        setFullName(name);
+      }
+    }, [(localStorage.getItem("fullName"))])
+  
+    //To update username from localStorage
+    useEffect(() => {
+      const username = localStorage.getItem("username");
+      if (username) {
+        setUserName(username);
+      }
+    }, [(localStorage.getItem("username"))])
+
+    //To update fullName from localStorage
+    useEffect(() => {
+        const Gmail = localStorage.getItem("gmail");
+        if (Gmail) {
+          setGmail(Gmail);
         }
-    }, [(localStorage.getItem("userDetails"))])
+      }, [(localStorage.getItem("gmail"))])
 
     return (
         <div className="w-full h-auto bg-[#F6F6F6] overflow-hidden">
@@ -23,29 +39,22 @@ function Profile() {
                 <Sidebar />
                 <div className="w-full h-full capitalize">
                     <h1 className="px-4 md:px-10 py-4 text-xl md:text-2xl font-medium">My Profile</h1>
-                    <ProfileSection data={data} />
                     <UserSection title="Personal Information">
                         <div className="flex flex-col md:flex-row gap-4 md:gap-48">
-                            <UserInfo label="First Name" value={data.fullName} />
-                            <UserInfo label="Username" value={data.username} />
+                            <UserInfo label="Full Name" value={fullName} />
+                            <UserInfo label="Username" value={userName} />
                         </div>
                         <div className="flex flex-col md:flex-row gap-4 md:gap-32">
-                            <UserInfo label="Email" value={data.emailId} />
-                            <UserInfo label="Phone" value={data.contactNumber} />
-                        </div>
-                        <div className="px-4 md:px-6 py-2 md:py-3">
-                            <h1 className="text-zinc-600">Bio</h1>
-                            <p>{data?.status || "Single"}</p>
+                            <UserInfo label="Email" value={gmail} />
                         </div>
                     </UserSection>
                     <UserSection title="Address">
                         <div className="flex flex-col md:flex-row gap-4 md:gap-48">
-                            <UserInfo label="Country" value={data?.country || "India"} />
-                            <UserInfo label="City" value={data?.city || "Delhi"} />
+                            <UserInfo label="Country" value={"India"} />
+                            <UserInfo label="City" value={ "Delhi"} />
                         </div>
                         <div className="flex flex-col md:flex-row gap-4 md:gap-52">
-                            <UserInfo label="Postal Code" value={data?.postalcode || "110086"} />
-                            {/* <UserInfo label="Tax ID" value={data.taxid} /> */}
+                            <UserInfo label="Postal Code" value={ "110086"} />
                         </div>
                     </UserSection>
                 </div>

@@ -67,7 +67,6 @@ const ProductCard = ({ books }) => {
       console.log(error.message);
     }
   }
-  // console.log(books)
   return (
     <>
       {books.map((book) => (
@@ -88,8 +87,9 @@ const ProductCard = ({ books }) => {
         </div>
       ))}
       {
-        isOpen ? (<>
-          <div className="w-[100vw] h-[100vh] backdrop-blur-3xl fixed inset-0 z-30">
+        isOpen ? (
+        <>
+          <div key={num._id} className="w-[100vw] h-[100vh] backdrop-blur-3xl fixed inset-0 z-30">
             <div className="fixed inset-0 w-[90vw] h-[90vh] mx-auto my-auto p-auto z-40 backdrop-blur-3xl bg-white/30 rounded-large flex shadow-large max-md:overflow-scroll" >
               <div className="fixed right-5 top-5" onClick={Preview}>
                 {isOpen ? <AiOutlineClose size={25} /> : <></>}
@@ -114,12 +114,10 @@ const ProductCard = ({ books }) => {
               </div>
             </div >
           </div>
-
         </>
         ) : (
           <></>
         )}
-
     </>
   );
 };

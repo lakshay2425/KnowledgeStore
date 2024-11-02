@@ -46,10 +46,12 @@ const Login = () => {
         const role = decoded.data;
         localStorage.setItem("isLoggedIn", true);
         localStorage.setItem("gmail", result.emailId);
-        localStorage.setItem("userDetails", JSON.stringify(result));
+        localStorage.setItem("fullName", result.fullName);
+            localStorage.setItem("username", result.username);
+        //localStorage.setItem("userDetails", JSON.stringify(result));
         if (role === 'admin') {
           localStorage.setItem("role", "admin");
-        } else if (role == "user") {
+        }else if (role == "user") {
           localStorage.setItem("role", "user");
         }
         setDetails({
@@ -115,7 +117,7 @@ const Login = () => {
                 <input className="w-full p-2 rounded-lg bg-slate-100 border-medium"
                   type="password"
                   id="pass"
-                  autoComplete="password"
+                  autoComplete="on"
                   onChange={handleInputChange}
                   placeholder="Enter your password"
                   name="password"

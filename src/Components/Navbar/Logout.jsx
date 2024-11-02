@@ -14,8 +14,9 @@ const Logout = () => {
       const response = await axiosInstance.get(`${import.meta.env.VITE_BACKEND_URL}/auth/logout`);
       localStorage.setItem("isLoggedIn", false);
       localStorage.setItem("role", "");
-      localStorage.setItem("userDetails", "");
       localStorage.setItem("gmail", "");
+      localStorage.setItem("fullName", "");
+      localStorage.setItem("username", "");
       Cookies.remove('token');  // Remove the token cookie
       navigate("/Login");
     } catch (error) {

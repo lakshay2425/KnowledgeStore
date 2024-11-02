@@ -31,7 +31,6 @@ const Search = () => {
         const result = response.data.bookDetails;
         console.log(result); 
         navigate('/SearchResult', { state: { book: result } });
-        // Handle the result as needed
       }else{
         console.log("Book not found");
       }

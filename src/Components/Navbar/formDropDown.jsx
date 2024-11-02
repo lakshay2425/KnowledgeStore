@@ -13,11 +13,11 @@ import {
 
 const FormDropDown = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem("isLoggedIn") === "true");
-  //console.log(localStorage.getItem("isLoggedIn"));
+
   useEffect(() => {
     setIsLoggedIn(localStorage.getItem("isLoggedIn") === "true");
   }, [localStorage.getItem("isLoggedIn")]);
-  //console.log(isLoggedIn, "State variable")
+
   return (
     <>
       <Dropdown backdrop="blur">
@@ -63,8 +63,6 @@ const FormDropDown = () => {
               </Link>
             </DropdownItem>
           )}
-
-
         </DropdownMenu>
       </Dropdown>
     </>
