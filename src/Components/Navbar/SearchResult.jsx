@@ -5,9 +5,7 @@ const SearchResult = () => {
     const location = useLocation();
     let {book}  = (location.state || {}); // Get the book details from the state
     book = Array(book);
-    console.log(book);
-
-
+    //console.log(book);
     return (
         <div className='h-screen w-[90vw] mx-auto pt-10 '>
             <h1 className='text-3xl'>Searched Result</h1>

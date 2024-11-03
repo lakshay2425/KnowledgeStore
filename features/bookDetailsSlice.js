@@ -17,7 +17,7 @@ export const fetchBooks = createAsyncThunk(
       const { book } = getState();
       if (!book.bookFetched && book.booksInfo.length === 0) {
         const response = await axiosInstance.get(`${import.meta.env.VITE_BACKEND_URL}/books`);
-        return response.data;
+        return response.data.data;
       }
       return book.booksInfo;
     } catch (error) {

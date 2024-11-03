@@ -8,7 +8,6 @@ const Search = () => {
   // Use useState to manage bookName state
   const [bookName, setBookName] = useState("");
   const navigate = useNavigate();
-
   // Function to handle change in input fields value
   const handleInputChange = (e) => {
     setBookName(e.target.value);
@@ -27,18 +26,21 @@ const Search = () => {
           },
         }
       );
-      if (response.data.found) {
-        const result = response.data.bookDetails;
-        console.log(result); 
+      if (response.data.success === true) {
+        const result = response.data.data;
+        console.log(result);
         navigate('/SearchResult', { state: { book: result } });
-      }else{
-        console.log("Book not found");
+      } else if (response.data.success === false) {
+        //handleError(response.data.message);
+        console.log(response.data.message);
       }
-
       // Reset the bookName after search
       setBookName("");
     } catch (error) {
       console.error("Error fetching book data:", error);
+      //      handleError(response.data.message);
+      console.log(response.data.message);
+      setBookName("");
     }
   };
 

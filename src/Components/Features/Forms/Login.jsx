@@ -37,11 +37,10 @@ const Login = () => {
         }
       );
       const result = response.data.userData;
-      //console.log(result, "Result");
-      const token = Cookies.get('token'); // 'token' is the cookie name
+      if(response.data.success === true){
+        const token = Cookies.get('token'); // 'token' is the cookie name
       if (token) {
-        console.log("Logged In Successfully");
-        handleSuccess("Logged In Successfully");
+        handleSuccess(response.data.message);
         const decoded = jwtDecode(token);
         const role = decoded.data;
         localStorage.setItem("isLoggedIn", true);
@@ -66,6 +65,7 @@ const Login = () => {
           username: "",
           password: "",
         });
+      }
       }
     } catch (error) {
       console.error("Error submitting form:", error);

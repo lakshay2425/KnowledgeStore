@@ -54,7 +54,7 @@ const Signup = () => {
             localStorage.setItem("fullName", details.fullName);
             localStorage.setItem("username", details.username);
             localStorage.setItem("role", "user");
-            handleSuccess("Signup Successfully");
+            handleSuccess(result.message);
             setDetails({
               fullName: '',
               username: '',
@@ -66,18 +66,16 @@ const Signup = () => {
               gender: ''
             });
             navigate("/");
-          } else {
+          } else{
             console.log("Signup failed");
             handleError("Signup failed");
           }
         } else if (result.exists === true) {
-          handleError("User already exists");
+          handleError(result.message);
         }
       } else {
-        console.log("Password and Confirm password didn't match");
         handleError("Password and Confirm password didn't match");
       }
-      console.log("After every conditional");
       setDetails({
         fullName: '',
         username: '',
@@ -93,7 +91,7 @@ const Signup = () => {
       if (error.response.status === 429) {
         handleError('Rate limit exceeded. Please try again later.');
       } else {
-        handleError(error.message);
+        handleError(error.response.data.message);
       }
       setDetails({
         fullName: '',
@@ -172,8 +170,8 @@ const Signup = () => {
                   type="number"
                   autoComplete="number"
                   id="contact"
-                  minlength="10" 
-                  maxlength="10"
+                  minLength="10" 
+                  maxLength="10"
                   onChange={handleInputChange}
                   placeholder="Enter your contact number"
                   name="number"

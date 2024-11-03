@@ -44,10 +44,16 @@ const Contact = () => {
       );
       const result = response.data;
       console.log(result);
-      handleSuccess(response.data.message);
-      setTimeout(()=>{
-        clearAlert();
-      },3000)
+      if(result.success === true){
+        handleSuccess(response.data.message);
+        // setTimeout(()=>{
+        //   clearAlert();
+        // },3000)
+      }
+      else if(result.success === false){
+        handleError(response.data.message);
+      }
+
       setDetails({
       username: "",
       gmail: "",
@@ -58,9 +64,15 @@ const Contact = () => {
       console.error("Error submitting form:", error);
       if (error.response.status === 429) {
         handleError('Rate limit exceeded. Please try again later.');
-      }else{
+      }else if(error.response.success === false){
         handleError(response.data.message);
       }
+      setDetails({
+        username: "",
+        gmail: "",
+        number: "",
+        concern: "",
+      });
     }
   };
 
