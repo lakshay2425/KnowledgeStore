@@ -25,6 +25,8 @@ const Profile = lazy(() => import("./Components/Features/Account/Profile"));
 import axios from 'axios';
 const Error404 = lazy(()=> import("./Components/utils/Error404"));
 
+const ProductView = lazy(() => import("./Components/utils/ProductView"));
+
 
 const App = () => {
   axios.defaults.withCredentials = true;
@@ -264,6 +266,18 @@ const App = () => {
           <Navbar />
           <Suspense fallback={<div>Loading...</div>}>
             <Profile />
+          </Suspense>
+          <Footer />
+        </>
+      ),
+    },
+    {
+      path: '/ProductView',
+      element: (
+        <>
+          <Navbar />
+          <Suspense fallback={<div>Loading...</div>}>
+            <ProductView />
           </Suspense>
           <Footer />
         </>

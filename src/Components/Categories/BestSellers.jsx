@@ -31,12 +31,12 @@ const BestSeller = () => {
                 <button className="flex items-center justify-center rounded-full w-8 h-8 shadow-xl backdrop-blur-lg transition ease-in-out  hover:scale-125 duration-300" onClick={scrollRight}><FaCaretRight /></button>
             </div> */}
             </div>
-
-            <div ref={containerRef} className=" grid grid-cols-5 max-md:grid-cols-3 max-sm:grid-cols-2 mb-10">
-                <ProductCard books={bookInfo} />
-            </div>
+        
+        <div ref={containerRef} className=" grid grid-cols-5 max-md:grid-cols-3 max-sm:grid-cols-2 max-lg:grid-cols-3 mb-10 max-xl:grid-cols-4 max-2xl:grid-cols-4">
+           <ProductCard books={bookInfo}/>
         </div>
-
+    </div>
+    
     </>
 };
 
