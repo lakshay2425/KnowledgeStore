@@ -5,7 +5,7 @@ const SearchResult = () => {
     const location = useLocation();
     let {book}  = (location.state || {}); // Get the book details from the state
     book = Array(book);
-    console.log(book);
+    // console.log(book);
 
 
     return (
