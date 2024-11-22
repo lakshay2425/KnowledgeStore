@@ -1,4 +1,4 @@
-import React, { useState } from "react"; 
+import React, { useState } from "react";
 import axiosInstance from "../../utils/Axios";
 import { FaUser, FaLock } from "react-icons/fa";
 import { IoIosMail } from "react-icons/io";
@@ -6,6 +6,9 @@ import { FaPhone } from "react-icons/fa6";
 import { useNavigate } from 'react-router-dom';
 import Cookies from "js-cookie";
 import { useAlert } from "../../utils/setAlert";
+import { CheckboxGroup } from "@nextui-org/react";
+import { CustomCheckbox } from "./SignupEssentials/CustomCheckbox";
+import InterestedGenre from "./SignupEssentials/InterestedGenre";
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -22,6 +25,7 @@ const Signup = () => {
     cpassword: "",
     gender: "",
   });
+  const [groupSelected, setGroupSelected] = React.useState([]);
 
   // State to track the current step in the signup process
   const [step, setStep] = useState(1);
@@ -167,11 +171,6 @@ const Signup = () => {
                 onChange={handleInputChange}
               />
             </div>
-          </>
-        );
-      case 2:
-        return (
-          <>
             <div>
               <p className="py-2">Password</p>
               <input
@@ -196,9 +195,31 @@ const Signup = () => {
             </div>
           </>
         );
-      case 3:
+      case 2:
         return (
           <>
+            <div>
+              <p className="py-2">City</p>
+              <input
+                className="w-full p-2 rounded-lg bg-slate-100"
+                type="text"
+                placeholder="Enter your City"
+                name="city"
+                value={details.city}
+                onChange={handleInputChange}
+              />
+            </div>
+            <div>
+              <p className="py-2">Address</p>
+              <input
+                className="w-full h-8 p-2 rounded-lg bg-slate-100"
+                type="text"
+                placeholder="Enter your Address"
+                name="address"
+                value={details.address}
+                onChange={handleInputChange}
+              />
+            </div>
             <div>
               <p className="py-2">Gender</p>
               <select
@@ -214,6 +235,34 @@ const Signup = () => {
                 <option value="Prefer not to say">Prefer not to say</option>
               </select>
             </div>
+          </>
+        );
+      case 3:
+        return (
+          <>
+            <div>
+              <p className="py-2">Your interests</p>
+              <div className="flex flex-col gap-1 w-full">
+                <CheckboxGroup
+                  className="gap-1"
+                  label="Select multiples"
+                  orientation="horizontal"
+                  value={groupSelected}
+                  onChange={setGroupSelected}
+                >
+                  <CustomCheckbox value="Fictional">Fictional</CustomCheckbox>
+                  <CustomCheckbox value="Finance">Finance</CustomCheckbox>
+                  <CustomCheckbox value="Self-Help">Self-Help</CustomCheckbox>
+                  <CustomCheckbox value="Skill-Based">Skill-Based</CustomCheckbox>
+                  <CustomCheckbox value="Biography">Biography</CustomCheckbox>
+                  <CustomCheckbox value="Comics">Comics</CustomCheckbox>
+                </CheckboxGroup>
+                <p className="mt-4 ml-1 text-default-500">
+                  Selected: {groupSelected.join(", ")}
+                </p>
+              </div>
+            </div>
+
           </>
         );
       default:
@@ -234,7 +283,7 @@ const Signup = () => {
       <div className="col-start-2 pl-72 p-16 rounded-large max-md:col-start-1 max-md:p-4 max-md:justify-self-auto">
         <form method="post" className="signup" onSubmit={handleSubmit}>
           {renderStepContent()}
-          
+
           <div className="flex justify-between mt-4">
             {step > 1 && (
               <button type="button" onClick={prevStep} className="p-2 rounded-xl bg-slate-400 text-slate-100 hover:bg-slate-950">
