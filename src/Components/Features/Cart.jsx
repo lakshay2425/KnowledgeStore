@@ -24,7 +24,7 @@ const Cart = () => {
               'Content-Type': 'application/json'
             }
           });
-        if (response.data.bookDetails > 0) {
+        if (response.data.bookDetails.length > 0) {
           setData(response.data.bookDetails);
           //console.log(response.data);
           setLength(response.data.numberOfBooks);
@@ -33,7 +33,7 @@ const Cart = () => {
         };
       } catch (error) {
         console.error('Error fetching data:', error);
-        if (error.response.status === 429) {
+        if(error.response.status === 429) {
           handleError('Rate limit exceeded. Please try again later.');
         }
       }
@@ -68,17 +68,18 @@ const Cart = () => {
         }
       }
     );
-    const response = removeBookResponse.response.data.success;
+    const response = removeBookResponse.data.success;
     console.log(response);
     if (response) {
       handleSuccess("Book removed successfully from the cart");
-      const updatedCart = data.filter(item => item.bookName !== bookName);
+      const updatedCart = data.filter(item => item.title !== bookName);
+      console.log(updatedCart);
       setData(updatedCart);
+      setLength(length - 1);
     } else {
       console.log('Error deleting book from cart');
       handleError("Error deleting book from cart");
     };
-
   };
 
   const moveBookToWishlist = async (bookName) => {
@@ -92,16 +93,16 @@ const Cart = () => {
       }
     );
     console.log(removeBookResponse);
-    const response = removeBookResponse.response.data.success;
-    console.log(response);
-    if (response) {
-      handleSuccess("Book moved successfully to the wishlist");
-      const updatedCart = data.filter(item => item.bookName !== bookName);
-      setData(updatedCart);
-    } else {
-      console.log('Error, book not moved to the wishlist');
-      handleError("Error, book moved  to the wishlist, Try again later");
-    }
+    // const response = removeBookResponse.response.data.success;
+    // console.log(response);
+    // if (response) {
+    //   handleSuccess("Book moved successfully to the wishlist");
+    //   const updatedCart = data.filter(item => item.bookName !== bookName);
+    //   setData(updatedCart);
+    // } else {
+    //   console.log('Error, book not moved to the wishlist');
+    //   handleError("Error, book moved  to the wishlist, Try again later");
+    // }
   }
   return (
     <div className="cart-container m-40 h-auto p-6 bg-gray-100">
