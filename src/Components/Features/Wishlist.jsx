@@ -45,7 +45,7 @@ return (
       </div>
     ) : (
       <div>
-        <h2>No books added to the cart yet</h2>
+        <h2>No books added to the wishlist yet</h2>
       </div>
     )}
   </>
