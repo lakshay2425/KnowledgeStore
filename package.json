@@ -19,7 +19,7 @@
     "@headlessui/react": "^1.7.18",
     "@nextui-org/react": "^2.4.8",
     "@radix-ui/themes": "^3.0.0",
-    "@reduxjs/toolkit": "^2.2.7",
+    "@reduxjs/toolkit": "^2.3.0",
     "axios": "^1.7.4",
     "command": "^0.0.1",
     "dotenv": "^16.4.5",
