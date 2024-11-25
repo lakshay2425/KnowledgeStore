@@ -14,9 +14,7 @@ const Footer = () => {
                         <span className="block"><i className="fas fa-envelope mr-2"></i> support@KnowledgeStore.com</span>
                     </div>
                     <div className="flex space-x-4">
-                        <Link to="#" className="text-gray-400 hover:text-white"><i className="fab fa-twitter"></i></Link>
                         <Link to="#" className="text-gray-400 hover:text-white"><i className="fab fa-instagram"></i></Link>
-                        <Link to="#" className="text-gray-400 hover:text-white"><i className="fab fa-linkedin"></i></Link>
                     </div>
                 </div>
 
