@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from "react";
 import axiosInstance from "../utils/Axios"; // Use 'import' instead of 'require'
-import { useAlert } from "../utils/setAlert"
-
+import { useAlert } from "../utils/setAlert";
+import { Button } from "@nextui-org/react";
 import { FaCircleMinus, FaCirclePlus } from "react-icons/fa6";
 const Cart = () => {
   const [data, setData] = useState([]);
   const [email, setEmail] = useState(localStorage.getItem("gmail"));
   const [length, setLength] = useState(0);
-  const { handleError, handleSuccess } = useAlert();
-
+  const { handleError } = useAlert();
+  let [tQty, setTQty] = useState(0)
+  let [totalPrice, setTotalPrice] = useState(0)
+  let [totalDiscount, setTotalDiscount] = useState(0)
   //To update gmail value from localStorage
   useEffect(() => {
     setEmail(localStorage.getItem("gmail"))
@@ -39,7 +41,7 @@ const Cart = () => {
       }
     };
     fetchData();
-  }, []);
+  }, [data]);
 
   // Function to handle increase quantity
   const handleIncreaseQuantity = (index) => {
@@ -126,15 +128,28 @@ const Cart = () => {
               onClick={() => handleIncreaseQuantity(index)}
             />
           </div>
+ 
           <div className="Price flex flex-col items-end">
             <p className="text-3xl font-bold">$ {(item.price * item.quantity).toFixed(2)}</p>
             <button className="text-cyan-500 underline" onClick={() => { moveBookToWishlist(item.title) }}>Save to Wishlist</button>
             <button className="text-red-500 underline" onClick={() => { deleteBookFromCart(item.title) }}>Remove</button>
           </div>
+
         </div>
-      ))
-        : <p className="text-2xl text-center pt-10">Your cart is empty</p>
-      }
+
+      ))}
+      <div className="flex-col my-6 space-y-2 p-4 bg-slate-200 rounded-medium">
+        <div className="flex gap-6">
+          <h2 className="text-2xl font-bold">Subtotal : </h2>
+          <p className="text-xl font-semibold">₹ {totalPrice}</p>
+        </div>
+        <div className="flex gap-6">
+          <h3 className="text-xl font-bold">Discount : </h3>
+          <p className="text-xl font-semibold">₹ {totalDiscount}</p>
+        </div>
+        <Button>Proceede to Buy ( {tQty} ) items</Button>
+
+      </div>
     </div>
   );
 };
