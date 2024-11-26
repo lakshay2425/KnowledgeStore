@@ -47,7 +47,6 @@ const Login = () => {
         localStorage.setItem("gmail", result.emailId);
         localStorage.setItem("fullName", result.fullName);
             localStorage.setItem("username", result.username);
-        //localStorage.setItem("userDetails", JSON.stringify(result));
         if (role === 'admin') {
           localStorage.setItem("role", "admin");
         }else if (role == "user") {
@@ -59,8 +58,7 @@ const Login = () => {
         });
         navigate("/");
       } else {
-        console.log("Failed to Login");
-        handleError("Failed to Login")
+        handleError("Invalid Credentials, Failed to login");
         setDetails({
           username: "",
           password: "",
@@ -68,11 +66,10 @@ const Login = () => {
       }
       }
     } catch (error) {
-      console.error("Error submitting form:", error);
       if (error.response.status === 429) {
         handleError('Rate limit exceeded. Please try again later.');
       } else {
-        handleError("Failed to Login")
+        handleError("Failed to Login, Try again later");
       }
       setDetails({
         username: '',

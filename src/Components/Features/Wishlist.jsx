@@ -17,7 +17,7 @@ const Wishlist = () => {
   useEffect(() => {
     const fetchData = async () => {
         try {
-            const response = await axiosInstance.post(`${import.meta.env.VITE_BACKEND_URL}/user/wishlist`,
+            const response = await axiosInstance.get(`${import.meta.env.VITE_BACKEND_URL}/wishlist/fetch`,
               {email},
               {
                 headers: {

@@ -49,7 +49,7 @@ const routes = [
   { path: '/Wishlist', component: 'Wishlist' },
   { path: '/Profile', component: 'Profile' },
   { path: '/ProductView', component: 'ProductView' },
-  {path : "/SearchResult," , components :"SearchResult"},
+  {path : '/SearchResult' , component :'SearchResult'},
 ];
 
 routes.push({
@@ -79,20 +79,19 @@ const App = () => {
     const preventDefault = (e) => {
       e.preventDefault();
     };
-    document.addEventListener('contextmenu', preventDefault);
-    document.addEventListener('keydown', (e) => {
+  
+    const handleKeyDown = (e) => {
       if (e.ctrlKey && (e.key === 'u' || e.key === 's' || e.key === 'a')) {
         preventDefault(e);
       }
-    });
+    };
+  
+    document.addEventListener('contextmenu', preventDefault);
+    document.addEventListener('keydown', handleKeyDown);
   
     return () => {
       document.removeEventListener('contextmenu', preventDefault);
-      document.removeEventListener('keydown', (e) => {
-        if (e.ctrlKey && (e.key === 'u' || e.key === 's' || e.key === 'a')) {
-          preventDefault(e);
-        }
-      });
+      document.removeEventListener('keydown', handleKeyDown);
     };
   }, []);
   

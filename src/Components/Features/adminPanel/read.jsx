@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, {  useState } from 'react';
 import axiosInstance from "../../utils/Axios"
 import "./table.css";
 import { useNavigate } from 'react-router-dom';
