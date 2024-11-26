@@ -19,7 +19,6 @@ const components = {
   Login: lazy(() => import('./Components/Features/Forms/Login')),
   Signup: lazy(() => import('./Components/Features/Forms/Signup')),
   Cart: lazy(() => import('./Components/Features/Cart')),
-  Account: lazy(() => import('./Components/Features/Account')),
   Create: lazy(() => import('./Components/Features/adminPanel/create')),
   Read: lazy(() => import('./Components/Features/adminPanel/read')),
   Update: lazy(() => import('./Components/Features/adminPanel/update')),
@@ -43,7 +42,7 @@ const routes = [
   { path: '/Login', component: 'Login' },
   { path: '/Signup', component: 'Signup' },
   { path: '/Cart', component: 'Cart' },
-  { path: '/Account', component: 'Account' },
+  
   { path: '/Admin/Create', component: 'Create' },
   { path: '/Admin/Read', component: 'Read' },
   { path: '/Admin/Update', component: 'Update' },

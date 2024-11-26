@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axiosInstance from "../utils/Axios"; // Use 'import' instead of 'require'
 import { useAlert } from "../utils/setAlert";
-import { Button } from "@nextui-org/react";
+import { Button, ButtonGroup, Spacer } from "@nextui-org/react";
 import { FaCircleMinus, FaCirclePlus } from "react-icons/fa6";
 const Cart = () => {
   const [data, setData] = useState([]);
@@ -30,18 +30,18 @@ const Cart = () => {
           setData(response.data.bookDetails);
           //console.log(response.data);
           setLength(response.data.numberOfBooks);
-        }else{
+        } else {
           setLength(0);
-        };
-      } catch (error) {
-        console.error('Error fetching data:', error);
-        if(error.response.status === 429) {
-          handleError('Rate limit exceeded. Please try again later.');
         }
+      } catch (error) {
+        // console.error('Error fetching data:', error);
+        // if (error.response.status === 429) {
+        //   handleError('Rate limit exceeded. Please try again later.');
+        // }
       }
     };
     fetchData();
-  }, [data]);
+  }, []);
 
   // Function to handle increase quantity
   const handleIncreaseQuantity = (index) => {
@@ -107,51 +107,64 @@ const Cart = () => {
     // }
   }
   return (
-    <div className="cart-container m-40 h-auto p-6 bg-gray-100">
+    <div className="w-[90vw] m-auto my-10 h-auto p-6 bg-gray-100">
       <div className="Top-bar flex justify-between">
         <h2 className="text-2xl font-medium pl-2">Shopping Cart</h2>
-        <button className="text-red-400 underline" disabled= {length === 0}>Remove All</button>
+        <Button color="danger" className="text-zinc-100 " disabled={length === 0}>Remove All</Button>
       </div>
-      {length > 0 ? data.map((item, index) => (
-        <div key={index} className="Product-Cart-Section mx-5 my-10 flex justify-between">
-          <img className="w-24 h-36 aspect-[4/3]" src={item.imageLink} alt={item.title} />
-          <p className="text-4xl font-semibold text-center pt-7">{item.title}</p>
+      <div className="grid auto-rows-max grid-cols-11 grid-flow-row-dense">
+        {
+          length > 0 ? data.map((item, index) => (
+            <div key={index} className=" col-span-8 mx-5 my-10 grid grid-flow-col grid-cols-8 auto-rows-fr,
+        max-md:grid-rows-3 max-md:grid-flow-row-dense">
+              <img className="w-24 h-36 col-span-2 aspect-[4/3] max-md:col-span-3 max-md:row-span-2 max-md:order-first max-md:" src={item.imageLink} alt={item.title} />
+              <p className="text-4xl col-span-4 font-semibold text-left m-2 pt-7 ,
+          max-xl:text-3xl max-md:text-xl max-sm:text-[1.4rem] , max-md:p-1 max-md:col-span-5 max-md:row-span-1">{item.title}</p>
 
-          <div className="Quantity flex justify-center items-center">
-            <FaCircleMinus
-              className="text-4xl text-black-900 border-[1px] border-black text-slate-300 bg-[#1e1c1c] rounded-full cursor-pointer"
-              onClick={() => handleDecreaseQuantity(index)}
-            />
-            <p className="px-4 text-2xl text-gray-500">{item.quantity}</p>
-            <FaCirclePlus
-              className="text-4xl text-black-900 border-[1px] border-black text-slate-300 bg-[#1e1c1c] rounded-full cursor-pointer"
-              onClick={() => handleIncreaseQuantity(index)}
-            />
+              <div className="Quantity flex justify-center col-span-3 items-center , max-md:col-span-3 max-md:order-4 max-md:justify-start">
+                <FaCircleMinus
+                  className="flex items-center text-slate-400 justify-center rounded-full  w-8 h-8 shadow-xl backdrop-blur-lg transition ease-in-out hover:scale-105 duration-300 cursor-pointer ,
+              max-xl:text-3xl max-md:text-xl"
+                  onClick={() => handleDecreaseQuantity(index)}
+                />
+                <p className="px-4 text-2xl text-gray-500 max-xl:text-xl max-md:text-xl">{item.quantity}</p>
+                <FaCirclePlus
+                  className="flex items-center text-slate-400 justify-center rounded-full  w-8 h-8 shadow-xl backdrop-blur-lg transition ease-in-out hover:scale-105 duration-300 cursor-pointer ,
+              max-xl:text-3xl max-md:text-xl"
+                  onClick={() => handleIncreaseQuantity(index)}
+                />
+              </div>
+
+              <div className="px-2 gap-4 col-span-2 flex flex-col items-end max-md:col-span-5 max-md:row-span-1 max-md:items-start">
+                <p className="text-3xl font-bold max-xl:text-2xl max-md:text-xl">₹ {(item.price * item.quantity).toFixed(2)}</p>
+                <ButtonGroup className="">
+
+                  <Button variant="flat" className="text-cyan-500" onClick={() => { moveBookToWishlist(item.title) }}>Save to Wishlist</Button>
+                  <Spacer></Spacer>
+                  <Button variant='flat' className="text-red-500 " onClick={() => { deleteBookFromCart(item.title) }}>Remove</Button>
+                </ButtonGroup>
+              </div>
+
+            </div>
+
+          )) : <p className="col-span-8 text-2xl text-center pt-10">Your cart is empty</p>
+        }
+        <div className=" flex-col my-6 space-y-2 p-4 bg-slate-200 rounded-medium col-span-3 , max-md:col-span-full" >
+          <div className="flex gap-6">
+            <h2 className="text-2xl font-bold">Subtotal : </h2>
+            <p className="text-xl font-semibold">₹ {totalPrice}</p>
           </div>
- 
-          <div className="Price flex flex-col items-end">
-            <p className="text-3xl font-bold">$ {(item.price * item.quantity).toFixed(2)}</p>
-            <button className="text-cyan-500 underline" onClick={() => { moveBookToWishlist(item.title) }}>Save to Wishlist</button>
-            <button className="text-red-500 underline" onClick={() => { deleteBookFromCart(item.title) }}>Remove</button>
+          <div className="flex gap-6">
+           
           </div>
+          <Button className="w-full">Proceede to Buy ( {tQty} ) items</Button>
 
         </div>
-
-      ))}
-      <div className="flex-col my-6 space-y-2 p-4 bg-slate-200 rounded-medium">
-        <div className="flex gap-6">
-          <h2 className="text-2xl font-bold">Subtotal : </h2>
-          <p className="text-xl font-semibold">₹ {totalPrice}</p>
-        </div>
-        <div className="flex gap-6">
-          <h3 className="text-xl font-bold">Discount : </h3>
-          <p className="text-xl font-semibold">₹ {totalDiscount}</p>
-        </div>
-        <Button>Proceede to Buy ( {tQty} ) items</Button>
-
       </div>
+
+
     </div>
-  );
-};
+  )
+}
 
-export default Cart
+export default Cart;
