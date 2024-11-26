@@ -1,26 +1,25 @@
-import React, {useRef} from "react";
+import React, { useRef } from "react";
 import "./Home.css";
 import BestSellers from "../Categories/BestSellers.jsx";
 import Recomended from "../Categories/Recomended.jsx";
 import main from './main.png';
 import { FaCaretRight } from "react-icons/fa6";
 import { FaCaretLeft } from "react-icons/fa6";
-import Error404 from "../utils/Error404.jsx";
 
 
 const Home = () => {
   const containerRef = useRef(null);
 
-    const scrollLeft = () => {
-        if (containerRef.current) {
-            containerRef.current.scrollLeft -= 630; // Adjust the scroll amount as needed
-        }
-    };
-    const scrollRight = () => {
-        if (containerRef.current) {
-            containerRef.current.scrollLeft += 630; // Adjust the scroll amount as needed
-        }
-    };
+  const scrollLeft = () => {
+    if (containerRef.current) {
+      containerRef.current.scrollLeft -= 630; // Adjust the scroll amount as needed
+    }
+  };
+  const scrollRight = () => {
+    if (containerRef.current) {
+      containerRef.current.scrollLeft += 630; // Adjust the scroll amount as needed
+    }
+  };
   return (
     <>
       <div className="home-section max-md:flex-col-reverse">
@@ -49,12 +48,12 @@ const Home = () => {
         <div className='flex pt-12 pb-4 justify-between'>
           <h2 className="text-zinc-800 text-3xl text font-bold ">Recomended Books</h2>
           <div className='text-2xl flex gap-2 w-max max-sm:hidden'>
-                <button className="flex items-center justify-center rounded-full  w-8 h-8 shadow-xl backdrop-blur-lg transition ease-in-out hover:scale-125 duration-300" onClick={scrollLeft}><FaCaretLeft /></button>
-                <button className="flex items-center justify-center rounded-full w-8 h-8 shadow-xl backdrop-blur-lg transition ease-in-out  hover:scale-125 duration-300" onClick={scrollRight}><FaCaretRight /></button>
-            </div>
+            <button className="flex items-center justify-center rounded-full  w-8 h-8 shadow-xl backdrop-blur-lg transition ease-in-out hover:scale-125 duration-300" onClick={scrollLeft}><FaCaretLeft /></button>
+            <button className="flex items-center justify-center rounded-full w-8 h-8 shadow-xl backdrop-blur-lg transition ease-in-out  hover:scale-125 duration-300" onClick={scrollRight}><FaCaretRight /></button>
+          </div>
         </div>
         <div ref={containerRef} className="w-[90vw] grid grid-flow-col  auto-cols-max	overflow-x-auto">
-           <Recomended/>
+          <Recomended />
         </div>
 
       </div>

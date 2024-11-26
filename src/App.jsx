@@ -19,7 +19,6 @@ const components = {
   Login: lazy(() => import('./Components/Features/Forms/Login')),
   Signup: lazy(() => import('./Components/Features/Forms/Signup')),
   Cart: lazy(() => import('./Components/Features/Cart')),
-  Account: lazy(() => import('./Components/Features/Account')),
   Create: lazy(() => import('./Components/Features/adminPanel/create')),
   Read: lazy(() => import('./Components/Features/adminPanel/read')),
   Update: lazy(() => import('./Components/Features/adminPanel/update')),
@@ -43,14 +42,13 @@ const routes = [
   { path: '/Login', component: 'Login' },
   { path: '/Signup', component: 'Signup' },
   { path: '/Cart', component: 'Cart' },
-  { path: '/Account', component: 'Account' },
   { path: '/Admin/Create', component: 'Create' },
   { path: '/Admin/Read', component: 'Read' },
   { path: '/Admin/Update', component: 'Update' },
   { path: '/Wishlist', component: 'Wishlist' },
   { path: '/Profile', component: 'Profile' },
   { path: '/ProductView', component: 'ProductView' },
-  {path : "/SearchResult," , components :"SearchResult"},
+  {path : '/SearchResult' , component :'SearchResult'},
 ];
 
 routes.push({
@@ -80,20 +78,19 @@ const App = () => {
     const preventDefault = (e) => {
       e.preventDefault();
     };
-    document.addEventListener('contextmenu', preventDefault);
-    document.addEventListener('keydown', (e) => {
+  
+    const handleKeyDown = (e) => {
       if (e.ctrlKey && (e.key === 'u' || e.key === 's' || e.key === 'a')) {
         preventDefault(e);
       }
-    });
+    };
+  
+    document.addEventListener('contextmenu', preventDefault);
+    document.addEventListener('keydown', handleKeyDown);
   
     return () => {
       document.removeEventListener('contextmenu', preventDefault);
-      document.removeEventListener('keydown', (e) => {
-        if (e.ctrlKey && (e.key === 'u' || e.key === 's' || e.key === 'a')) {
-          preventDefault(e);
-        }
-      });
+      document.removeEventListener('keydown', handleKeyDown);
     };
   }, []);
   
