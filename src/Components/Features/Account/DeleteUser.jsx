@@ -4,11 +4,12 @@ import { Button } from '@nextui-org/react';
 import { useDisclosure } from '@nextui-org/modal';
 import axiosInstance from "../../utils/Axios";
 import { handleLogout } from "../../utils/LogoutUser"
+import { useAlert } from '../../utils/setAlert';
 
 export default function DeleteUser() {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [userName, setUserName] = useState(localStorage.getItem("username"));
-
+  const {handleError} = useAlert();
   useEffect(() => {
     if (localStorage.getItem("username")) {
       setUserName(localStorage.getItem("username"));
@@ -26,6 +27,8 @@ export default function DeleteUser() {
         });
       if (response.data.success) {
         handleLogout();
+      }else{
+        handleError("Cannot delete account, Either you have pending or incoming orders");
       }
     } catch (error) {
       console.error("Error deleting account:", error);
