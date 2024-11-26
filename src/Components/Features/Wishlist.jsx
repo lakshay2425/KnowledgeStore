@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ProductCard from "../utils/ProductCard";
 import axiosInstance from "../utils/Axios";
-import { useAlert } from "../../utils/setAlert";
+import { useAlert } from "../utils/setAlert";
 
 const Wishlist = () => {
   const [data, setData] = useState([]);
@@ -17,7 +17,7 @@ const Wishlist = () => {
   useEffect(() => {
     const fetchData = async () => {
         try {
-            const response = await axiosInstance.post(`${import.meta.env.VITE_BACKEND_URL}/user/wishlist`,
+            const response = await axiosInstance.get(`${import.meta.env.VITE_BACKEND_URL}/wishlist/fetch`,
               {email},
               {
                 headers: {

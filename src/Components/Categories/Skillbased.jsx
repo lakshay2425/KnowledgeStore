@@ -1,15 +1,12 @@
-import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React from 'react';
+import { useSelector} from 'react-redux';
 import ProductCard from '../utils/ProductCard';
 import CallAPI from '../utils/CallAPI';
-import { filterBooks } from '../../../features/bookDetailsSlice';
+import useFilterBooks from '../utils/useFilterBooks';
 
 const SkillBased = () => {
     CallAPI();
-    const dispatch = useDispatch();
-    useEffect(()=>{
-        dispatch(filterBooks("Skill-based"));
-    }, [dispatch])
+    useFilterBooks("Skill-based");
     const book = useSelector((state) => state.book?.genreBookInfo)
     return (<div className="product-show">
         <ProductCard books={book} />

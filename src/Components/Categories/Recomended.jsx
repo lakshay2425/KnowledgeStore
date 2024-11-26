@@ -5,7 +5,6 @@ import { fetchRecommendedBooks } from '../../../features/bookDetailsSlice';
 
 function Recomended() {
     const dispatch = useDispatch();
-
     useEffect(() => {
         dispatch(fetchRecommendedBooks());
     }, [dispatch])

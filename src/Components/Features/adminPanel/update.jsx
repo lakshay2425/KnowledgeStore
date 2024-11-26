@@ -29,8 +29,8 @@ const Update = () => {
                 const apiUrl = `${import.meta.env.VITE_BACKEND_URL}/search/${bookName}`;
                 const response = await axiosInstance.get(apiUrl);
                 if(response.status == 200){
-                    // console.log(response.data);
-                    setDetails(response.data.book);
+                    console.log(response.data);
+                    setDetails(response.data.data);
                     setIsLoaded(true); // Mark as loaded
                 }else{
                     console.log(response.data);
@@ -76,7 +76,7 @@ const Update = () => {
             title: "",
             imageLink: ''
           });  
-          navigate("/Read");
+          navigate("/Admin/Read");
         } catch (error) {
         console.error('Error submitting form:', error.message);
         handleError("Failed to update book details");
