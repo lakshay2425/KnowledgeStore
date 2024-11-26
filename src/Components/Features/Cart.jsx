@@ -17,7 +17,7 @@ const Cart = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axiosInstance.post(`${import.meta.env.VITE_BACKEND_URL}/user/cart`,
+        const response = await axiosInstance.get(`${import.meta.env.VITE_BACKEND_URL}/cart/fetch`,
           { email },
           {
             headers: {
@@ -60,7 +60,7 @@ const Cart = () => {
   };
   async function deleteBookFromCart(bookName) {
     const removeBookResponse = await axiosInstance.delete(
-      `${import.meta.env.VITE_BACKEND_URL}/user/${bookName}/cart/delete`,
+      `${import.meta.env.VITE_BACKEND_URL}/cart/${bookName}/delete`,
       { data: { email } }, // Wrap email in an object and use the 'data' property
       {
         headers: {
@@ -84,7 +84,7 @@ const Cart = () => {
 
   const moveBookToWishlist = async (bookName) => {
     const removeBookResponse = await axiosInstance.post(
-      `${import.meta.env.VITE_BACKEND_URL}/user/moveToWishlist`,
+      `${import.meta.env.VITE_BACKEND_URL}/wishlist/moveToWishlist`,
       { data: { email, bookName } }, // Wrap email in an object and use the 'data' property
       {
         headers: {
