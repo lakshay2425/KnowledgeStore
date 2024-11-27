@@ -108,10 +108,10 @@ const ProductCard = ({ books }) => {
   return (
     <>
       {books.map((book) => (
-        <div key={book._id} className="w-64 rounded-[--nextui-radius-large] shadow-small px-4 py-3 m-2 backdrop-blur-lg max-md:p-2 z-0 max-md:w-52 max-sm:w-44 max-lg:w-60">
+        <div key={book._id} className="w-72 rounded-3xl shadow-small px-4 py-3 m-2 backdrop-blur-lg max-md:p-2 z-0 max-md:w-52 max-sm:w-44 max-lg:w-60">
           <Image
             onClick={() => handleImageClick(book)}
-            className="max-w-full w-60 h-[400px] max-md:h-80 max-md:max-w-48 max-sm:w-40 max-sm:h-64 max-xl:h-[300px] max-lg:h-80 max-lg:w-52"
+            className="max-w-full rounded-2xl h-[400px] max-md:h-80 max-md:max-w-48 max-sm:w-40 max-sm:h-64 max-xl:h-[300px] max-lg:h-80 max-lg:w-52"
             alt={book.title}
             src={book.imageLink}
           />
