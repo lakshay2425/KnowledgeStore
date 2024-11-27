@@ -30,16 +30,16 @@ export default function UserAvatar() {
     navigate('/profile');
   }
   return (
-    <Dropdown>
-      <DropdownTrigger className="p-6">
-        <Button onClick={navigateToProfile}>
+    //<Dropdown>
+    //  <DropdownTrigger className="p-6">
+        <Button variant="flat" className="py-6" onClick={navigateToProfile}>
           <User
             name={fullName}
             description={userName} 
           />
         </Button>
-      </DropdownTrigger>
-    </Dropdown>
+    //  </DropdownTrigger>
+    //</Dropdown>
 
   );
 }

@@ -42,6 +42,7 @@ const routes = [
   { path: '/Login', component: 'Login' },
   { path: '/Signup', component: 'Signup' },
   { path: '/Cart', component: 'Cart' },
+  
   { path: '/Admin/Create', component: 'Create' },
   { path: '/Admin/Read', component: 'Read' },
   { path: '/Admin/Update', component: 'Update' },
