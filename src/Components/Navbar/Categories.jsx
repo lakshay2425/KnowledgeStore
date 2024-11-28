@@ -26,7 +26,7 @@ const Categories = () => {
                   </Link>
                 </DropdownItem>
                 <DropdownItem key="skillbased">
-                  <Link className="dropdown-item" to="/SkillBased">
+                  <Link className="dropdown-item" to="/Skill-based">
                     Skill-Based
                   </Link>
                 </DropdownItem>
@@ -36,7 +36,7 @@ const Categories = () => {
                   </Link>
                 </DropdownItem>
                 <DropdownItem>
-                  <Link className="dropdown-item" to="/SelfHelp">
+                  <Link className="dropdown-item" to="/Self-Help">
                     Self-Help
                   </Link>
                 </DropdownItem>

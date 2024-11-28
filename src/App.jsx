@@ -8,11 +8,7 @@ const Footer = lazy(() => import("./Components/Home/Footer"));
 // Lazy load other components
 const components = {
   Home: lazy(() => import('./Components/Home/Home')),
-  Finance: lazy(() => import('./Components/Categories/Finance')),
-  Biography: lazy(() => import('./Components/Categories/Biography')),
-  Skillbased: lazy(() => import('./Components/Categories/Skillbased')),
-  SelfHelp: lazy(() => import('./Components/Categories/SelfHelp')),
-  Fictional: lazy(() => import('./Components/Categories/Fictional')),
+  Category: lazy(() => import('./Components/Categories/Cateorgy')),
   Contact: lazy(() => import('./Components/Features/Forms/Contact')),
   Suggestion: lazy(() => import('./Components/Features/Forms/Suggestion')),
   Feedback: lazy(() => import('./Components/Features/Forms/Feedback')),
@@ -31,18 +27,17 @@ const components = {
 
 const routes = [
   { path: '/', component: 'Home' },
-  { path: '/Finance', component: 'Finance' },
-  { path: '/Biography', component: 'Biography' },
-  { path: '/Fictional', component: 'Fictional' },
-  { path: '/SelfHelp', component: 'SelfHelp' },
-  { path: '/SkillBased', component: 'Skillbased' },
+  { path: '/Finance', component: 'Category' },
+  { path: '/Biography', component: 'Category' },
+  { path: '/Fictional', component: 'Category' },
+  { path: '/Self-Help', component: 'Category' },
+  { path: '/Skill-based', component: 'Category' },
   { path: '/Contact', component: 'Contact' },
   { path: '/Suggestion', component: 'Suggestion' },
   { path: '/Feedback', component: 'Feedback' },
   { path: '/Login', component: 'Login' },
   { path: '/Signup', component: 'Signup' },
   { path: '/Cart', component: 'Cart' },
-  
   { path: '/Admin/Create', component: 'Create' },
   { path: '/Admin/Read', component: 'Read' },
   { path: '/Admin/Update', component: 'Update' },
