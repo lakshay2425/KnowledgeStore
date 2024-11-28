@@ -1,6 +1,7 @@
 import React, { Suspense, lazy, useEffect } from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import axios from 'axios';
+import Loader from './Components/utils/Loader';
 
 const Navbar = lazy(() => import("./Components/Navbar/Navbar"));
 const Footer = lazy(() => import("./Components/Home/Footer"));
@@ -61,7 +62,7 @@ const App = () => {
       element: (
         <>
           <Navbar />
-          <Suspense fallback={<div>Loading...</div>}>
+          <Suspense fallback={<Loader/>}>
             {React.createElement(components[component])}
           </Suspense>
           <Footer />
