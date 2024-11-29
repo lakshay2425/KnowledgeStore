@@ -1,7 +1,8 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import "./create.css";
 import axiosInstance from "../../utils/Axios";
-import {useAlert} from "../../utils/setAlert";
+import { useAlert } from "../../utils/setAlert";
+import { Button } from '@nextui-org/react';
 
 
 const Create = () => {
@@ -19,107 +20,133 @@ const Create = () => {
   //To handle inputs in the form
   const handleInputChange = (e) => {
     setDetails((currData) => {
-      return{
-        ...currData, [e.target.name] : e.target.value
+      return {
+        ...currData, [e.target.name]: e.target.value
       }
     })
   }
   //To handle form submission
   const handleSubmit = async (e) => {
-      try {
-        e.preventDefault();
-        const response = await axiosInstance.post(`${import.meta.env.VITE_BACKEND_URL}/admin/create`, details,
-          {
-            headers: {
-              'Content-Type': 'application/json'
-            }
+    try {
+      e.preventDefault();
+      const response = await axiosInstance.post(`${import.meta.env.VITE_BACKEND_URL}/admin/create`, details,
+        {
+          headers: {
+            'Content-Type': 'application/json'
           }
-        );
-        const result = response.data.result;
-        handleSuccess("Book Data inserted successfully");
-        setDetails({
-          author: "",
-          genre: "",
-          price: "",
-          quantity: "",
-          book_name: "",
-          img_link: ''
-        });
+        }
+      );
+      const result = response.data.result;
+      handleSuccess("Book Data inserted successfully");
+      setDetails({
+        author: "",
+        genre: "",
+        price: "",
+        quantity: "",
+        book_name: "",
+        img_link: ''
+      });
     } catch (error) {
-        console.error('Error submitting form:', error);
-        handleError("Failed to insert book data");
-        setDetails({
-          author: "",
-          genre: "",
-          price: "",
-          quantity: "",
-          book_name: "",
-          img_link: ''
-        });
+      console.error('Error submitting form:', error);
+      handleError("Failed to insert book data");
+      setDetails({
+        author: "",
+        genre: "",
+        price: "",
+        quantity: "",
+        book_name: "",
+        img_link: ''
+      });
     }
   }
 
   return (
     <>
-    <div className="container ">
-     <form  method="post"  onSubmit={handleSubmit}>
-      <table>
-        <tbody>
-        <tr>
-          <td>
-            <label htmlFor="author">Author</label>
-          </td>
-          <td>
-            <input type="text" id='author' autoComplete='off' onChange={handleInputChange} placeholder='Enter the author name' name='author' value={details.author} />
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <label htmlFor="book_name">Book Name</label>
-          </td>
-          <td>
-            <input type="text" id='book_name' name='book_name' autoComplete='off'  onChange={handleInputChange} value={details.book_name} placeholder='Enter the book name' required/>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <label htmlFor="genre">Genre</label>
-          </td>
-          <td>
-            <input type="text" id='genre'  onChange={handleInputChange} autoComplete='off' placeholder='Enter the book genre' name='genre' value={details.genre} />
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <label htmlFor="price">Price</label></td>
-          <td>
-            <input type="number" id='price' onChange={handleInputChange} autoComplete='off' placeholder='Enter the book price' name='price' value={details.price} />
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <label htmlFor="img_link">Image Link</label>
-          </td>
-          <td>
-            <input type="url" id='img_link'  onChange={handleInputChange} autoComplete='off' placeholder='Enter the image link' name='img_link' value={details.img_link} />
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <label htmlFor="quantity">Quantity</label></td>
-          <td>
-            <input name="quantity" placeholder='Enter quantity of the book'  autoComplete="on" id="quantity" onChange={handleInputChange}  value={details.quantity}/>
-          </td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>
-            <button>Submit</button>
-          </td>
-        </tr>
-        </tbody>
-      </table>
-      </form> 
+      <div className="flex items-center justify-center min-h-screen bg-gray-200">
+        <form className="w-96 bg-white p-6 rounded-lg shadow-large space-y-4 " 
+        method="post" 
+        onSubmit={handleSubmit}>
+          <div>
+            <label className="block text-gray-700 text-sm font-medium mb-2" htmlFor="author">Author</label>
+              
+                  <input className="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    type="text" id='author'
+                    autoComplete='off'
+                    onChange={handleInputChange}
+                    placeholder='Enter the author name'
+                    name='author' value={details.author} />
+          </div>
+                  
+                
+              <div>
+                <label className="block text-gray-700 text-sm font-medium mb-2" htmlFor="book_name">Book Name</label>
+                
+                
+                  <input className="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  type="text" 
+                  id='book_name' 
+                  name='book_name' 
+                  autoComplete='off' 
+                  onChange={handleInputChange} 
+                  value={details.book_name} 
+                  placeholder='Enter the book name' required />
+              </div>
+                
+                  
+               <div>
+                <label className="block text-gray-700 text-sm font-medium mb-2" htmlFor="genre">Genre</label>
+                
+                  <input className="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  type="text"
+                  id='genre' 
+                  onChange={handleInputChange} 
+                  autoComplete='off' 
+                  placeholder='Enter the book genre' 
+                  name='genre' 
+                  value={details.genre} />
+               </div>
+              
+                  
+               <div>
+                <label className="block text-gray-700 text-sm font-medium mb-2" htmlFor="price">Price</label>
+                
+                  <input className="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"  
+                  type="number" id='price' onChange={handleInputChange} autoComplete='off' 
+                  placeholder='Enter the book price' 
+                  name='price' 
+                  value={details.price} />
+               </div>
+                  
+                <div>
+                  <label className="block text-gray-700 text-sm font-medium mb-2" htmlFor="img_link">Image Link</label>
+                
+                  <input className="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500" type="url" 
+                  id='img_link' 
+                  onChange={handleInputChange} 
+                  autoComplete='off' 
+                  placeholder='Enter the image link' 
+                  name='img_link' 
+                  value={details.img_link} />
+                </div>
+                  
+              <div>
+                <label className="block text-gray-700 text-sm font-medium mb-2" htmlFor="quantity">Quantity</label>
+                
+                  <input className="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500" 
+                  name="quantity" 
+                  placeholder='Enter quantity of the book' 
+                  autoComplete="on" 
+                  id="quantity" 
+                  onChange={handleInputChange} 
+                  value={details.quantity} />
+              </div>
+                  
+               
+                
+                  
+                  <Button className="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition duration-300">Submit</Button>
+               
+        </form>
       </div>
     </>
   );

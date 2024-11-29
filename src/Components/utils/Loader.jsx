@@ -22,7 +22,7 @@ export default function Loader() {
                 showValueLabel={true}
                 className="max-w-md"
             />
-            <Spinner label="Success" color="success" labelColor="success" />
+            <Spinner label=" " color="success" labelColor="success" />  
         </div>
 
     );
