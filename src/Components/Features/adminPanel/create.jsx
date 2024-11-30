@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import "./create.css";
 import axiosInstance from "../../utils/Axios";
 import { useAlert } from "../../utils/setAlert";
 import { Button } from '@nextui-org/react';
