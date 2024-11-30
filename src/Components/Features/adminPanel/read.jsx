@@ -2,7 +2,7 @@ import React, {  useState } from 'react';
 import axiosInstance from "../../utils/Axios"
 import "./table.css";
 import { useNavigate } from 'react-router-dom';
-import { useAlert } from "../../utils/setAlert";
+import  useAlert  from "../../utils/setAlert";
 import { useSelector } from 'react-redux';
 
 

@@ -3,10 +3,12 @@ import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter } from "@nextu
 import { Button } from '@nextui-org/react';
 import { useDisclosure } from '@nextui-org/modal';
 import axiosInstance from "../../utils/Axios";
-import { handleLogout } from "../../utils/LogoutUser"
-import { useAlert } from '../../utils/setAlert';
+import Cookies from 'js-cookie';
+import useAlert  from "../../utils/setAlert";
+import { useNavigation } from 'react-router-dom';
 
 export default function DeleteUser() {
+  const navigate = useNavigation();
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [userName, setUserName] = useState(localStorage.getItem("username"));
   const {handleError} = useAlert();
@@ -18,7 +20,6 @@ export default function DeleteUser() {
 
   const deleteUser = async () => {
     try {
-      console.log("Button was clicked");
       const response = await axiosInstance.delete(`${import.meta.env.VITE_BACKEND_URL}/user/deleteAccount?username=${userName}`,
         {
           headers: {
@@ -26,7 +27,14 @@ export default function DeleteUser() {
           }
         });
       if (response.data.success) {
-        handleLogout();
+        const response = await axiosInstance.get(`${import.meta.env.VITE_BACKEND_URL}/auth/logout`);
+        localStorage.setItem("isLoggedIn", false);
+        localStorage.setItem("role", "");
+        localStorage.setItem("gmail", "");
+        localStorage.setItem("fullName", "");
+        localStorage.setItem("username", "");
+        Cookies.remove('token');  // Remove the token cookie
+        navigate("/");
       }else{
         handleError("Cannot delete account, Either you have pending or incoming orders");
       }

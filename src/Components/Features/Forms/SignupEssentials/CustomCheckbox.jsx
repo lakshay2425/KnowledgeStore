@@ -1,5 +1,5 @@
 import {useCheckbox, Chip, VisuallyHidden, tv} from "@nextui-org/react";
-import {CheckIcon} from './CheckIcon.jsx'
+import CheckIcon from './CheckIcon.jsx'
 
 const checkbox = tv({
   slots: {
@@ -21,7 +21,7 @@ const checkbox = tv({
   }
 })
 
-export const CustomCheckbox = (props) => {
+const CustomCheckbox = (props) => {
   const {
     children,
     isSelected,
@@ -55,3 +55,5 @@ export const CustomCheckbox = (props) => {
     </label>
   );
 }
+
+export default CustomCheckbox;

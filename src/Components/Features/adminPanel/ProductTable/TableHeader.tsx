@@ -8,7 +8,7 @@ interface TableHeaderProps {
   onTimeFilterChange: () => void;
 }
 
-export function TableHeader({ searchTerm, onSearchChange, timeFilter, onTimeFilterChange }: TableHeaderProps) {
+function TableHeader({ searchTerm, onSearchChange, timeFilter, onTimeFilterChange }: TableHeaderProps) {
   return (
     <div className="flex justify-between items-center mb-4">
       <button 
@@ -30,3 +30,5 @@ export function TableHeader({ searchTerm, onSearchChange, timeFilter, onTimeFilt
     </div>
   );
 }
+
+export default TableHeader;

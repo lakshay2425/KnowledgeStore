@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import axiosInstance from "../utils/Axios"; // Use 'import' instead of 'require'
-import { useAlert } from "../utils/setAlert";
+import useAlert  from "../utils/setAlert";
 import { Button, ButtonGroup, Spacer } from "@nextui-org/react";
 import { FaCircleMinus, FaCirclePlus } from "react-icons/fa6";
+
 const Cart = () => {
   const [data, setData] = useState([]);
   const [email, setEmail] = useState(localStorage.getItem("gmail"));

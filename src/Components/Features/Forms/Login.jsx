@@ -4,7 +4,7 @@ import { FaUser, FaLock } from "react-icons/fa";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
-import { useAlert } from "../../utils/setAlert";
+import useAlert  from "../../utils/setAlert";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -36,6 +36,7 @@ const Login = () => {
           }
         }
       );
+      // console.log(response);
       const result = response.data.userData;
       if(response.data.success === true){
         const token = Cookies.get('token'); // 'token' is the cookie name

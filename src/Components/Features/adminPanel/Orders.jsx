@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { products } from './ProductTable/products';
-import { TableHeader } from './ProductTable/TableHeader';
+import TableHeader  from './ProductTable/TableHeader';
 import { TableRow } from './ProductTable/TableRow';
 
 export default function Orders() {

@@ -3,7 +3,7 @@ import { FaPhone } from "react-icons/fa6";
 import { IoIosMail } from "react-icons/io";
 import { FaUser,FaLock,FaPen } from "react-icons/fa";
 import axiosInstance from "../../utils/Axios";
-import {useAlert} from "../../utils/setAlert";
+import useAlert  from "../../utils/setAlert";
 
 
 

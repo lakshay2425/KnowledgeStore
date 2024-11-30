@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux';
 import { setAlert } from '../../../features/alertSlice';
 
-export const useAlert = () => {
+const useAlert = () => {
   const dispatch = useDispatch();
 
   const handleSuccess = (message) => {
@@ -17,3 +17,5 @@ export const useAlert = () => {
     handleError,
   };
 };
+
+export default useAlert;

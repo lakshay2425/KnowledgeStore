@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom';
 import { Button } from "@nextui-org/react";
 import { Listbox, ListboxSection, ListboxItem } from "@nextui-org/react";
-import { ListboxWrapper } from "../Others/ListboxWrapper";
+import ListboxWrapper  from "../Others/ListboxWrapper";
 import Search from "./Search";
 import Categories from "./Categories";
 import FormDropDown from "./formDropDown";

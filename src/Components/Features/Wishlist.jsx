@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ProductCard from "../utils/ProductCard";
 import axiosInstance from "../utils/Axios";
-import { useAlert } from "../utils/setAlert";
+import  useAlert  from "../utils/setAlert";
 
 const Wishlist = () => {
   const [data, setData] = useState([]);

@@ -1,6 +1,6 @@
 import axiosInstance from "./Axios";
 
-export const deleteProducts = async (email, type) => {
+const deleteProducts = async (email, type) => {
     try {
         if (type === "wishlist") {
             const response = await axiosInstance.delete(`${import.meta.env.VITE_BACKEND_URL}/${type}/deleteAll?email=${email}`);
@@ -12,3 +12,5 @@ export const deleteProducts = async (email, type) => {
         console.error(error.message);
     }
 }
+
+export default deleteProducts;

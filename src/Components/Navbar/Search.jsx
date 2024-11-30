@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axiosInstance from "../utils/Axios";
-import { SearchIcon } from "../utils/SearchIcon";
+import SearchIcon  from "../utils/SearchIcon";
 import { Input } from "@nextui-org/react";
 import { useNavigate } from 'react-router-dom';
 
@@ -29,7 +29,6 @@ const Search = () => {
       );
       if (response.data.success === true) {
         const result = response.data.data;
-        console.log(result);
         navigate('/SearchResult', { state: { book: result } });
       } else if (response.data.success === false) {
         //handleError(response.data.message);
