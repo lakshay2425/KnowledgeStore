@@ -3,8 +3,10 @@ import DeleteUser from './DeleteUser';
 
 const Sidebar = () => {
     const menuItems = [
-        { pathName : "My profile", path : "/Profile"},
+        {pathName : "My profile", path : "/Profile"},
         {pathName : "Orders" , path : "/Account/Orders"},
+        {pathName : "Wishlist" , path : "/Wishlist"},
+        {pathName : "Tracking" , path : "/Account/Tracking"},
     ];
     return (
         <ul className="bg-slate-200/60 w-full md:w-48 lg:w-64 h-auto px-4 md:px-6 lg:px-8 py-6 text-zinc-600 text-base md:text-lg capitalize">
@@ -24,4 +26,4 @@ const Sidebar = () => {
     );
 };
 
-export default Sidebar
+export default Sidebar;
