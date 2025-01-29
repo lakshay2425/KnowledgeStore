@@ -107,7 +107,7 @@ const ProductCard = ({ books }) => {
 
   return (
     <>
-      {books.map((book) => (
+      {books?.map((book) => (
         <div key={book._id} className="w-72 rounded-3xl shadow-small px-4 py-3 m-2 backdrop-blur-lg max-md:p-2 z-0 max-md:w-52 max-sm:w-44 max-lg:w-60">
           <Image
             onClick={() => handleImageClick(book)}

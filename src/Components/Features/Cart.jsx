@@ -108,7 +108,7 @@ const Cart = () => {
     // }
   }
   return (
-    <div className="w-[90vw] m-auto my-10 h-auto p-6 bg-gray-100">
+    <div className="w-[90vw] min-h-screen m-auto my-10 h-auto p-6 bg-gray-100 rounded-2xl">
       <div className="Top-bar flex justify-between">
         <h2 className="text-2xl font-medium pl-2">Shopping Cart</h2>
         <Button color="danger" className="text-zinc-100 " disabled={length === 0}>Remove All</Button>
