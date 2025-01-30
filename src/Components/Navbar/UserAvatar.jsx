@@ -1,5 +1,5 @@
-import { User, Link } from "@nextui-org/react";
-import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, Button } from "@nextui-org/react";
+import { User } from "@nextui-org/react";
+import {  Button } from "@nextui-org/react";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 

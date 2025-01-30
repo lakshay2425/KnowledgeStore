@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react'
+import  { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom';
 import { Button } from "@nextui-org/react";
-import { Listbox, ListboxSection, ListboxItem } from "@nextui-org/react";
+import { Listbox, ListboxItem } from "@nextui-org/react";
 import ListboxWrapper  from "../Others/ListboxWrapper";
 import Search from "./Search";
 import Categories from "./Categories";
@@ -43,21 +43,6 @@ function NavbarMobile() {
                     </p>
                 </ListboxItem>
 
-
-                <ListboxItem>
-                    {isLoggedIn && (
-                        <ListboxItem
-                            key="Wishlist"
-                        >
-                            <Link>
-                                <Button variant="" className="nav-btn px-1 w-full justify-start">
-                                    <p className="nav-menu-link">Wishlist</p>
-                                </Button>
-
-                            </Link>
-                        </ListboxItem>
-                    )}
-                </ListboxItem>
 
                 <ListboxItem>
                     <FormDropDown />

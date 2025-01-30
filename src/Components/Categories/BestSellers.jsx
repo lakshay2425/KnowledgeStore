@@ -1,4 +1,3 @@
-import React from 'react';
 import './BestSellers.css'
 import ProductCard from '../utils/ProductCard';
 import { useSelector } from 'react-redux';

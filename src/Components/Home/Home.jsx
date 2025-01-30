@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import { useRef } from "react";
 import "./Home.css";
 import BestSellers from "../Categories/BestSellers.jsx";
 import Recomended from "../Categories/Recomended.jsx";

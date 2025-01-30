@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import  { useState } from 'react';
 import axiosInstance from "../../utils/Axios";
 import useAlert from "../../utils/setAlert";
 import { Button } from '@nextui-org/react';
@@ -26,27 +26,26 @@ const Create = () => {
   }
   //To handle form submission
   const handleSubmit = async (e) => {
-    try {
       e.preventDefault();
-      const response = await axiosInstance.post(`${import.meta.env.VITE_BACKEND_URL}/admin/create`, details,
+      await axiosInstance.post(`${import.meta.env.VITE_BACKEND_URL}/admin/create`, details,
         {
           headers: {
             'Content-Type': 'application/json'
           }
         }
-      );
-      const result = response.data.result;
-      handleSuccess("Book Data inserted successfully");
-      setDetails({
-        author: "",
-        genre: "",
-        price: "",
-        quantity: "",
-        book_name: "",
-        img_link: ''
-      });
-    } catch (error) {
-      console.error('Error submitting form:', error);
+      )
+      .then(()=>{
+        handleSuccess("Book Data inserted successfully");
+        setDetails({
+          author: "",
+          genre: "",
+          price: "",
+          quantity: "",
+          book_name: "",
+          img_link: ''
+        });
+      })
+    .catch (()=> {
       handleError("Failed to insert book data");
       setDetails({
         author: "",
@@ -56,7 +55,7 @@ const Create = () => {
         book_name: "",
         img_link: ''
       });
-    }
+    })
   }
 
   return (

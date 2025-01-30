@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import  { useEffect, useState } from 'react'
 import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter } from "@nextui-org/modal";
 import { Button } from '@nextui-org/react';
 import { useDisclosure } from '@nextui-org/modal';
@@ -27,7 +27,7 @@ export default function DeleteUser() {
           }
         });
       if (response.data.success) {
-        const response = await axiosInstance.get(`${import.meta.env.VITE_BACKEND_URL}/auth/logout`);
+        await axiosInstance.get(`${import.meta.env.VITE_BACKEND_URL}/auth/logout`);
         localStorage.setItem("isLoggedIn", false);
         localStorage.setItem("role", "");
         localStorage.setItem("gmail", "");
