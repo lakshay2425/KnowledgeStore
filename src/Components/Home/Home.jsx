@@ -22,7 +22,7 @@ const Home = () => {
   };
   return (
     <>
-      <div className="home-section max-md:flex-col-reverse">
+      <div className="home-section pt-10 max-md:flex-col-reverse">
         <div className="home-title max-md:flex max-md:w-full max-md:text-7xl">
           <div className="home-heading max-md:max-w- ">
             <div className="">
@@ -52,7 +52,7 @@ const Home = () => {
             <button className="flex items-center justify-center rounded-full w-8 h-8 shadow-xl backdrop-blur-lg transition ease-in-out  hover:scale-125 duration-300" onClick={scrollRight}><FaCaretRight /></button>
           </div>
         </div>
-        <div ref={containerRef} className="w-[90vw] grid grid-flow-col  auto-cols-max	overflow-x-auto">
+        <div ref={containerRef} className="w-[90vw] grid grid-flow-col  auto-cols-max	overflow-x-hidden scroll-smooth">
           <Recomended />
         </div>
 
