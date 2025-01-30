@@ -1,14 +1,17 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import axiosInstance from "../utils/Axios";
 import SearchIcon  from "../utils/SearchIcon";
 import { Input } from "@nextui-org/react";
 import { useNavigate } from 'react-router-dom';
+import useAlert from "../utils/setAlert";
 
 const Search = () => {
   // Use useState to manage bookName state
   const [bookName, setBookName] = useState("");
   const navigate = useNavigate();
   
+  const { handleError } = useAlert();
+
   // Function to handle change in input fields value
   const handleInputChange = (e) => {
     setBookName(e.target.value);
@@ -32,14 +35,11 @@ const Search = () => {
         navigate('/SearchResult', { state: { book: result } });
       } else if (response.data.success === false) {
         //handleError(response.data.message);
-        console.log(response.data.message);
       }
       // Reset the bookName after search
       setBookName("");
     } catch (error) {
-      console.error("Error fetching book data:", error);
-      //      handleError(response.data.message);
-      console.log(response.data.message);
+      handleError("Failed to search for book");
       setBookName("");
     }
   };

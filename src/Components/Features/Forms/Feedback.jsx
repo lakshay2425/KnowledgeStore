@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import axiosInstance from "../../utils/Axios";
 import { FaUser } from "react-icons/fa";
 import { IoIosMail } from "react-icons/io";
@@ -11,7 +11,7 @@ const Feedback = () => {
   const [details, setDetails] = useState({
     username: "",
     gmail: "",
-    feedback: "",
+    feedback: ""
   });
 
   //Function to handle change in input fields value
@@ -26,9 +26,8 @@ const Feedback = () => {
 
   //FUnction to handle form submission
   const handleSubmit = async (e) => {
-    try {
       e.preventDefault();
-      const response = await axiosInstance.post(
+      await axiosInstance.post(
         `${import.meta.env.VITE_BACKEND_URL}/forms/feedbackDetails`,
         details,
         {
@@ -36,45 +35,36 @@ const Feedback = () => {
             'Content-Type': 'application/json'
           }
         }
-      );
-      const result = response.data;
-      console.log(result);
-      handleSuccess(response.data.message);
-
-      setDetails({
-        username: "",
-        gmail: "",
-        feedback: "",
-      });
-    } catch (error) {
+      ).then(()=>{
+        handleSuccess("Thank you for providing your valuable feedback");
+        setDetails({
+          username: "",
+          gmail: "",
+          feedback: ""
+        });
+      })
+     .catch ((error)=> {
       console.error("Error submitting form:", error);
       if (error.response.status === 429) {
         handleError('Rate limit exceeded. Please try again later.');
       } else {
-        handleError(response.data.message);
+        handleError("Failed to submit the form, Try again later");
       }
-      setTimeout(() => {
-        clearAlert();
-      }, 3000)
       setDetails({
-        fullName: '',
-        username: '',
-        gmail: '',
-        number: '',
-        address: '',
-        password: '',
-        cpassword: '',
-        gender: ''
+        username: "",
+        gmail: "",
+        feedback: ""
       });
-    }
+    });
   };
+  
   return (
     <>
       <div className="grid grid-cols-2 w-full px-[5vw] py-6 pt-14 justify-between max-md:grid-cols-1">
         <div className="max-w-96  pt-16 max-md:pt-0">
           <div className="flex-col space-y-4 max-md:">
             <h2 className="font-bold text-5xl leading-tight">Your feedback helps us to improve</h2>
-            <p className="text-lg">We are here to help you and we'd love to connect with you.</p>
+            <p className="text-lg">We are here to help you and we&apos;d love to connect with you.</p>
           </div>
         </div>
         <div className="col-start-2 justify-self-end p-16  rounded-large max-md:col-start-1 , max-md:p-4 max-md:justify-self-auto ">
@@ -114,13 +104,6 @@ const Feedback = () => {
               </div>
             </div>
 
-
-            <div>
-              <p className="py-2">Phone Number</p>
-              <div className="flex items-center space-x-2">
-                <input type="number" name="number" id="number" autoComplete="number" placeholder="Enter your number" className="w-full p-2 rounded-lg bg-slate-100 border-medium" />
-              </div>
-            </div>
 
             <div>
               <p className="py-2">Message</p>

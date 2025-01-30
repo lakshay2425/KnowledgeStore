@@ -1,17 +1,19 @@
-import React, { useEffect, useState } from "react";
+import  { useEffect, useState } from "react";
 import axiosInstance from "../utils/Axios"; // Use 'import' instead of 'require'
 import useAlert  from "../utils/setAlert";
 import { Button, ButtonGroup, Spacer } from "@nextui-org/react";
 import { FaCircleMinus, FaCirclePlus } from "react-icons/fa6";
 
+
 const Cart = () => {
   const [data, setData] = useState([]);
   const [email, setEmail] = useState(localStorage.getItem("gmail"));
   const [length, setLength] = useState(0);
-  const { handleError } = useAlert();
-  let [tQty, setTQty] = useState(0)
-  let [totalPrice, setTotalPrice] = useState(0)
-  let [totalDiscount, setTotalDiscount] = useState(0)
+  const { handleSuccess, handleError } = useAlert();
+  let [tQty] = useState(0)
+  let [totalPrice] = useState(0)
+
+
   //To update gmail value from localStorage
   useEffect(() => {
     setEmail(localStorage.getItem("gmail"))
@@ -29,16 +31,16 @@ const Cart = () => {
           });
         if (response.data.bookDetails.length > 0) {
           setData(response.data.bookDetails);
-          //console.log(response.data);
           setLength(response.data.numberOfBooks);
         } else {
           setLength(0);
         }
       } catch (error) {
-        // console.error('Error fetching data:', error);
-        // if (error.response.status === 429) {
-        //   handleError('Rate limit exceeded. Please try again later.');
-        // }
+        if (error.response.status === 429) {
+          handleError('Rate limit exceeded. Please try again later.');
+        }else{
+          handleError('Error fetching cart details');
+        }
       }
     };
     fetchData();
@@ -72,18 +74,15 @@ const Cart = () => {
       }
     );
     const response = removeBookResponse.data.success;
-    console.log(response);
     if (response) {
       handleSuccess("Book removed successfully from the cart");
       const updatedCart = data.filter(item => item.title !== bookName);
-      console.log(updatedCart);
       setData(updatedCart);
       setLength(length - 1);
     } else {
-      console.log('Error deleting book from cart');
       handleError("Error deleting book from cart");
-    };
-  };
+    }
+  }
 
   const moveBookToWishlist = async (bookName) => {
     const removeBookResponse = await axiosInstance.post(
@@ -95,17 +94,14 @@ const Cart = () => {
         }
       }
     );
-    console.log(removeBookResponse);
-    // const response = removeBookResponse.response.data.success;
-    // console.log(response);
-    // if (response) {
-    //   handleSuccess("Book moved successfully to the wishlist");
-    //   const updatedCart = data.filter(item => item.bookName !== bookName);
-    //   setData(updatedCart);
-    // } else {
-    //   console.log('Error, book not moved to the wishlist');
-    //   handleError("Error, book moved  to the wishlist, Try again later");
-    // }
+    const response = removeBookResponse.response.data.success;
+    if (response) {
+      handleSuccess("Book moved successfully to the wishlist");
+      const updatedCart = data.filter(item => item.bookName !== bookName);
+      setData(updatedCart);
+    } else {
+      handleError("Error, book not moved  to the wishlist, Try again later");
+    }
   }
   return (
     <div className="w-[90vw] min-h-screen m-auto my-10 h-auto p-6 bg-gray-100 rounded-2xl">

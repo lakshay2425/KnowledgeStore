@@ -1,23 +1,23 @@
-import React, {  useState } from 'react';
+import  {  useState } from 'react';
 import axiosInstance from "../../utils/Axios"
 import "./table.css";
 import { useNavigate } from 'react-router-dom';
 import  useAlert  from "../../utils/setAlert";
 import { useSelector } from 'react-redux';
-
+import CallAPI from '../../utils/CallAPI';
 
 const Read = () => {
     const { handleSuccess, handleError } = useAlert();
     const [books, setBooks] = useState(useSelector((state) => state.book?.booksInfo || []));
     const navigate = useNavigate();
-
+    CallAPI();
     //Function to turncate the string if string exceeds the length limit
     function truncateString(str) {
         if (str.length > 10) {
             return str.slice(0, 20) + "...";
         }
         return str;
-    };
+    }
 
     const handleDelete = async (title) => {
         const apiUrl = `http://localhost:3000/admin/delete/${title}`;

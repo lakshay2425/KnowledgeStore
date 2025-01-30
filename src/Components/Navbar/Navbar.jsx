@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import "./Navbar.css";
-import { IoBagHandleOutline } from "react-icons/io5";
 import NavbarMobile from "./NavbarMobile";
 import Search from "./Search";
 import Categories from "./Categories";
@@ -46,11 +45,6 @@ var Navbar = () => {
           </div>
           <div className="nav-links">
             <Categories />
-            {isLoggedIn && (
-              <Link to="/Wishlist">
-                <p>Wishlist</p>
-              </Link>
-            )}
             <FormDropDown />
             {role == "admin" && (
               <AdminPanel />
@@ -66,11 +60,6 @@ var Navbar = () => {
           </div>
 
           <Search />
-          {isLoggedIn && (
-            <Link className="cart-icon " to="/Cart">
-              <IoBagHandleOutline />
-            </Link>
-          )}
 
           <div className="nav-menu-btn z-20" onClick={toggleMenu} >
             {isOpen ? <AiOutlineClose size={20} /> : <AiOutlineMenu size={20} />}

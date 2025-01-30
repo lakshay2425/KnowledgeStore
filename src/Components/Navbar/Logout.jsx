@@ -1,4 +1,3 @@
-import React from 'react'
 import { useNavigate } from 'react-router-dom';
 import useAlert from '../utils/setAlert';
 import axiosInstance from '../utils/Axios';
@@ -8,20 +7,21 @@ const Logout = () => {
   const { handleError } = useAlert();
   const navigate = useNavigate();
   const handleSubmit = async (e) => {
-    try {
+    
       e.preventDefault();
-      const response = await axiosInstance.get(`${import.meta.env.VITE_BACKEND_URL}/auth/logout`);
-      localStorage.setItem("isLoggedIn", false);
-      localStorage.setItem("role", "");
-      localStorage.setItem("gmail", "");
-      localStorage.setItem("fullName", "");
-      localStorage.setItem("username", "");
-      Cookies.remove('token');  // Remove the token cookie
-      navigate("/");
-    } catch (error) {
-      console.log(error.message);
+      await axiosInstance.get(`${import.meta.env.VITE_BACKEND_URL}/auth/logout`)
+      .then(()=>{
+        localStorage.setItem("isLoggedIn", false);
+        localStorage.setItem("role", "");
+        localStorage.setItem("gmail", "");
+        localStorage.setItem("fullName", "");
+        localStorage.setItem("username", "");
+        Cookies.remove('token');  // Remove the token cookie
+        navigate("/");
+      })
+     .catch(()=> {
       handleError("Failed to login, Try again in some time");
-    }
+    });
   }
   return (
     <>

@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import axiosInstance from "../../utils/Axios"
-import { FaUser, FaLock, FaPen } from "react-icons/fa";
+import { FaUser, FaPen } from "react-icons/fa";
 import { IoIosMail } from "react-icons/io";
-import { FaPhone } from "react-icons/fa6";
 import useAlert  from "../../utils/setAlert";
 
 
@@ -15,6 +14,8 @@ const Suggestion = () => {
     bookName: "",
     author: "",
   });
+
+  const {handleError, handleSuccess} = useAlert();
 
   const handleInputChange = (e) => {
     setDetails((currData) => {
@@ -37,8 +38,6 @@ const Suggestion = () => {
           }
         }
       );
-      const result = response.data;
-      console.log(result);
       handleSuccess(response.data.message);
       setDetails({
         username: "",
@@ -47,14 +46,12 @@ const Suggestion = () => {
         bookName: "",
         author: "",
       });
-      console.log(response);
     } catch (error) {
       if (error.response.status === 429) {
         handleError('Rate limit exceeded. Please try again later.');
       } else {
-        handleError(error.message);
+        handleError("Failed to submit the form. Please try again later");
       }
-      console.log(error.message);
       setDetails({
         username: "",
         gmail: "",
@@ -114,10 +111,10 @@ const Suggestion = () => {
                 <input className="w-full p-2 rounded-lg bg-slate-100 border-medium"
                   type="text"
                   name="genre"
-                  id="Category"
+                  id="genre"
                   autoComplete="on"
                   onChange={handleInputChange}
-                  value={details.category}
+                  value={details.genre}
                   placeholder="Enter the genre of book"
                 ></input>
                 <IoIosMail className="icon" />

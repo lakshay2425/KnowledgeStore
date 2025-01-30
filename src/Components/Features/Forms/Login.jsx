@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import axiosInstance from "../../utils/Axios";
 import { FaUser, FaLock } from "react-icons/fa";
 import Cookies from "js-cookie";
@@ -36,7 +36,6 @@ const Login = () => {
           }
         }
       );
-      // console.log(response);
       const result = response.data.userData;
       if(response.data.success === true){
         const token = Cookies.get('token'); // 'token' is the cookie name

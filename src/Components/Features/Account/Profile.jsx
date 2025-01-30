@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import UserSection from './UserSection';
 import Sidebar from './Sidebar';
 import UserInfo from './UserInfo';
@@ -7,7 +7,6 @@ function Profile() {
     const [fullName, setFullName] = useState("");
     const [userName, setUserName] = useState("");
     const [gmail, setGmail] = useState('');
-
     //To update fullName from localStorage
     useEffect(() => {
       const name = localStorage.getItem("fullName");

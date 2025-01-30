@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import  { useEffect, useState } from "react";
 import ProductCard from "../utils/ProductCard";
 import axiosInstance from "../utils/Axios";
 import useAlert from "../utils/setAlert";
@@ -25,7 +25,6 @@ const Wishlist = () => {
               'Content-Type': 'application/json'
             }
           });
-        // console.log(response.data);
 
         setData(response.data);
         setLength(response.data.length);

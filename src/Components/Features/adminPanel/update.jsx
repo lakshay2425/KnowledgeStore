@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import  {useState, useEffect} from 'react';
 import axiosInstance from "../../utils/Axios"
 import { useNavigate, useLocation } from 'react-router-dom';
 import useAlert from "../../utils/setAlert";
@@ -29,18 +29,18 @@ const Update = () => {
                 const apiUrl = `${import.meta.env.VITE_BACKEND_URL}/search/${bookName}`;
                 const response = await axiosInstance.get(apiUrl);
                 if(response.status == 200){
-                    console.log(response.data);
                     setDetails(response.data.data);
                     setIsLoaded(true); // Mark as loaded
                 }else{
-                    console.log(response.data);
+                  handleError('Error fetching the data');
                 }
             } catch (error) {
-                console.error('Error fetching data:', error);
+                handleError('Error fetching the data');
             }
         // }
     };
     fetchData();
+// eslint-disable-next-line react-hooks/exhaustive-deps
 }, [bookName, isLoaded]);
 
 
@@ -56,29 +56,27 @@ const Update = () => {
 
   //To handle form submission
   const handleSubmit = async (e) => {
-      try {
         e.preventDefault();
-        const response = await axiosInstance.put(`http://localhost:3000/admin/update/${bookName}`, details,
+        await axiosInstance.put(`http://localhost:3000/admin/update/${bookName}`, details,
           {
             headers: {
               'Content-Type': 'application/json'
             }
           }
-        );
-        const result = response.data.result;
-        handleSuccess("Updated Book Details Successfully");
-        console.log(result, response.data.message);
-        setDetails({
-            author: "",
-            genres: "",
-            price: "",
-            quantity: "",
-            title: "",
-            imageLink: ''
-          });  
-          navigate("/Admin/Read");
-        } catch (error) {
-        console.error('Error submitting form:', error.message);
+        )
+        .then(()=>{
+          handleSuccess("Updated Book Details Successfully");
+          setDetails({
+              author: "",
+              genres: "",
+              price: "",
+              quantity: "",
+              title: "",
+              imageLink: ''
+            });  
+            navigate("/Admin/Read");
+        }) 
+        .catch (()=> {
         handleError("Failed to update book details");
         setDetails({
             author: "",
@@ -88,7 +86,7 @@ const Update = () => {
             title: "",
             imageLink: ''
           });  
-        }
+        });
   }
 
   return (

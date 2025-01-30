@@ -1,10 +1,7 @@
-import React from 'react'
-import { useLocation } from 'react-router-dom';
-import ProductCard from '../utils/ProductCard';
 import { Image } from '@nextui-org/react';
 export default function ProductView() {
     let bookData = JSON.parse(localStorage.getItem('selectedBook'));
-    console.log(bookData);
+
     
     if (!bookData) {
         return <div>No book information available.</div>;

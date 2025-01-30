@@ -1,7 +1,6 @@
-import React, { useState } from "react";
-import { FaPhone } from "react-icons/fa6";
+import  { useState } from "react";
 import { IoIosMail } from "react-icons/io";
-import { FaUser,FaLock,FaPen } from "react-icons/fa";
+import { FaUser } from "react-icons/fa";
 import axiosInstance from "../../utils/Axios";
 import useAlert  from "../../utils/setAlert";
 
@@ -15,7 +14,6 @@ const Contact = () => {
   const [details, setDetails] = useState({
     username: "",
     gmail: "",
-    number: "",
     concern: "",
   });
 
@@ -31,9 +29,9 @@ const Contact = () => {
 
     //Function to handle form submission
   const handleSubmit = async (e) => {
-    try {
+    
       e.preventDefault();
-      const response = await axiosInstance.post(
+      await axiosInstance.post(
         `${import.meta.env.VITE_BACKEND_URL}/forms/contactDetails`,
         {details},
         {
@@ -41,39 +39,26 @@ const Contact = () => {
             'Content-Type': 'application/json'
           }
         }
-      );
-      const result = response.data;
-      console.log(result);
-      if(result.success === true){
-        handleSuccess(response.data.message);
-        // setTimeout(()=>{
-        //   clearAlert();
-        // },3000)
-      }
-      else if(result.success === false){
-        handleError(response.data.message);
-      }
-
-      setDetails({
-      username: "",
-      gmail: "",
-      number: "",
-      concern: "",
-    });
-    } catch (error) {
-      console.error("Error submitting form:", error);
+      ).then(()=>{
+        handleSuccess("Thank you for contaxting us, We will get back to you soon");
+        setDetails({
+        username: "",
+        gmail: "",
+        concern: "",
+      });
+      })
+    .catch ((error)=> {
       if (error.response.status === 429) {
         handleError('Rate limit exceeded. Please try again later.');
       }else if(error.response.success === false){
-        handleError(response.data.message);
+        handleError("Error occured while submitting the form, Please try again");
       }
       setDetails({
         username: "",
         gmail: "",
-        number: "",
         concern: "",
       });
-    }
+    })
   };
 
   return (
@@ -115,21 +100,6 @@ const Contact = () => {
                   value={details.gmail}
                 />
                 <IoIosMail className="icon"/>
-              </div>
-              </div>
-              <div>
-              <p className="py-2">Contact</p>
-              <div className="flex items-center space-x-2">
-                <input  className="w-full p-2 rounded-lg bg-slate-100 border-medium"
-                  type="number"
-                  id="contact"
-                  autoComplete="number"
-                  onChange={handleInputChange}
-                  placeholder="Enter your contact number"
-                  name="number"
-                  value={details.number}
-                />
-                <FaPhone className="icon"/>
               </div>
               </div>
               <div>

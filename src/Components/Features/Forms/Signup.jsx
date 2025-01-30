@@ -1,14 +1,11 @@
 import React, { useState } from "react";
 import axiosInstance from "../../utils/Axios";
-import { FaUser, FaLock } from "react-icons/fa";
-import { IoIosMail } from "react-icons/io";
-import { FaPhone } from "react-icons/fa6";
 import { useNavigate } from 'react-router-dom';
 import Cookies from "js-cookie";
 import useAlert  from "../../utils/setAlert";
 import { CheckboxGroup } from "@nextui-org/react";
 import  CustomCheckbox  from "./SignupEssentials/CustomCheckbox";
-import InterestedGenre from "./SignupEssentials/InterestedGenre";
+
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -50,7 +47,6 @@ const Signup = () => {
         if (result.success === true) {
           const token = Cookies.get('token'); // 'token' is the cookie name
           if (token) {
-            console.log("Signup Successfully");
             localStorage.setItem("isLoggedIn", true);
             localStorage.setItem("gmail", details.gmail);
             localStorage.setItem("fullName", details.fullName);
@@ -69,7 +65,6 @@ const Signup = () => {
             });
             navigate("/");
           } else {
-            console.log("Signup failed");
             handleError("Signup failed");
           }
         } else if (result.exists === true) {
@@ -89,7 +84,6 @@ const Signup = () => {
         gender: ''
       });
     } catch (error) {
-      console.log(error);
       if (error.response.status === 429) {
         handleError('Rate limit exceeded. Please try again later.');
       } else {
@@ -189,6 +183,7 @@ const Signup = () => {
                 type="password"
                 placeholder="Confirm your password"
                 name="cpassword"
+                autoComplete="off"
                 value={details.cpassword}
                 onChange={handleInputChange}
               />
@@ -271,7 +266,7 @@ const Signup = () => {
   };
 
   return (
-    <div className="h-[80vh] grid grid-cols-2 w-full 100vh px-[5vw] py-6 justify-between max-md:grid-cols-1">
+    <div className=" grid grid-cols-2 w-full 100vh px-[5vw] py-6 justify-between max-md:grid-cols-1">
       <div className="max-w-80 pt-16 max-md:pt-0">
         <div className="flex-col space-y-4 max-md:">
           <h2 className="font-bold text-5xl leading-tight">Read More, Spend Less</h2>
