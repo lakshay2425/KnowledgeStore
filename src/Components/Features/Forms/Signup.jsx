@@ -271,7 +271,7 @@ const Signup = () => {
   };
 
   return (
-    <div className="h-[80vh] grid grid-cols-2 w-full 100vh px-[5vw] py-6 justify-between max-md:grid-cols-1">
+    <div className=" grid grid-cols-2 w-full 100vh px-[5vw] py-6 justify-between max-md:grid-cols-1">
       <div className="max-w-80 pt-16 max-md:pt-0">
         <div className="flex-col space-y-4 max-md:">
           <h2 className="font-bold text-5xl leading-tight">Read More, Spend Less</h2>
