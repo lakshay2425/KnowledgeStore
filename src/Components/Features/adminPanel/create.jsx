@@ -2,9 +2,13 @@ import  { useState } from 'react';
 import axiosInstance from "../../utils/Axios";
 import useAlert from "../../utils/setAlert";
 import { Button } from '@nextui-org/react';
-
+import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { updateBookInfo } from "../../../../features/bookDetailsSlice";
 
 const Create = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { handleSuccess, handleError } = useAlert();
 
   const [details, setDetails] = useState({
@@ -24,6 +28,8 @@ const Create = () => {
       }
     })
   }
+  let books = useSelector((state) => state.book?.booksInfo || [])
+
   //To handle form submission
   const handleSubmit = async (e) => {
       e.preventDefault();
@@ -36,6 +42,8 @@ const Create = () => {
       )
       .then(()=>{
         handleSuccess("Book Data inserted successfully");
+        books.push(details);
+        dispatch(updateBookInfo(books));
         setDetails({
           author: "",
           genre: "",
@@ -44,6 +52,7 @@ const Create = () => {
           book_name: "",
           img_link: ''
         });
+        navigate("/Admin/Read");
       })
     .catch (()=> {
       handleError("Failed to insert book data");

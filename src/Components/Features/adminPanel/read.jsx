@@ -3,10 +3,12 @@ import axiosInstance from "../../utils/Axios"
 import "./table.css";
 import { useNavigate } from 'react-router-dom';
 import  useAlert  from "../../utils/setAlert";
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import CallAPI from '../../utils/CallAPI';
+import { updateBookInfo } from '../../../../features/bookDetailsSlice';
 
 const Read = () => {
+    const dispatch = useDispatch();
     const { handleSuccess, handleError } = useAlert();
     const [books, setBooks] = useState(useSelector((state) => state.book?.booksInfo || []));
     const navigate = useNavigate();
@@ -27,6 +29,8 @@ const Read = () => {
                 const result = response.data.message
                 handleSuccess(result);
                 setBooks((prevBooks) => prevBooks.filter((book) => book.title !== title));
+                // Dispatch an action to update the Redux store
+            dispatch(updateBookInfo(books));
             } else {
                 const result = response.data.message
                 handleError(result);

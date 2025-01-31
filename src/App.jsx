@@ -22,8 +22,6 @@ const components = {
   Orders: lazy(() => import('./Components/Features/adminPanel/Orders')),
   Wishlist: lazy(() => import('./Components/Features/Wishlist')),
   Profile: lazy(() => import("./Components/Features/Account/Profile")),
-  Tracking: lazy(() => import("./Components/Features/Account/Tracking")),
-  ProductView: lazy(() => import("./Components/utils/ProductView")),
   SearchResult : lazy(() => import("./Components/Navbar/SearchResult")),
   Error404 : lazy(() => import("./Components/utils/Error404"))
 };
@@ -47,8 +45,6 @@ const routes = [
   { path: '/Admin/Orders', component: 'Orders' },
   { path: '/Wishlist', component: 'Wishlist' },
   { path: '/Profile', component: 'Profile' },
-  { path: '/Account/Tracking', component: 'Tracking' },
-  { path: '/ProductView', component: 'ProductView' },
   {path : '/SearchResult' , component :'SearchResult'},
 ];
 

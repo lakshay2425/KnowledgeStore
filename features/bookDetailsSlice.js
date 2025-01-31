@@ -49,6 +49,9 @@ const bookReducer = createSlice({
   reducers: {
     filterBooks : (state, action)=>{
       state.genreBookInfo = state.booksInfo.filter((book)=> book.genres === action.payload);
+    },
+    updateBookInfo : (state, action) => {
+    state.booksInfo = action.payload;
     }
   },
   extraReducers: (builder) => {
@@ -82,4 +85,4 @@ const bookReducer = createSlice({
 
 export default bookReducer.reducer;
 
-export const  {filterBooks} = bookReducer.actions;
+export const  {filterBooks, updateBookInfo} = bookReducer.actions;

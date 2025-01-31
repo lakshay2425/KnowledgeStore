@@ -34,9 +34,12 @@ const Search = () => {
         const result = response.data.data;
         navigate('/SearchResult', { state: { book: result } });
       } else if (response.data.success === false) {
-        //handleError(response.data.message);
+        if(response.data.found === false){
+          handleError("Book not found in the database");
+        }else{
+          handleError("Failed to search for book");
+        }
       }
-      // Reset the bookName after search
       setBookName("");
     } catch (error) {
       handleError("Failed to search for book");

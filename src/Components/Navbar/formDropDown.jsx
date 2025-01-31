@@ -23,7 +23,7 @@ const FormDropDown = () => {
       <Dropdown backdrop="blur">
         <DropdownTrigger>
           <Button variant="" className="nav-btn px-1 w-full justify-start">
-            <p className="nav-menu-link">Contact Us</p>
+            <p className="nav-menu-link">{isLoggedIn ? "Forms" : "Login/Signup"}</p>
           </Button>
         </DropdownTrigger>
         <DropdownMenu variant="faded" aria-label="Static Actions">
