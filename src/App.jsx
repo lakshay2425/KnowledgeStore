@@ -19,7 +19,6 @@ const components = {
   Create: lazy(() => import('./Components/Features/adminPanel/create')),
   Read: lazy(() => import('./Components/Features/adminPanel/read')),
   Update: lazy(() => import('./Components/Features/adminPanel/update')),
-  Orders: lazy(() => import('./Components/Features/adminPanel/Orders')),
   Wishlist: lazy(() => import('./Components/Features/Wishlist')),
   Profile: lazy(() => import("./Components/Features/Account/Profile")),
   SearchResult : lazy(() => import("./Components/Navbar/SearchResult")),
