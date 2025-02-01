@@ -62,7 +62,7 @@ const App = () => {
         <>
           <Navbar />
           <Suspense fallback={<Loader/>}>
-            {React.createElement(components[component])}
+          {React.createElement(components[component])}
           </Suspense>
           <Footer />
         </>

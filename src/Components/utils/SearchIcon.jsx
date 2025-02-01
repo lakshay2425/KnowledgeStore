@@ -1,4 +1,3 @@
-
 const SearchIcon = (props) => (
   <svg
     aria-hidden="true"
