@@ -76,7 +76,7 @@ const App = () => {
     };
   
     const handleKeyDown = (e) => {
-      if (e.ctrlKey && (e.key === 'u' || e.key === 's' || e.key === 'a')) {
+      if (e.ctrlKey && (e.key === 'u' || e.key === 's')) {
         preventDefault(e);
       }
     };

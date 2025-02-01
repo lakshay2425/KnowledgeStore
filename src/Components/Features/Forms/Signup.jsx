@@ -1,11 +1,8 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import axiosInstance from "../../utils/Axios";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
-import useAlert  from "../../utils/setAlert";
-import { CheckboxGroup } from "@nextui-org/react";
-import  CustomCheckbox  from "./SignupEssentials/CustomCheckbox";
-
+import useAlert from "../../utils/setAlert";
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -22,16 +19,18 @@ const Signup = () => {
     cpassword: "",
     gender: "",
   });
-  const [groupSelected, setGroupSelected] = React.useState([]);
 
   // State to track the current step in the signup process
   const [step, setStep] = useState(1);
+  const [showPassword, setShowPassword] = useState(false);
+  const [showCPassword, setShowCPassword] = useState(false);
 
-  const handleInputChange = (e) => {
-    setDetails((currData) => ({
-      ...currData,
-      [e.target.name]: e.target.value,
-    }));
+  const togglePasswordVisibility = () => {
+    setShowPassword((prev) => !prev);
+  };
+
+  const toggleCPasswordVisibility = () => {
+    setShowCPassword((prev) => !prev);
   };
 
   // Handles form submission
@@ -39,13 +38,17 @@ const Signup = () => {
     e.preventDefault();
     try {
       if (details.password === details.cpassword) {
-        const response = await axiosInstance.post(`${import.meta.env.VITE_BACKEND_URL}/auth/signupDetails`, details, {
-          headers: { 'Content-Type': 'application/json' },
-        });
+        const response = await axiosInstance.post(
+          `${import.meta.env.VITE_BACKEND_URL}/auth/signupDetails`,
+          details,
+          {
+            headers: { "Content-Type": "application/json" },
+          }
+        );
 
         const result = response.data;
         if (result.success === true) {
-          const token = Cookies.get('token'); // 'token' is the cookie name
+          const token = Cookies.get("token"); // 'token' is the cookie name
           if (token) {
             localStorage.setItem("isLoggedIn", true);
             localStorage.setItem("gmail", details.gmail);
@@ -54,14 +57,14 @@ const Signup = () => {
             localStorage.setItem("role", "user");
             handleSuccess(result.message);
             setDetails({
-              fullName: '',
-              username: '',
-              gmail: '',
-              number: '',
-              address: '',
-              password: '',
-              cpassword: '',
-              gender: ''
+              fullName: "",
+              username: "",
+              gmail: "",
+              number: "",
+              address: "",
+              password: "",
+              cpassword: "",
+              gender: "",
             });
             navigate("/");
           } else {
@@ -74,44 +77,85 @@ const Signup = () => {
         handleError("Password and Confirm password didn't match");
       }
       setDetails({
-        fullName: '',
-        username: '',
-        gmail: '',
-        number: '',
-        address: '',
-        password: '',
-        cpassword: '',
-        gender: ''
+        fullName: "",
+        username: "",
+        gmail: "",
+        number: "",
+        address: "",
+        password: "",
+        cpassword: "",
+        gender: "",
       });
     } catch (error) {
       if (error.response.status === 429) {
-        handleError('Rate limit exceeded. Please try again later.');
+        handleError("Rate limit exceeded. Please try again later.");
       } else {
         handleError(error.response.data.message);
       }
       setDetails({
-        fullName: '',
-        username: '',
-        gmail: '',
-        number: '',
-        address: '',
-        password: '',
-        cpassword: '',
-        gender: ''
+        fullName: "",
+        username: "",
+        gmail: "",
+        number: "",
+        address: "",
+        password: "",
+        cpassword: "",
+        gender: "",
       });
     }
   };
 
-  // Step navigation functions
+  const handleInputChange = (e) => {
+    setDetails((currData) => ({
+      ...currData,
+      [e.target.name]: e.target.value,
+    }));
+
+    // Validation logic
+    if (e.target.name === 'number') {
+      const phoneRegex = /^[0-9]{10}$/;
+      if (!phoneRegex.test(e.target.value)) {
+        handleError('Phone number must be 10 digits and contain no characters.');
+      }
+    }
+
+    if (e.target.name === 'gmail') {
+      const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+      if (!emailRegex.test(e.target.value)) {
+        handleError('Please enter a valid email address.');
+      }
+    }
+
+    if (e.target.name === 'username' && e.target.value.length < 8) {
+      handleError('Username must be at least 8 characters long.');
+    }
+
+    if (e.target.name === 'fullName' && e.target.value.length < 10) {
+      handleError('Name must be at least 10 characters long.');
+    }
+  };
+
   const nextStep = () => {
-    if (step < 3) {
-      setStep(step + 1);
+    if (step === 1) {
+      if (details.password === details.cpassword) {
+        if (details.number.length === 10 && /^[0-9]+$/.test(details.number) &&
+          /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(details.gmail) &&
+          details.username.length >= 8 && details.fullName.length >= 10) {
+          setStep(step + 1);
+        } else {
+          handleError('Please ensure all fields are valid before proceeding.');
+        }
+      } else {
+        handleError('Password and Confirm Password do not match.');
+      }
     }
   };
 
   const prevStep = () => {
-    if (step > 1) {
+    if (step == 2) {
       setStep(step - 1);
+    } else if (step == 1) {
+      handleError("You cannot go beyond this step")
     }
   };
 
@@ -126,6 +170,7 @@ const Signup = () => {
               <input
                 className="w-full p-2 rounded-lg bg-slate-100"
                 type="text"
+                required
                 placeholder="Enter your full name"
                 name="fullName"
                 value={details.fullName}
@@ -135,6 +180,7 @@ const Signup = () => {
             <div>
               <p className="py-2">Username</p>
               <input
+                required
                 className="w-full p-2 rounded-lg bg-slate-100"
                 type="text"
                 placeholder="Enter your username"
@@ -146,6 +192,7 @@ const Signup = () => {
             <div>
               <p className="py-2">Email</p>
               <input
+                required
                 className="w-full p-2 rounded-lg bg-slate-100"
                 type="email"
                 placeholder="Enter your email"
@@ -158,35 +205,55 @@ const Signup = () => {
               <p className="py-2">Phone Number</p>
               <input
                 className="w-full p-2 rounded-lg bg-slate-100"
-                type="tel"
+                type="number"
+                required
                 placeholder="Enter your phone number"
                 name="number"
+                maxLength={10}
                 value={details.number}
                 onChange={handleInputChange}
               />
             </div>
             <div>
               <p className="py-2">Password</p>
-              <input
-                className="w-full p-2 rounded-lg bg-slate-100"
-                type="password"
-                placeholder="Enter your password"
-                name="password"
-                value={details.password}
-                onChange={handleInputChange}
-              />
+              <div className="relative">
+                <input
+                  className="w-full p-2 rounded-lg bg-slate-100"
+                  type={showPassword ? 'text' : 'password'}
+                  placeholder="Enter your password"
+                  name="password"
+                  required
+                  value={details.password}
+                  onChange={handleInputChange}
+                />
+                <span
+                  className="absolute right-2 top-1/2 transform -translate-y-1/2 cursor-pointer"
+                  onClick={togglePasswordVisibility}
+                >
+                  {showPassword ? '👁️' : '👁️‍🗨️'}
+                </span>
+              </div>
             </div>
             <div>
               <p className="py-2">Confirm Password</p>
-              <input
-                className="w-full p-2 rounded-lg bg-slate-100"
-                type="password"
-                placeholder="Confirm your password"
-                name="cpassword"
-                autoComplete="off"
-                value={details.cpassword}
-                onChange={handleInputChange}
-              />
+              <div className="relative">
+                <input
+                  required
+                  className="w-full p-2 rounded-lg bg-slate-100"
+                  type={showCPassword ? 'text' : 'password'}
+                  placeholder="Confirm your password"
+                  name="cpassword"
+                  autoComplete="off"
+                  value={details.cpassword}
+                  onChange={handleInputChange}
+                />
+                <span
+                  className="absolute right-2 top-1/2 transform -translate-y-1/2 cursor-pointer"
+                  onClick={toggleCPasswordVisibility}
+                >
+                  {showCPassword ? '👁️' : '👁️‍🗨️'}
+                </span>
+              </div>
             </div>
           </>
         );
@@ -232,34 +299,6 @@ const Signup = () => {
             </div>
           </>
         );
-      case 3:
-        return (
-          <>
-            <div>
-              <p className="py-2">Your interests</p>
-              <div className="flex flex-col gap-1 w-full">
-                <CheckboxGroup
-                  className="gap-1"
-                  label="Select multiples"
-                  orientation="horizontal"
-                  value={groupSelected}
-                  onChange={setGroupSelected}
-                >
-                  <CustomCheckbox value="Fictional">Fictional</CustomCheckbox>
-                  <CustomCheckbox value="Finance">Finance</CustomCheckbox>
-                  <CustomCheckbox value="Self-Help">Self-Help</CustomCheckbox>
-                  <CustomCheckbox value="Skill-Based">Skill-Based</CustomCheckbox>
-                  <CustomCheckbox value="Biography">Biography</CustomCheckbox>
-                  <CustomCheckbox value="Comics">Comics</CustomCheckbox>
-                </CheckboxGroup>
-                <p className="mt-4 ml-1 text-default-500">
-                  Selected: {groupSelected.join(", ")}
-                </p>
-              </div>
-            </div>
-
-          </>
-        );
       default:
         return null;
     }
@@ -269,9 +308,12 @@ const Signup = () => {
     <div className=" grid grid-cols-2 w-full 100vh px-[5vw] py-6 justify-between max-md:grid-cols-1">
       <div className="max-w-80 pt-16 max-md:pt-0">
         <div className="flex-col space-y-4 max-md:">
-          <h2 className="font-bold text-5xl leading-tight">Read More, Spend Less</h2>
+          <h2 className="font-bold text-5xl leading-tight">
+            Read More, Spend Less
+          </h2>
           <p className="text-lg">
-            Become a member and enjoy the convenience of renting books at affordable prices. Sign up and start reading today.
+            Become a member and enjoy the convenience of renting books at
+            affordable prices. Sign up and start reading today.
           </p>
         </div>
       </div>
@@ -280,17 +322,28 @@ const Signup = () => {
           {renderStepContent()}
 
           <div className="flex justify-between mt-4">
-            {step > 1 && (
-              <button type="button" onClick={prevStep} className="p-2 rounded-xl bg-slate-400 text-slate-100 hover:bg-slate-950">
-                Previous
-              </button>
-            )}
-            {step < 3 ? (
-              <button type="button" onClick={nextStep} className="p-2 rounded-xl bg-slate-400 text-slate-100 hover:bg-slate-950">
+            <button
+              type="button"
+              onClick={prevStep}
+              disabled={step == 1 ? true : false}
+              className="p-2 rounded-xl bg-slate-400 text-slate-100 hover:bg-slate-950"
+            >
+              Previous
+            </button>
+            {step == 1 ? (
+              <button
+                type="button"
+                onClick={nextStep}
+                disabled={step == 2 ? true : false}
+                className="p-2 rounded-xl bg-slate-400 text-slate-100 hover:bg-slate-950"
+              >
                 Next
               </button>
             ) : (
-              <button type="submit" className="p-2 rounded-xl bg-slate-400 text-slate-100 hover:bg-slate-950">
+              <button
+                type="submit"
+                className="p-2 rounded-xl bg-slate-400 text-slate-100 hover:bg-slate-950"
+              >
                 Sign Up
               </button>
             )}

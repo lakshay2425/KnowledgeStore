@@ -35,7 +35,7 @@ const Search = () => {
         navigate('/SearchResult', { state: { book: result } });
       } else if (response.data.success === false) {
         if(response.data.found === false){
-          handleError("Book not found in the database");
+          handleError("The book you're trying to search doesn't exist in our stock");
         }else{
           handleError("Failed to search for book");
         }

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-800 text-white py-10">
+    <footer className="bg-gray-800 text-white pt-4">
       <div className="w-[90vw] m-auto px-6 md:px-12 flex flex-wrap justify-between">
         <div className="w-full md:w-1/3 ">
           <h2 className="text-2xl font-bold mb-4">Knowledge Store</h2>
@@ -12,18 +12,9 @@ const Footer = () => {
             exploring a wide range of books.
           </p>
           <div>
-            {/* <span className="block">
-              <i className="fas fa-phone mr-2"></i> +91 9874569875
-            </span> */}
             <span className="block">
-              <i className="fas fa-envelope mr-2"></i>{" "}
               support@KnowledgeStore.com
             </span>
-          </div>
-          <div className="flex space-x-4">
-            <Link to="#" className="text-gray-400 hover:text-white">
-              <i className="fab fa-instagram"></i>
-            </Link>
           </div>
         </div>
 
@@ -44,11 +35,6 @@ const Footer = () => {
                 className="hover:underline"
               >
                 Contact Us
-              </Link>
-            </li>
-            <li className="mb-2">
-              <Link to="#" className="hover:underline">
-                FAQ
               </Link>
             </li>
           </ul>
