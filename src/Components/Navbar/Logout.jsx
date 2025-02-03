@@ -12,10 +12,11 @@ const Logout = () => {
       await axiosInstance.get(`${import.meta.env.VITE_BACKEND_URL}/auth/logout`)
       .then(()=>{
         localStorage.setItem("isLoggedIn", false);
-        localStorage.setItem("role", "");
-        localStorage.setItem("gmail", "");
-        localStorage.setItem("fullName", "");
-        localStorage.setItem("username", "");
+        localStorage.removeItem("role");
+        localStorage.removeItem("gmail");
+        localStorage.removeItem("fullName");
+        localStorage.removeItem("username");
+        localStorage.removeItem("city");
         Cookies.remove('token');  // Remove the token cookie
         navigate("/Login");
       })
