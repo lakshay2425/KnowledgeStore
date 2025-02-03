@@ -7,6 +7,7 @@ function Profile() {
     const [fullName, setFullName] = useState("");
     const [userName, setUserName] = useState("");
     const [gmail, setGmail] = useState('');
+    const [city, setCity] = useState('');
     //To update fullName from localStorage
     useEffect(() => {
       const name = localStorage.getItem("fullName");
@@ -23,13 +24,22 @@ function Profile() {
       }
     }, [(localStorage.getItem("username"))])
 
-    //To update fullName from localStorage
+    //To update gmail from localStorage
     useEffect(() => {
         const Gmail = localStorage.getItem("gmail");
         if (Gmail) {
           setGmail(Gmail);
         }
       }, [(localStorage.getItem("gmail"))])
+          //To update fullName from localStorage
+    useEffect(() => {
+      const city = localStorage.getItem("city");
+      if (city) {
+        setCity(city);
+      }
+    }, [(localStorage.getItem("city"))])
+
+
 
     return (
         <div className="w-full h-auto bg-[#F6F6F6] overflow-hidden">
@@ -50,7 +60,7 @@ function Profile() {
                     <UserSection title="Address">
                         <div className="flex flex-col md:flex-row gap-4 md:gap-48">
                             <UserInfo label="Country" value={"India"} />
-                            <UserInfo label="City" value={ "Delhi"} />
+                            <UserInfo label="City" value={city ||  "Delhi"} />
                         </div>
                         <div className="flex flex-col md:flex-row gap-4 md:gap-52">
                             <UserInfo label="Postal Code" value={ "110086"} />

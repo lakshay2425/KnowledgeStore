@@ -6,8 +6,8 @@ import Cookies from 'js-cookie';
 const Logout = () => {
   const { handleError } = useAlert();
   const navigate = useNavigate();
-  const handleSubmit = async (e) => {
-    
+
+  const handleLogout = async (e) => {
       e.preventDefault();
       await axiosInstance.get(`${import.meta.env.VITE_BACKEND_URL}/auth/logout`)
       .then(()=>{
@@ -17,7 +17,7 @@ const Logout = () => {
         localStorage.setItem("fullName", "");
         localStorage.setItem("username", "");
         Cookies.remove('token');  // Remove the token cookie
-        navigate("/");
+        navigate("/Login");
       })
      .catch(()=> {
       handleError("Failed to login, Try again in some time");
@@ -25,7 +25,8 @@ const Logout = () => {
   }
   return (
     <>
-      <input type="submit" onClick={handleSubmit} value="Logout" className='btn btn-danger nav-btn px-1 w-full justify-start' />
+      {/* <input type="submit" onClick={handleLogout} value="Logout" className='btn btn-danger nav-btn px-1 w-full justify-start' /> */}
+      <button onClick={handleLogout}>Logout</button>
     </>
   )
 }

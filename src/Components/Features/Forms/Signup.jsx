@@ -1,7 +1,6 @@
 import { useState } from "react";
 import axiosInstance from "../../utils/Axios";
 import { useNavigate } from "react-router-dom";
-import Cookies from "js-cookie";
 import useAlert from "../../utils/setAlert";
 
 const Signup = () => {
@@ -18,6 +17,7 @@ const Signup = () => {
     password: "",
     cpassword: "",
     gender: "",
+    city: "",
   });
 
   // State to track the current step in the signup process
@@ -33,11 +33,15 @@ const Signup = () => {
     setShowCPassword((prev) => !prev);
   };
 
+  const handleNext = async (e) => {
+    e.preventDefault();
+  };
   // Handles form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       if (details.password === details.cpassword) {
+        console.log(details, "Form Details");
         const response = await axiosInstance.post(
           `${import.meta.env.VITE_BACKEND_URL}/auth/signupDetails`,
           details,
@@ -45,33 +49,30 @@ const Signup = () => {
             headers: { "Content-Type": "application/json" },
           }
         );
-
         const result = response.data;
         if (result.success === true) {
-          const token = Cookies.get("token"); // 'token' is the cookie name
-          if (token) {
-            localStorage.setItem("isLoggedIn", true);
-            localStorage.setItem("gmail", details.gmail);
-            localStorage.setItem("fullName", details.fullName);
-            localStorage.setItem("username", details.username);
-            localStorage.setItem("role", "user");
-            handleSuccess(result.message);
-            setDetails({
-              fullName: "",
-              username: "",
-              gmail: "",
-              number: "",
-              address: "",
-              password: "",
-              cpassword: "",
-              gender: "",
-            });
-            navigate("/");
-          } else {
-            handleError("Signup failed");
-          }
+          localStorage.setItem("isLoggedIn", true);
+          localStorage.setItem("gmail", details.gmail);
+          localStorage.setItem("fullName", details.fullName);
+          localStorage.setItem("username", details.username);
+          localStorage.setItem("role", result.role);
+          handleSuccess(result.message);
+          setDetails({
+            fullName: "",
+            username: "",
+            gmail: "",
+            number: "",
+            address: "",
+            password: "",
+            cpassword: "",
+            gender: "",
+            city: "",
+          });
+          navigate("/");
         } else if (result.exists === true) {
           handleError(result.message);
+        } else if (result.success === false) {
+          handleError("Singup failed");
         }
       } else {
         handleError("Password and Confirm password didn't match");
@@ -85,12 +86,14 @@ const Signup = () => {
         password: "",
         cpassword: "",
         gender: "",
+        city: "",
       });
     } catch (error) {
       if (error.response.status === 429) {
         handleError("Rate limit exceeded. Please try again later.");
       } else {
         handleError(error.response.data.message);
+        console.log(error.response.data.error, "Error");
       }
       setDetails({
         fullName: "",
@@ -101,7 +104,9 @@ const Signup = () => {
         password: "",
         cpassword: "",
         gender: "",
+        city: "",
       });
+      setStep(1);
     }
   };
 
@@ -110,43 +115,26 @@ const Signup = () => {
       ...currData,
       [e.target.name]: e.target.value,
     }));
-
-    // Validation logic
-    if (e.target.name === 'number') {
-      const phoneRegex = /^[0-9]{10}$/;
-      if (!phoneRegex.test(e.target.value)) {
-        handleError('Phone number must be 10 digits and contain no characters.');
-      }
-    }
-
-    if (e.target.name === 'gmail') {
-      const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-      if (!emailRegex.test(e.target.value)) {
-        handleError('Please enter a valid email address.');
-      }
-    }
-
-    if (e.target.name === 'username' && e.target.value.length < 8) {
-      handleError('Username must be at least 8 characters long.');
-    }
-
-    if (e.target.name === 'fullName' && e.target.value.length < 10) {
-      handleError('Name must be at least 10 characters long.');
-    }
   };
 
   const nextStep = () => {
     if (step === 1) {
       if (details.password === details.cpassword) {
-        if (details.number.length === 10 && /^[0-9]+$/.test(details.number) &&
-          /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(details.gmail) &&
-          details.username.length >= 8 && details.fullName.length >= 10) {
+        if (
+          details.number.length === 10 &&
+          /^[0-9]+$/.test(details.number) &&
+          /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(
+            details.gmail
+          ) &&
+          details.username.length >= 8 &&
+          details.fullName.length >= 10
+        ) {
           setStep(step + 1);
         } else {
-          handleError('Please ensure all fields are valid before proceeding.');
+          handleError("Please ensure all fields are valid before proceeding.");
         }
       } else {
-        handleError('Password and Confirm Password do not match.');
+        handleError("Password and Confirm Password do not match.");
       }
     }
   };
@@ -155,7 +143,7 @@ const Signup = () => {
     if (step == 2) {
       setStep(step - 1);
     } else if (step == 1) {
-      handleError("You cannot go beyond this step")
+      handleError("You cannot go beyond this step");
     }
   };
 
@@ -219,7 +207,7 @@ const Signup = () => {
               <div className="relative">
                 <input
                   className="w-full p-2 rounded-lg bg-slate-100"
-                  type={showPassword ? 'text' : 'password'}
+                  type={showPassword ? "text" : "password"}
                   placeholder="Enter your password"
                   name="password"
                   required
@@ -230,7 +218,7 @@ const Signup = () => {
                   className="absolute right-2 top-1/2 transform -translate-y-1/2 cursor-pointer"
                   onClick={togglePasswordVisibility}
                 >
-                  {showPassword ? '👁️' : '👁️‍🗨️'}
+                  {showPassword ? "👁️" : "👁️‍🗨️"}
                 </span>
               </div>
             </div>
@@ -240,7 +228,7 @@ const Signup = () => {
                 <input
                   required
                   className="w-full p-2 rounded-lg bg-slate-100"
-                  type={showCPassword ? 'text' : 'password'}
+                  type={showCPassword ? "text" : "password"}
                   placeholder="Confirm your password"
                   name="cpassword"
                   autoComplete="off"
@@ -251,7 +239,7 @@ const Signup = () => {
                   className="absolute right-2 top-1/2 transform -translate-y-1/2 cursor-pointer"
                   onClick={toggleCPasswordVisibility}
                 >
-                  {showCPassword ? '👁️' : '👁️‍🗨️'}
+                  {showCPassword ? "👁️" : "👁️‍🗨️"}
                 </span>
               </div>
             </div>
@@ -318,7 +306,7 @@ const Signup = () => {
         </div>
       </div>
       <div className="col-start-2 pl-72 p-16 rounded-large max-md:col-start-1 max-md:p-4 max-md:justify-self-auto">
-        <form method="post" className="signup" onSubmit={handleSubmit}>
+        <form method="post" className="signup" onSubmit={handleNext}>
           {renderStepContent()}
 
           <div className="flex justify-between mt-4">
@@ -343,6 +331,7 @@ const Signup = () => {
               <button
                 type="submit"
                 className="p-2 rounded-xl bg-slate-400 text-slate-100 hover:bg-slate-950"
+                onClick={handleSubmit}
               >
                 Sign Up
               </button>

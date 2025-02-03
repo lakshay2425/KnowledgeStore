@@ -18,20 +18,21 @@ var Navbar = () => {
   const [role, setRole] = useState((localStorage.getItem("role")));
   const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem("isLoggedIn") === "true");
 
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
+  };
   //To fetch isLoggedIn value from localStorage
   useEffect(() => {
     setIsLoggedIn(localStorage.getItem("isLoggedIn") === "true");
   }, [localStorage.getItem("isLoggedIn")]);
 
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
-  };
 
   //To fetch role of the user from localStorage
   useEffect(() => {
     const Role = localStorage.getItem("role");
     setRole(Role)
   }, [localStorage.getItem("role")])
+
 
 
   return (
