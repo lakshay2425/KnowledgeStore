@@ -40,6 +40,11 @@ const Categories = () => {
                     Self-Help
                   </Link>
                 </DropdownItem>
+                <DropdownItem>
+                  <Link className="dropdown-item" to='/Santana-Dharma'>
+                  Santana Dharma
+                  </Link>
+                </DropdownItem>
                 <DropdownItem
                   key="Fictional"
                   className="text-danger"

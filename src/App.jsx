@@ -30,6 +30,7 @@ const routes = [
   { path: '/Finance', component: 'Category' },
   { path: '/Biography', component: 'Category' },
   { path: '/Fictional', component: 'Category' },
+  {path: '/Santana-Dharma', component : 'Category'},
   { path: '/Self-Help', component: 'Category' },
   { path: '/Skill-based', component: 'Category' },
   { path: '/Contact', component: 'Contact' },
