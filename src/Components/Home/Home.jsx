@@ -5,12 +5,12 @@ import Recomended from "../Categories/Recomended.jsx";
 import main from './main.png';
 import { FaCaretRight } from "react-icons/fa6";
 import { FaCaretLeft } from "react-icons/fa6";
-import {useSelector} from "react-redux"
-import Loader from "../utils/Loader"
+// import {useSelector} from "react-redux"
+// import Loader from "../utils/Loader"
 
 const Home = () => {
   const containerRef = useRef(null);
-  const isFetched = useSelector((state)=> state.book.bookFetched || false)
+//  const isFetched = useSelector((state)=> state.book.bookFetched || false)
 
   const scrollLeft = () => {
     if (containerRef.current) {
@@ -23,10 +23,10 @@ const Home = () => {
     }
   };
   return (
-    isFetched ? 
-     (
-      <Loader/>
-    ) : (
+    // isFetched ? 
+    //  (
+    //   <Loader/>
+    // ) : (
       <>
         <div className="home-section pt-10 max-md:flex-col-reverse">
           <div className="home-title max-md:flex max-md:w-full max-md:text-7xl">
@@ -65,7 +65,7 @@ const Home = () => {
         </div>
         <BestSellers />
       </>
-    ) 
+    // ) 
   );
 };
 
