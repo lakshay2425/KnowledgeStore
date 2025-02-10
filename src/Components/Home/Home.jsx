@@ -24,7 +24,9 @@ const Home = () => {
   };
   return (
     isFetched ? 
-      (
+     (
+      <Loader/>
+    ) : (
       <>
         <div className="home-section pt-10 max-md:flex-col-reverse">
           <div className="home-title max-md:flex max-md:w-full max-md:text-7xl">
@@ -63,9 +65,7 @@ const Home = () => {
         </div>
         <BestSellers />
       </>
-    ) : (
-      <Loader/>
-    )
+    ) 
   );
 };
 
